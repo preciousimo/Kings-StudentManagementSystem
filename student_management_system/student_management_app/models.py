@@ -23,6 +23,7 @@ class Subjects(models.Model):
     id = models.AutoField(primary_key=True)
     subect_name = models.CharField(max_length=255)
     course_id = models.ForeignKey(Courses, delete=models.CASCADE)
+    staff_id = models.ForeignKey(Staffs, delete=models.CASCADE)
 
 class Students(models.Model):
     id = models.AutoField(primary_key=True)
