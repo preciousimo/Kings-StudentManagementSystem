@@ -105,3 +105,11 @@ class FeedBackStudent(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
 
+class FeedBackStudent(models.Model):
+    id = models.AutoField(auto_now_add=True)
+    staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
+    feedback = models.CharField(max_length=255)
+    feedback_reply = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
