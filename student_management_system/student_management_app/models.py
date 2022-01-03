@@ -11,21 +11,21 @@ class Admin(models.Model):
     password = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    objectsmodels.Manager()
+    objects = models.Manager()
 
 class Courses(models.Model):
     id = models.AutoField(primary_key=True)
     course_name = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    objectsmodels.Manager()
+    objects = models.Manager()
 
 class Subjects(models.Model):
     id = models.AutoField(primary_key=True)
     subect_name = models.CharField(max_length=255)
     course_id = models.ForeignKey(Courses, delete=models.CASCADE)
     staff_id = models.ForeignKey(Staffs, delete=models.CASCADE)
-    objectsmodels.Manager()
+    objects = models.Manager()
 
 class Students(models.Model):
     id = models.AutoField(primary_key=True)
@@ -41,7 +41,7 @@ class Students(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     course_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
-    objectsmodels.Manager()
+    objects = models.Manager()
 
 class Staffs(models.Model):
     id = models.AutoField(primary_key=True)
@@ -56,7 +56,7 @@ class Staffs(models.Model):
     country = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    objectsmodels.Manager()
+    objects = models.Manager()
 
 class Attendance(models.Model):
     id = models.AutoField(primary_key=True)
@@ -65,7 +65,7 @@ class Attendance(models.Model):
     attendance_time = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    objectsmodels.Manager()
+    objects = models.Manager()
 
 class AttendanceReport(models.Model):
     id = models.AutoField(primary_key=True)
@@ -74,6 +74,25 @@ class AttendanceReport(models.Model):
     status = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    objectsmodels.Manager()
+    objects = models.Manager()
 
+class LeaveReportStudent(models.Model):
+    id = models.AutoField(auto_now_add=True)
+    student_id = models.ForeignKey(Students, on_delete=models.CASCADE)
+    leave_date = models.CharField(max_length=255)
+    leave_message = models.TextField()
+    leave_status = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
+
+class LeaveReportStaff(models.Model):
+    id = models.AutoField(auto_now_add=True)
+    staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
+    leave_date = models.CharField(max_length=255)
+    leave_message = models.TextField()
+    leave_status = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
 
