@@ -40,7 +40,7 @@ class Students(models.Model):
     country = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    objectsmodels.Manager()
+    course_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
 
 class Staffs(models.Model):
     id = models.AutoField(primary_key=True)
@@ -57,4 +57,10 @@ class Staffs(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     objectsmodels.Manager()
 
-
+class Attendance(models.Model):
+    id = models.AutoField(primary_key=True)
+    subject_id = models.ForeignKey(Subjects, on_delete=models.CASCADE)
+    attendance_date = models.DateTimeField(auto_now_add=True)
+    attendance_time = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
