@@ -17,5 +17,5 @@ from django.conf.urls import include, re_path
 from student_management_app import home
 
 urlpatterns = [
-    re_path(r'^/', home, name='home'),
+    re_path(r'^/', home, name='home')
 ]
