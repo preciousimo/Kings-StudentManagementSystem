@@ -9,4 +9,5 @@ def home(request):
 
 def login(request):
 
-    
+
+def sign_out(request):
