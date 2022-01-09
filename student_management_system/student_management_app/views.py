@@ -7,7 +7,8 @@ from django.shortcuts import render
 def home(request):
     
 
-def login(request):
+def sign_in(request):
 
 
 def sign_out(request):
+
