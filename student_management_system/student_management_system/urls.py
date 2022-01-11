@@ -22,6 +22,6 @@ from student_management_system import settings
 from django.contrib import admin
 
 urlpatterns = [
-    path('home', view.homePage),
+    url('/', views.homePage),
     url(r'^admin/', admin.site.urls),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
