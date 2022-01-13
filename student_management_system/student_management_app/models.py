@@ -55,6 +55,8 @@ class Students(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     course_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    session_start_year = models.DateField()
+    session_end_year = models.DateField()
     objects = models.Manager()
 
 class Attendance(models.Model):
