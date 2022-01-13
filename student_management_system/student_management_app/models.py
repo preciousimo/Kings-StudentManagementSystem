@@ -10,6 +10,7 @@ class CustomUser(AbstractUser):
 
 class Admin(models.Model):
     id = models.AutoField(primary_key=True)
+    admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
@@ -26,6 +27,7 @@ class Courses(models.Model):
 
 class Staffs(models.Model):
     id = models.AutoField(primary_key=True)
+    admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
@@ -48,6 +50,7 @@ class Subjects(models.Model):
 
 class Students(models.Model):
     id = models.AutoField(primary_key=True)
+    admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
