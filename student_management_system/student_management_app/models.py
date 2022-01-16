@@ -5,7 +5,7 @@ from django.db import models
 #from django.dispatch import receiver
 # Create your models here.
 
-class Admin(models.Model):
+class AdminHOD(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
