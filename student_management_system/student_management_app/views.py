@@ -10,4 +10,4 @@ def homePage(request):
 
 def loginPage(request):
     
-    return render (request, 'home.html')
+    return render (request, 'login.html')
