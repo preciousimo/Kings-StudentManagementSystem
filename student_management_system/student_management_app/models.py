@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -13,9 +12,6 @@ class CustomUser(AbstractUser):
 class AdminHOD(models.Model):
     id = models.AutoField(primary_key=True)
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
-    email = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
@@ -30,10 +26,7 @@ class Courses(models.Model):
 class Staffs(models.Model):
     id = models.AutoField(primary_key=True)
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=255)
-    email = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
     gender = models.CharField(max_length=255)
     profile_picture = models.FileField(max_length=255)
     address = models.TextField()
@@ -53,10 +46,7 @@ class Subjects(models.Model):
 class Students(models.Model):
     id = models.AutoField(primary_key=True)
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=255)
-    email = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
     gender = models.CharField(max_length=255)
     profile_picture = models.FileField(max_length=255)
     address = models.TextField()
