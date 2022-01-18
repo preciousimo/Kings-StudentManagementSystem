@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 """student_management_system URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -14,9 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import include, re_path
-from student_management_app import home
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    re_path(r'^/', home, name='home')
+    path('', views.homePage, name='home'),
+    path('login/', views.loginPage, name='login'),
+    path('login_user', views.login_user, name='login'),
 ]
