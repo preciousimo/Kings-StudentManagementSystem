@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from django.http import HttpResponse, HttpResponseRedirect
-from django.auth.contrib import login, logout, authenticate
+from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render
 
 from student_management_app.EmailBackEnd import EmailBackEnd
@@ -17,7 +17,7 @@ def loginUser(request):
     if request.method != "POST":
         return HttpResponse("<h2>Method not allowed</h2>")
     else:
-        user = EmailBackEnd.authenticate(request,request.POST.get('email'),request.POST.get('password'))
+        user = EmailBackEnd.authenticate(request, username=request.POST.get('email'),password=request.POST.get('password'))
         if user != None:
             login(request, user)
             return HttpResponse("Email :"+request.POST.get('email')+ " Password:"+request.POST.get('password'))
@@ -31,3 +31,5 @@ def getUserDetails(request):
         return HttpResponse('Please Login First')
         return HttpResponseRedirect('/')
 
+def logoutUser(request):
+    logout(request, user)
