@@ -17,7 +17,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('/', views.homePage, name='home'),
+    path('', views.homePage, name='home'),
     path('login/', views.loginPage, name='login'),
     path('login_user', views.loginUser, name='login'),
     path('get_user_details', views.getUserDetails, name='getUserDetails'),

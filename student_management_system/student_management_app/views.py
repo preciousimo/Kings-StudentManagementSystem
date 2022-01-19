@@ -7,8 +7,7 @@ from student_management_app.EmailBackEnd import EmailBackEnd
 
 # Create your views here.
 def homePage(request):
-    
-    return render (request, 'home.html')
+    return render(request, 'home.html')
 
 def loginPage(request):
     return render (request, 'login.html')
@@ -23,7 +22,7 @@ def loginUser(request):
             return HttpResponse("Email :"+request.POST.get('email')+ " Password:"+request.POST.get('password'))
         else: 
             messages.error(request, 'Invalid Login details')
-            return HttpResponse('Invalid Login')
+            return HttpResponseRedirect('/')
 
 def getUserDetails(request):
     if request.user!=None:
