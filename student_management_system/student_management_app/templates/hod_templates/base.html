@@ -56,23 +56,24 @@
             </ul>
 
             <!-- Right navbar links -->
-            {% include 'notifications.html' %}
+            {% include 'hod_templates/notifications.html' %}
         </nav>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        {% include 'sidebar.html' %}
+        {% include 'hod_templates/sidebar.html' %}
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            {% include 'content_header.html' %}
+            {% include 'hod_templates/content_header.html' %}
             <!-- Main content -->
+            {% include 'hod_templates/home_content.html' %}
             {% block main_content %} {% endblock main_content %}
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        {% include 'footer.html' %}
+        {% include 'hod_templates/footer.html' %}
 
     </div>
     <!-- ./wrapper -->
