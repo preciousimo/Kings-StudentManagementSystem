@@ -29,4 +29,5 @@ urlpatterns = [
     path('student_home', StudentViews.student_home, name='student_home'),
     #Staff Views
     path('staff_home', StaffViews.staff_home, name='staff_home'),
+    path('add_staff', StaffViews.add_staff, name='add_staff'),
 ]
