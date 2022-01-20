@@ -3,6 +3,6 @@ def staff_home(request):
 
     return render(request, 'staff_templates/base.html')
 
-def add_Staff(request):
+def add_staff(request):
 
     return render(request, 'staff_templates/add_staff.html')
