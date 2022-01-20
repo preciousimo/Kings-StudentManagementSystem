@@ -59,6 +59,7 @@
             <div class="col-4">
               <button type="submit" class="btn btn-primary btn-block">Sign In</button>
             </div>
+            {% if messages %}
             <div class="col-12">
               {% for message in messages %}
               {% if message.tags == 'error' %}
@@ -66,6 +67,7 @@
               {% endif %}
               {% endfor %}
             </div>
+            {% endif %}
             <!-- /.col -->
           </div>
         </form>
