@@ -1,12 +1,12 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Dashboard</title>
-    {% include 'hod_templates/css_links.html' %}
+    {% include 'hod_templates/includes/links/css_links.html' %}
     {% block custom_css %} {% endblock custom_css %}
 </head>
 
@@ -19,30 +19,30 @@
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
-            {% include 'hod_templates/left_navbar.html' %}
+            {% include 'hod_templates/includes/navbars/left_navbar.html' %}
             <!-- Right navbar links -->
-            {% include 'hod_templates/right_navbar.html' %}
+            {% include 'hod_templates/includes/navbars/right_navbar.html' %}
         </nav>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        {% include 'hod_templates/sidebar.html' %}
+        {% include 'hod_templates/includes/navbars/sidebar.html' %}
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            {% include 'hod_templates/content_header.html' %}
+            {% include 'hod_templates/includes/content_header.html' %}
             <!-- Main content -->
-            {% include 'hod_templates/home_content.html' %}
+            {% include 'hod_templates/includes/home_content.html' %}
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        {% include 'hod_templates/footer.html' %}
+        {% include 'hod_templates/includes/footer.html' %}
 
     </div>
     <!-- ./wrapper -->
 
-    {% include 'hod_templates/js_links.html' %}
+    {% include 'hod_templates/includes/links/js_links.html' %}
     {% block custom_js %}{% endblock custom_js %}
 </body>
 
