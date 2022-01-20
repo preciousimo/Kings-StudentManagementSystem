@@ -23,7 +23,7 @@ urlpatterns = [
     path('login_user', views.loginUser, name='login'),
     path('get_user_details', views.getUserDetails, name='getUserDetails'),
     path('logout_user', views.logoutUser, name='logout'),
-    #HOD Views
+    #HOD/Admin Views
     path('admin_home', HodViews.admin_home, name='admin_home'),
     #Student Views
     path('student_home', StudentViews.student_home, name='student_home'),
