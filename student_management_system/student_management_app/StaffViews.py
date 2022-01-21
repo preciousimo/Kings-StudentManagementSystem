@@ -5,4 +5,4 @@ def staff_home(request):
 
 def add_staff(request):
 
-    return render(request, 'staff_templates/add_staff.html')
+    return render(request, 'staff_templates/add_staff_template.html')
