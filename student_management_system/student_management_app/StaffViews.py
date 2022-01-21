@@ -23,3 +23,12 @@ def add_staff_save(request):
             email = request.POST.get('email')
             password = request.POST.get('password')
             address = request.POST.get('address')
+            try:
+                user.CustomUser.objects.create_user(firstname=firstname,secondname=secondname,username=username,email=email,password=password,user_type=2)
+                user.staffs.address=address
+                user.save()
+                message.success(username+' added successfully')
+                return HttpResponseRedirect('/add_staff')
+            except:
+                messages.error('Failed to add staff')
+                return HttpResponseRedirect('/add_staff')
