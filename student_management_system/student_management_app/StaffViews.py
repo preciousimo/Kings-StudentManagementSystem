@@ -18,3 +18,8 @@ def add_staff_save(request):
             messages.error('Invalid Input')
         else:
             firstname = request.POST.get('firstname')
+            secondname = request.POST.get('secondname')
+            username = request.POST.get('username')
+            email = request.POST.get('email')
+            password = request.POST.get('password')
+            address = request.POST.get('address')
