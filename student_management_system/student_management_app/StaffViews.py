@@ -15,7 +15,7 @@ def add_staff_save(request):
         return HttpResponseRedirect('staff_templates/add_staff_template.html')
     else:
         if request.POST.get == None:
-            messages.error('Invalid Input')
+            messages.error(request,'Invalid Input')
         else:
             firstname = request.POST.get('firstname')
             secondname = request.POST.get('secondname')
@@ -27,8 +27,8 @@ def add_staff_save(request):
                 user.CustomUser.objects.create_user(firstname=firstname,secondname=secondname,username=username,email=email,password=password,user_type=2)
                 user.staffs.address=address
                 user.save()
-                message.success(username+' added successfully')
+                message.success(request, username+' added successfully')
                 return HttpResponseRedirect('/add_staff')
             except:
-                messages.error('Failed to add staff')
+                messages.error(request,'Failed to add staff')
                 return HttpResponseRedirect('/add_staff')
