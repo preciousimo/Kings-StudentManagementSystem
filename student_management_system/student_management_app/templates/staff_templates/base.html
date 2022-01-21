@@ -1,8 +1,8 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{% static 'favicon/kislogo.ico' %}" type="image/x-icon">
@@ -35,7 +35,7 @@
             <!-- Content Header (Page header) -->
             {% include 'staff_templates/includes/content_header.html' %}
             <!-- Main content -->
-            {% include 'staff_templates/includes/home_content.html' %}
+            {% block home_content %}{% endblock home_content %}
             <!-- Control Sidebar -->
             <aside class="control-sidebar control-sidebar-dark">
                 <!-- Control sidebar content goes here -->
