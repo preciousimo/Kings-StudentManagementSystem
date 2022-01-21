@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
+from student_management_app.models import CustomUser
 
 
 def staff_home(request):
@@ -14,21 +15,18 @@ def add_staff_save(request):
         return HttpResponse('<h2>Method not allowed</h2>')
         return HttpResponseRedirect('staff_templates/add_staff_template.html')
     else:
-        if request.POST.get == None:
-            messages.error(request,'Invalid Input')
-        else:
-            firstname = request.POST.get('firstname')
-            secondname = request.POST.get('secondname')
-            username = request.POST.get('username')
-            email = request.POST.get('email')
-            password = request.POST.get('password')
-            address = request.POST.get('address')
-            try:
-                user.CustomUser.objects.create_user(firstname=firstname,secondname=secondname,username=username,email=email,password=password,user_type=2)
-                user.staffs.address=address
-                user.save()
-                message.success(request, username+' added successfully')
-                return HttpResponseRedirect('/add_staff')
-            except:
-                messages.error(request,'Failed to add staff')
-                return HttpResponseRedirect('/add_staff')
+        first_name = request.POST.get('first_name')
+        second_name = request.POST.get('second_name')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        address = request.POST.get('address')
+        try:
+            user = CustomUser.objects.create_user(first_name=first_name,second_name=second_name,username=username,email=email,password=password,user_type=2)
+            user.staffs.address=address
+            user.save()
+            message.success(request, username+' added successfully')
+            return HttpResponseRedirect('/add_staff')
+        except:
+            messages.error(request,'Failed to add staff')
+            return HttpResponseRedirect('/add_staff')
