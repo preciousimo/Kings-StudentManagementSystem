@@ -30,5 +30,5 @@ urlpatterns = [
     #Staff Views
     path('staff_home/', StaffViews.staff_home),
     path('add_staff/', StaffViews.add_staff),
-    path('add_staff_save/', StaffViews.add_staff_save)
+    path('add_staff_save', StaffViews.add_staff_save)
 ]

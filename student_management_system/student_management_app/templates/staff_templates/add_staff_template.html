@@ -14,6 +14,7 @@
                     <!-- /.card-header -->
                     <!-- form start -->
                     <form action="/add_staff_save" method='post'>
+                        {% csrf_token %}
                         <div class="card-body">
                             <div class="form-group">
                                 <label>First Name</label>
@@ -39,7 +40,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Address</label>
-                                <input type="textfield" class="form-control" name="address" placeholder="address">
+                                <input type="text" class="form-control" name="address" placeholder="address">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">Curicculum Vitae</label>
@@ -61,7 +62,7 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
                         </div>
                     </form>
                 </div>
