@@ -16,7 +16,8 @@ def loginUser(request):
     if request.method != "POST":
         return HttpResponse("<h2>Method not allowed</h2>")
     else:
-        user = EmailBackEnd.authenticate(request, username=request.POST.get('email'),password=request.POST.get('password'))
+        email = request.POST.get('email')
+        password = request.POST.get('password')
         if user != None:
             login(request, user)
             return render(request, '/admin_home')
