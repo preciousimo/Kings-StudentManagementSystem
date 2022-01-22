@@ -1,11 +1,9 @@
 from __future__ import unicode_literals
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth import login, logout, authenticate
+from student_management_app.models import CustomUser
 from django.shortcuts import render
 from django.contrib import messages
-from student_management_app.EmailBackEnd import EmailBackEnd
-from student_management_app import HodViews
-from student_management_app.models import CustomUser
+
 
 # Create your views here.
 def homePage(request):
@@ -24,12 +22,11 @@ def registerUser(request):
     else:
         first_name = request.POST.get('first_name')
         second_name = request.POST.get('second_name')
-        username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
         password2 = request.POST.get('password2')
-        user = EmailBackEnd.authenticate(request, first_name=first_name,second_name=second_name,username=username,email=email,password=password,password2=password2,user_type=2)
-        login(request, user)
+        user = CustomUser.objects.create_user(first_name=first_name,second_name=second_name,email=email,password=password,user_type=1)
+        user.save()        
         return HttpResponseRedirect('admin_home')
     
 def logoutUser(request):
