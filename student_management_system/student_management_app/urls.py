@@ -21,13 +21,13 @@ urlpatterns = [
     path('', views.homePage),
     path('login/', views.loginPage),
     path('register/', views.registerPage),
-    path('login_user', views.loginUser),
-    path('get_user_details', views.getUserDetailserDetails),
-    path('logout_user', views.logoutUsert),
+    #path('login_user', views.loginUser),
+    #path('get_user_details', views.getUserDetailserDetails),
+    path('logout_user', views.logoutUser),
     #HOD/Admin Views
-    path('admin_home', HodViews.admin_home_home),
+    path('admin_home', HodViews.admin_home),
     #Student Views
-    path('student_home', StudentViews.student_homent_home),
+    path('student_home', StudentViews.student_home),
     #Staff Views
     path('staff_home/', StaffViews.staff_home),
     path('add_staff/', StaffViews.add_staff),

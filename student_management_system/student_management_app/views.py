@@ -9,32 +9,12 @@ from student_management_app.EmailBackEnd import EmailBackEnd
 def homePage(request):
     return render (request, 'home.html')
 
-def registerPage(request):
-    return render (request, 'register.html')
-
-
 def loginPage(request):
     return render (request, 'login.html')
 
-def loginUser(request):
-    if request.method != "POST":
-        return HttpResponse("<h2>Method not allowed</h2>")
-    else:
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        if user != None:
-            login(request, user)
-            return render(request, '/admin_home')
-        else: 
-            messages.error(request, 'Invalid Login details')
-            return render(request, 'login.html')
+def registerPage(request):
+    return render (request, 'register.html')
 
-def getUserDetails(request):
-    if request.user!=None:
-        return HttpResponse('User: '+request.user.email+ ' usertype : '+request.user.user_type)
-    else:
-        return HttpResponse('Please Login First')
-        return HttpResponseRedirect('/')
 
 def logoutUser(request):
     logout(request, user)
