@@ -24,10 +24,11 @@ def registerUser(request):
     else:
         first_name = request.POST.get('first_name')
         second_name = request.POST.get('second_name')
+        username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
         password2 = request.POST.get('password2')
-        user = CustomUser.objects.create_user(first_name=first_name,second_name=second_name,email=email,password=password,password2=password2,user_type=2)
+        user = CustomUser.objects.create_user(first_name=first_name,second_name=second_name,username=username,email=email,password=password,password2=password2,user_type=2)
         if user is True:
             user.save()
         else:

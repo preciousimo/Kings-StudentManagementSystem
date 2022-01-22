@@ -30,7 +30,7 @@ class Staffs(models.Model):
     second_name = models.CharField(max_length=255)
     #profile_picture = models.FileField(max_length=255)
     #address = models.TextField()
-    #username = models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
     password2 = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
