@@ -20,6 +20,7 @@
         <p class="login-box-msg">Create a new acount</p>
 
         <form action="/register_user" method="post">
+          {% csrf_token %}
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="First name">
             <div class="input-group-append">

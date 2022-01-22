@@ -21,6 +21,7 @@ urlpatterns = [
     path('', views.homePage),
     path('login/', views.loginPage),
     path('register/', views.registerPage),
+    path('register_user', views.registerUser),
     #path('login_user', views.loginUser),
     #path('get_user_details', views.getUserDetailserDetails),
     path('logout_user', views.logoutUser),

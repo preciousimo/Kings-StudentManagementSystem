@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render
 from django.contrib import messages
 from student_management_app.EmailBackEnd import EmailBackEnd
+from student_management_app import HodViews
 
 # Create your views here.
 def homePage(request):
@@ -14,6 +15,9 @@ def loginPage(request):
 
 def registerPage(request):
     return render (request, 'register.html')
+
+def registerUser(request):
+    return HttpResponseRedirect('admin_home')
 
 
 def logoutUser(request):
