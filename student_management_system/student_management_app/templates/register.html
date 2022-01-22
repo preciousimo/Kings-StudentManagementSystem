@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Registration Page</title>
-
+  <link rel="shortcut icon" href="{% static 'favicon/kislogo.ico' %}" type="image/x-icon">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -22,14 +22,22 @@
   <div class="register-box">
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <a href="/" class="h1"><b>Kings</b>School Admin</a>
+        <h2><b>Kings</b> Admin</h2>
       </div>
       <div class="card-body">
-        <p class="login-box-msg">Register a new membership</p>
+        <p class="login-box-msg">Create a new acount</p>
 
         <form action="/register_user" method="post">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Full name">
+            <input type="text" class="form-control" placeholder="First name">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Second name">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-user"></span>
@@ -88,7 +96,7 @@
           </a>
         </div>
 
-        <a href="/login_user" class="text-center">I already have an account</a>
+        <a href="/login" class="text-center">I already have an account</a>
       </div>
       <!-- /.form-box -->
     </div><!-- /.card -->
