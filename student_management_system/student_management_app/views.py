@@ -28,11 +28,9 @@ def registerUser(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         password2 = request.POST.get('password2')
-        user = CustomUser.objects.create_user(first_name=first_name,second_name=second_name,username=username,email=email,password=password,password2=password2,user_type=2)
-        if user is True:
-            user.save()
-        else:
-            return HttpResponse('Registration Successful')
-
+        user = EmailBackEnd.authenticate(request, first_name=first_name,second_name=second_name,username=username,email=email,password=password,password2=password2,user_type=2)
+        login(request, user)
+        return HttpResponseRedirect('admin_home')
+    
 def logoutUser(request):
     logout(request, user)
