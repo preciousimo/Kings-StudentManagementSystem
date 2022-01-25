@@ -18,7 +18,6 @@ from student_management_app import views, HodViews, StudentViews, StaffViews
 
 
 urlpatterns = [
-    path('', views.homePage),
     path('login/', views.loginPage),
     path('register/', views.registerPage),
     path('register_user', views.registerUser),
