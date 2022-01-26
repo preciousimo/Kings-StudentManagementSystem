@@ -2,13 +2,13 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
 
-def staff_home(request):
+def staffHome(request):
     return render(request, 'staff_templates/includes/home_content.html')
 
-def add_staff(request):
+def addStaff(request):
     return render(request, 'staff_templates/add_staff_template.html')
 '''
-def add_staff_save(request):
+def addStaffSave(request):
     if request.method != 'POST':
         return HttpResponse('<h2>Method not allowed</h2>')
         return HttpResponseRedirect('staff_templates/add_staff_template.html')

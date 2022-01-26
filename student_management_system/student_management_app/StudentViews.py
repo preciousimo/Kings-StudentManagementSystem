@@ -1,3 +1,3 @@
 from django.shortcuts import render
-def student_home(request):
+def studentHome(request):
     return render(request, 'student_templates/base.html')

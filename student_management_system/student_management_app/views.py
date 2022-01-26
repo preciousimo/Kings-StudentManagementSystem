@@ -21,7 +21,7 @@ def registerUser(request):
         user = User.objects.create_user(first_name=first_name,second_name=second_name,email=email,password=password,password2=password2)
         user.save()      
         messages.success(request, first_name,' created successfully')  
-        return HttpResponseRedirect('admin_home')
+        return HttpResponseRedirect('admin-home')
     else:
         return HttpResponse('<h2>Method not allowed</h2>')
         return HttpResponseRedirect('register')

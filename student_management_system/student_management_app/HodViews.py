@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-def admin_home(request):
+def adminHome(request):
 
     return render(request, 'hod_templates/base.html')
 def profile(request):

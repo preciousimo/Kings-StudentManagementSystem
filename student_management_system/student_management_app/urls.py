@@ -20,18 +20,18 @@ from student_management_app import views, HodViews, StudentViews, StaffViews
 urlpatterns = [
     path('login/', views.loginPage),
     path('register/', views.registerPage),
-    path('register_user', views.registerUser),
+    path('register-user', views.registerUser),
     #path('login_user', views.loginUser),
     #path('get_user_details', views.getUserDetailserDetails),
-    path('logout_user', views.logoutUser),
+    path('logout-user', views.logoutUser),
     #HOD/Admin Views
-    path('admin_home', HodViews.admin_home),
+    path('admin-home', HodViews.adminHome),
     path('profile', HodViews.profile),
     path('contact-us', HodViews.contactUs),
     #Student Views
-    path('student_home', StudentViews.student_home),
+    path('student-home', StudentViews.studentHome),
     #Staff Views
-    path('staff_home/', StaffViews.staff_home),
-    path('add_staff/', StaffViews.add_staff),
+    path('staff-home/', StaffViews.staffHome),
+    path('add-staff/', StaffViews.addStaff),
     #path('add_staff_save', StaffViews.add_staff_save)
 ]
