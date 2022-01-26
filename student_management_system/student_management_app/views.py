@@ -1,8 +1,9 @@
 from __future__ import unicode_literals
 from django.http import HttpResponse, HttpResponseRedirect
-from student_management_app.models import CustomUser
+from django.contrib.auth.models import User, auth
 from django.shortcuts import render
 from django.contrib import messages
+from student_management_app.models import CustomUser
 
 # Create your views here.
 def loginPage(request):
@@ -12,18 +13,19 @@ def registerPage(request):
     return render (request, 'register.html')
 
 def registerUser(request):
-    if request.method != 'POST':
+    if request.method == 'POST':
+        first_name = request.POST['first_name']
+        second_name = request.POST['second_name']
+        email = request.POST['email']
+        password = request.POST['password']
+        password2 = request.POST['password2']
+        user = CustomUser.objects.create_user(first_name=first_name,second_name=second_name,email=email,password=password, user_type=1)
+        user.save()      
+        messages.success(request, first_name,' created successfully')  
+        return HttpResponseRedirect('admin_home')
+    else:
         return HttpResponse('<h2>Method not allowed</h2>')
         return HttpResponseRedirect('register')
-    else:
-        first_name = request.POST.get('first_name')
-        second_name = request.POST.get('second_name')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        password2 = request.POST.get('password2')
-        user = CustomUser.objects.create_user(first_name=first_name,second_name=second_name,email=email,password=password,user_type=1)
-        user.save()        
-        return HttpResponseRedirect('admin_home')
     
 def logoutUser(request):
     logout(request, user)
