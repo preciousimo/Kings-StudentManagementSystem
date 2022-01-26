@@ -26,10 +26,11 @@ urlpatterns = [
     path('logout_user', views.logoutUser),
     #HOD/Admin Views
     path('admin_home', HodViews.admin_home),
+    path('profile', HodViews.profile),
     #Student Views
     path('student_home', StudentViews.student_home),
     #Staff Views
     path('staff_home/', StaffViews.staff_home),
     path('add_staff/', StaffViews.add_staff),
-    #path('add_staff_save', StaffViews.add_staff_save)
+    path('add_staff_save', StaffViews.add_staff_save)
 ]
