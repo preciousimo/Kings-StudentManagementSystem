@@ -17,9 +17,10 @@ def registerUser(request):
         first_name = request.POST['first_name']
         second_name = request.POST['second_name']
         email = request.POST['email']
+        username = request.POST['username']
         password = request.POST['password']
         password2 = request.POST['password2']
-        user = CustomUser.objects.create_user(first_name=first_name,second_name=second_name,email=email,password=password, user_type=1)
+        user = CustomUser.objects.create_user(first_name=first_name,second_name=second_name,email=email,password=password,password2=password2, user_type=1)
         user.save()      
         messages.success(request, first_name,' created successfully')  
         return HttpResponseRedirect('admin_home')
