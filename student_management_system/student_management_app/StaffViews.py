@@ -1,15 +1,13 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
-from student_management_app.models import CustomUser
-
 
 def staff_home(request):
     return render(request, 'staff_templates/includes/home_content.html')
 
 def add_staff(request):
     return render(request, 'staff_templates/add_staff_template.html')
-
+'''
 def add_staff_save(request):
     if request.method != 'POST':
         return HttpResponse('<h2>Method not allowed</h2>')
@@ -30,3 +28,4 @@ def add_staff_save(request):
         except:
             messages.error(request,'Failed to add staff')
             return HttpResponseRedirect('/add_staff')
+'''
