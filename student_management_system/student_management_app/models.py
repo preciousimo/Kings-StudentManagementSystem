@@ -11,14 +11,12 @@ class AdminHOD(models.Model):
     password = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
 
 class Courses(models.Model):
     id = models.AutoField(primary_key=True)
     course_name = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
 
 class Staffs(models.Model):
     id = models.AutoField(primary_key=True)
@@ -30,14 +28,12 @@ class Staffs(models.Model):
     country = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
 
 class Subjects(models.Model):
     id = models.AutoField(primary_key=True)
     subect_name = models.CharField(max_length=255)
     course_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
     staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
-    objects = models.Manager()
 
 class Students(models.Model):
     id = models.AutoField(primary_key=True)
@@ -52,7 +48,6 @@ class Students(models.Model):
     course_id = models.ForeignKey(Courses, on_delete=models.DO_NOTHING)
     session_start_year = models.DateField()
     session_end_year = models.DateField()
-    objects = models.Manager()
 
 class Attendance(models.Model):
     id = models.AutoField(primary_key=True)
@@ -61,7 +56,6 @@ class Attendance(models.Model):
     attendance_time = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
 
 class AttendanceReport(models.Model):
     id = models.AutoField(primary_key=True)
@@ -70,7 +64,6 @@ class AttendanceReport(models.Model):
     status = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
 
 class LeaveReportStudent(models.Model):
     id = models.AutoField(primary_key=True)
@@ -80,7 +73,6 @@ class LeaveReportStudent(models.Model):
     leave_status = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
 
 class LeaveReportStaff(models.Model):
     id = models.AutoField(primary_key=True)
@@ -90,7 +82,6 @@ class LeaveReportStaff(models.Model):
     leave_status = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
 
 class FeedBackStudents(models.Model):
     id = models.AutoField(primary_key=True)
@@ -99,7 +90,6 @@ class FeedBackStudents(models.Model):
     feedback_reply = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
 
 class FeedBackStaffs(models.Model):
     id = models.AutoField(primary_key=True)
@@ -108,7 +98,6 @@ class FeedBackStaffs(models.Model):
     feedback_reply = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
 
 class NotificationStudents(models.Model):
     id = models.AutoField(primary_key=True)
@@ -116,7 +105,6 @@ class NotificationStudents(models.Model):
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
 
 class NotificationStaffs(models.Model):
     id = models.AutoField(primary_key=True)
@@ -124,4 +112,3 @@ class NotificationStaffs(models.Model):
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
