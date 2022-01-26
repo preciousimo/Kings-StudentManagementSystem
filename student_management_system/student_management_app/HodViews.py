@@ -6,3 +6,6 @@ def admin_home(request):
 def profile(request):
 
     return render(request, 'hod_templates/profile.html')
+def contactUs(request):
+
+    return render(request, 'hod_templates/contact-us.html')

@@ -27,6 +27,7 @@ urlpatterns = [
     #HOD/Admin Views
     path('admin_home', HodViews.admin_home),
     path('profile', HodViews.profile),
+    path('contact-us', HodViews.contactUs),
     #Student Views
     path('student_home', StudentViews.student_home),
     #Staff Views
