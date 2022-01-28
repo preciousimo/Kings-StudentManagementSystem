@@ -14,19 +14,24 @@ class AdminHOD(models.Model):
 
 class Staffs(models.Model):
     id = models.AutoField(primary_key=True)
+    first_name = models.CharField(max_length=100)
+    middle_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    date_of_birth = models.DateField()
+    email = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=255)
     gender = models.CharField(max_length=255)
     profile_picture = models.FileField(max_length=255)
+    curicculum_vitae = models.FileField(max_length=255)
     address = models.TextField()
     state = models.CharField(max_length=255)
-    country = models.CharField(max_length=255)
+    nationality = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
 class Subjects(models.Model):
     id = models.AutoField(primary_key=True)
     subect_name = models.CharField(max_length=255)
-    course_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
     staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
 
 class Students(models.Model):
@@ -39,7 +44,6 @@ class Students(models.Model):
     country = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    course_id = models.ForeignKey(Courses, on_delete=models.DO_NOTHING)
     session_start_year = models.DateField()
     session_end_year = models.DateField()
 
