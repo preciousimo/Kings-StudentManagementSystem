@@ -3,7 +3,7 @@ from django.db import models
 from django.dispatch import receiver
 # Create your models here.
 
-class AdminHOD(models.Model):
+class SchoolAdmin(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=255)
     second_name = models.CharField(max_length=255)
@@ -31,7 +31,10 @@ class Staffs(models.Model):
 
 class Subjects(models.Model):
     id = models.AutoField(primary_key=True)
-    subect_name = models.CharField(max_length=255)
+    subject_code = models.CharField(max_length=255)
+    subject_title = models.CharField(max_length=255)
+    subject_status = models.CharField(max_length=255)
+    admin_id = models.ForeignKey(SchoolAdmin, on_delete=models.CASCADE)
     staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
 
 class Students(models.Model):
