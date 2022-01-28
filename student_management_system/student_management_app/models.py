@@ -58,6 +58,8 @@ class Students(models.Model):
 class Attendance(models.Model):
     id = models.AutoField(primary_key=True)
     subject_id = models.ForeignKey(Subjects, on_delete=models.DO_NOTHING)
+    staff_id = models.ForeignKey(Staffs, on_delete=models.DO_NOTHING)
+    admin_id = models.ForeignKey(SchoolAdmin, on_delete=models.DO_NOTHING)
     attendance_date = models.DateTimeField(auto_now_add=True)
     attendance_time = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now_add=True)
