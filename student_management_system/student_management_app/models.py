@@ -44,7 +44,7 @@ class Students(models.Model):
     last_name = models.CharField(max_length=100)
     date_of_birth = models.DateField()
     email = models.CharField(max_length=100)
-    phone_number = models.IntegerField(max_length=255)
+    phone_number = models.IntegerField()
     gender = models.CharField(max_length=255)
     profile_picture = models.FileField(max_length=255)
     address = models.TextField()
