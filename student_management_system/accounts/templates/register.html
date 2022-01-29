@@ -11,6 +11,7 @@
 </head>
 
 <body class="hold-transition register-page">
+  <br><br>
   <div class="register-box">
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
@@ -71,16 +72,22 @@
           </div>
           <div class="row">
             <div class="col-8">
-              <div class="icheck-primary">
-                <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                <label for="agreeTerms">
-                  I agree to the <a href="#">terms</a>
-                </label>
-              </div>
+              {% if messages %}
+              {% for message in messages %}
+              {% if message.tags == 'success' %}
+              <div class="btn btn-success btn-block">{{message}}</div>
+              {% endif %}
+              {% if message.tags == 'info' %}
+              <div class="btn btn-info btn-block">{{message}}</div>
+              {% endif %}
+              {% if message.tags == 'error' %}
+              <div class="btn btn-danger btn-block">{{message}}</div>
+              {% endif %}
+              {% endfor %}
+              {% endif %}
             </div>
-            <!-- /.col -->
             <div class="col-4">
-              <button type="submit" class="btn btn-success btn-block">Register</button>
+              <button type="submit" class="btn btn-block btn-success">Register</button>
             </div>
             <!-- /.col -->
           </div>
@@ -99,12 +106,13 @@
 
         <a href="/login" class="text-center">I already have an account</a>
       </div>
-      <!-- /.form-box -->
-    </div><!-- /.card -->
+    </div>
+    <br><br>
   </div>
-  <!-- /.register-box -->
+
 
   {% include 'includes/js_links.html' %}
 </body>
+<br>
 
 </html>

@@ -17,20 +17,20 @@ def registerPage(request):
         password2 = request.POST['password2']
         if password == password2:
             if User.objects.filter(username=username).exists():
-                messages.info(request, '{{username}} already taken')
-                return redirect('/register')
+                messages.info(request, '{} already taken'.format(username))
+                return render(request, 'register.html')
             elif User.objects.filter(email=email).exists():
-                messages.info(request, '{{email}} already taken')
-                return redirect('/register')
+                messages.info(request, '{} already taken'.format(username))
+                return render(request, 'register.html')
             else:
                 user = User.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password)
                 user.save() 
-                messages.success(request, '{{username}} created successfully')   
+                messages.success(request, '{} created successfully'.format(username))   
                 return HttpResponseRedirect('student_management_app/admin-home')  
         else:
-            messages.info(request,'Passwords do not match')
+            messages.error(request,'Passwords do not match')
             #messages.success(request, first_name,' created successfully')  
-            return redirect('/register')
+            return render(request, 'register.html')
     else:
         return render(request, 'register.html')
         
