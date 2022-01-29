@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
@@ -18,8 +18,10 @@ def registerPage(request):
         if password == password2:
             if User.objects.filter(username=username).exists():
                 messages.info(request, '{{username}} already taken')
+                return redirect('register')
             elif User.objects.filter(email=email).exists():
                 messages.info(request, '{{email}} already taken')
+                return redirect('register')
             else:
                 user = User.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password)
                 user.save() 
@@ -28,7 +30,7 @@ def registerPage(request):
         else:
             messages.info(request,'Passwords do not match')
             #messages.success(request, first_name,' created successfully')  
-            return render(request, 'register.html')
+            return redirect('register')
     else:
-        return render(request, 'register.html')
+        return redirect('register')
         
