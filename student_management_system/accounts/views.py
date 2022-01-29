@@ -18,9 +18,14 @@ def registerUser(request):
         password = request.POST['password']
         password2 = request.POST['password2']
         if password == password2:
-            user = User.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password)
-            user.save() 
-            print(username,' created successfully')     
+            if User.objects.filter(username=username).exists():
+                print('Username taken')
+            elif User.objects.filter(email=email).exists():
+                print('Email taken')
+            else:
+                user = User.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password)
+                user.save() 
+                print(username,' created successfully')     
         else:
             print('Passwords do not match')
             #messages.success(request, first_name,' created successfully')  
