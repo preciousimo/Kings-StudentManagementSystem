@@ -46,4 +46,7 @@ def registerPage(request):
             return render(request, 'register.html')
     else:
         return render(request, 'register.html')
-        
+
+def logoutPage(request):
+    auth.logout(request)
+    return redirect('login')
