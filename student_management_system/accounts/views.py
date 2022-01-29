@@ -7,9 +7,7 @@ def loginPage(request):
     return render (request, 'login.html')
 
 def registerPage(request):
-    return render(request, 'register.html')
-
-def registerUser(request):
+    
     if request.method == 'POST':
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
@@ -19,16 +17,18 @@ def registerUser(request):
         password2 = request.POST['password2']
         if password == password2:
             if User.objects.filter(username=username).exists():
-                print('Username taken')
+                return HttpResponse('Username taken')
             elif User.objects.filter(email=email).exists():
-                print('Email taken')
+                return HttpResponse('Email taken')
             else:
                 user = User.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password)
                 user.save() 
-                print(username,' created successfully')     
+                return HttpResponse(username,' created successfully')   
+                return HttpResponseRedirect('student_management_app/admin-home')  
         else:
-            print('Passwords do not match')
+            return HttpResponse('Passwords do not match')
             #messages.success(request, first_name,' created successfully')  
-            return HttpResponseRedirect('student_management_app/admin-home')
+            return render(request, 'register.html')
     else:
         return render(request, 'register.html')
+        
