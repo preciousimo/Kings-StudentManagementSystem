@@ -5,21 +5,7 @@ from django.contrib import messages
 from student_management_app import urls
 
 # Create your views here.
-def loginPage(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = auth.authenticate(username=username,password=password)
-        if user is not None:
-            auth.login(request, user)
-            return redirect('/admin-home')
-        else:
-            messages.error(request, 'Invalid Credentials')
-            return render(request, 'login.html')
-    else:
-        return render(request, 'login.html')
-    
-
+   
 def registerPage(request):
     if request.method == 'POST':
         first_name = request.POST['first_name']
@@ -39,13 +25,26 @@ def registerPage(request):
                 user = User.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password)
                 user.save() 
                 messages.success(request, '{} created successfully'.format(username))   
-                return redirect('/admin-home')  
+                return render(request,'login.html')  
         else:
-            messages.error(request,'Passwords do not match')
-            #messages.success(request, first_name,' created successfully')  
+            messages.error(request,'Passwords do not match') 
             return render(request, 'register.html')
     else:
         return render(request, 'register.html')
+
+def loginPage(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(username=username,password=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('/admin-home')
+        else:
+            messages.error(request, 'Invalid Credentials')
+            return render(request, 'login.html')
+    else:
+        return render(request, 'login.html')
 
 def logoutPage(request):
     auth.logout(request)
