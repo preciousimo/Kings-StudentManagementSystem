@@ -17,10 +17,13 @@ def registerUser(request):
         email = request.POST['email']
         password = request.POST['password']
         password2 = request.POST['password2']
-        user = User.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password)
-        user.save() 
-        print(username,' created successfully')     
-        #messages.success(request, first_name,' created successfully')  
-        return HttpResponseRedirect('student_management_app/admin-home')
+        if password == password2:
+            user = User.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password)
+            user.save() 
+            print(username,' created successfully')     
+        else:
+            print('Passwords do not match')
+            #messages.success(request, first_name,' created successfully')  
+            return HttpResponseRedirect('student_management_app/admin-home')
     else:
         return render(request, 'register.html')
