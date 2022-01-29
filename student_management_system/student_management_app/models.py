@@ -1,6 +1,5 @@
 from __future__ import unicode_literals
 from django.db import models
-from django.dispatch import receiver
 # Create your models here.
 
 class SchoolAdmin(models.Model):

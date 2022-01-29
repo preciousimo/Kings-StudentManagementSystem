@@ -21,6 +21,6 @@ from student_management_system import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(('student_management_app.urls', 'student_management_app'), namespace='sms_app'))
-    
+    path('', include('student_management_app.urls')),
+    path('', include('accounts.urls'))
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
