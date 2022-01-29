@@ -12,11 +12,10 @@ def loginPage(request):
         user = auth.authenticate(username=username,password=password)
         if user is not None:
             auth.login(request, user)
-            messages.success(request, '{} logged in successfully'.format(username))
             return redirect('/admin-home')
         else:
-            messages.info(request, 'Invalid Credentials')
-            return redirect('login')
+            messages.error(request, 'Invalid Credentials')
+            return render(request, 'login.html')
     else:
         return render(request, 'login.html')
     
