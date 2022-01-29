@@ -49,4 +49,4 @@ def registerPage(request):
 
 def logoutPage(request):
     auth.logout(request)
-    return redirect('login')
+    return redirect('/login')
