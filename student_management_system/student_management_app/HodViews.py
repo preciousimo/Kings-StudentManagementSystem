@@ -9,3 +9,6 @@ def profile(request):
 def contactUs(request):
 
     return render(request, 'hod_templates/contact-us.html')
+def contacts(request):
+
+    return render(request, 'hod_templates/contacts.html')

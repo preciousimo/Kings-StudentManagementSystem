@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin-home', HodViews.adminHome),
     path('profile', HodViews.profile),
     path('contact-us', HodViews.contactUs),
+    path('contacts', HodViews.contacts),
     #Student Views
     path('student-home', StudentViews.studentHome),
     #Staff Views
