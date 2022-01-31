@@ -47,20 +47,22 @@
             <div class="col-md-3">
 
               <!-- Profile Image -->
-              <div class="card card-primary card-outline">
+              <div class="card card-dark card-outline">
                 <div class="card-body box-profile">
                   <div class="text-center">
                     <img class="profile-user-img img-fluid img-circle" src="{% static 'dist/img/user4-128x128.jpg' %}"
                       alt="User profile picture">
                   </div>
-
-                  <h3 class="profile-username text-center">Nina Mcintire</h3>
-
-                  <p class="text-muted text-center">Software Engineer</p>
+                  {% if user.is_authenticated %}
+                  <h3 class="profile-username text-center">{{user.first_name}}</h3>
+                  {% else %}
+                  <h3 class="profile-username text-center">Admin</h3>
+                  {% endif %}
+                  <p class="text-muted text-center">School Admin</p>
 
                   <ul class="list-group list-group-unbordered mb-3">
                     <li class="list-group-item">
-                      <b>Followers</b> <a class="float-right">1,322</a>
+                      <b>Status</b> <a class="float-right">1,322</a>
                     </li>
                     <li class="list-group-item">
                       <b>Following</b> <a class="float-right">543</a>
@@ -69,8 +71,6 @@
                       <b>Friends</b> <a class="float-right">13,287</a>
                     </li>
                   </ul>
-
-                  <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
                 </div>
                 <!-- /.card-body -->
               </div>
@@ -120,16 +120,7 @@
                         </div>
                         <div class="form-group row">
                           <div class="offset-sm-2 col-sm-10">
-                            <div class="checkbox">
-                              <label>
-                                <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                              </label>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <div class="offset-sm-2 col-sm-10">
-                            <button type="submit" class="btn btn-danger">Submit</button>
+                            <button type="submit" class="btn btn-dark">Make Change</button>
                           </div>
                         </div>
                       </form>
