@@ -94,13 +94,13 @@
                         <div class="col-12">
                             {% for message in messages %}
                             {% if message.tags == 'error' %}
-                            <div class="alert alert-danger" style="margin-top:10px">{{message}}</div>
+                            <div class="btn btn-danger btn-block" style="margin-top:10px">{{message}}</div>
                             {% endif %}
                             {% if message.tags == 'info' %}
-                            <div class="alert alert-info" style="margin-top:10px">{{message}}</div>
+                            <div class="btn btn-info btn-block" style="margin-top:10px">{{message}}</div>
                             {% endif %}
                             {% if message.tags == 'success' %}
-                            <div class="alert alert-success" style="margin-top:10px">{{message}}</div>
+                            <div class="btn btn-success btn-block" style="margin-top:10px">{{message}}</div>
                             {% endif %}
                             {% endfor %}
                         </div>

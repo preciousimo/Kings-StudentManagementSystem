@@ -19,8 +19,13 @@ def addStaff(request):
         address = request.POST['address']
         state = request.POST['state']
         nationality = request.POST['nationality']
-        new_staff = Staffs.objects.create(first_name=first_name,middle_name=middle_name,last_name=last_name,date_of_birth=date_of_birth,email=email,phone_number=phone_number,gender=gender,address=address,state=state,nationality=nationality)
-        new_staff.save()
-        messages.success(request, '{} added successfully'.format(first_name))
+        try:
+            new_staff = Staffs.objects.create(first_name=first_name,middle_name=middle_name,last_name=last_name,date_of_birth=date_of_birth,email=email,phone_number=phone_number,gender=gender,address=address,state=state,nationality=nationality)
+            new_staff.save()
+            messages.success(request, '{} added successfully'.format(first_name))
+            return render(request, 'staff_templates/add_staff_template.html')   
+        except:
+            messages.error(request, 'Failed to add new staff')
+            return render(request, 'staff_templates/add_staff_template.html')    
     else:
         return render(request, 'staff_templates/add_staff_template.html')
