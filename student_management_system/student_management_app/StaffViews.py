@@ -21,6 +21,6 @@ def addStaff(request):
         nationality = request.POST['nationality']
         new_staff = Staffs.objects.create(first_name=first_name,middle_name=middle_name,last_name=last_name,date_of_birth=date_of_birth,email=email,phone_number=phone_number,gender=gender,address=address,state=state,nationality=nationality)
         new_staff.save()
-        return HttpResponse('Staff Updated')
+        messages.success(request, '{} added successfully'.format(first_name))
     else:
         return render(request, 'staff_templates/add_staff_template.html')
