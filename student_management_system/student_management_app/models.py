@@ -17,7 +17,7 @@ class Staffs(models.Model):
     middle_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     date_of_birth = models.DateField()
-    email = models.IntegerField()
+    email = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=255)
     gender = models.CharField(max_length=255)
     profile_picture = models.FileField(max_length=255)

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponse
-
+from student_management_app.models import Staffs
 def staffHome(request):
     return render(request, 'staff_templates/home_content.html')
 
@@ -19,6 +19,8 @@ def addStaff(request):
         address = request.POST['address']
         state = request.POST['state']
         nationality = request.POST['nationality']
-        return HttpResponse(first_name)
+        new_staff = Staffs.objects.create(first_name=first_name,middle_name=middle_name,last_name=last_name,date_of_birth=date_of_birth,email=email,phone_number=phone_number,gender=gender,address=address,state=state,nationality=nationality)
+        new_staff.save()
+        return HttpResponse('Staff Updated')
     else:
         return render(request, 'staff_templates/add_staff_template.html')
