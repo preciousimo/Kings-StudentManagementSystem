@@ -31,4 +31,4 @@ def addStaff(request):
         return render(request, 'staff_templates/add_staff_template.html')
 
 def manageStaff(request):
-    pass
+    return render(request, 'staff_templates/manage_staff_template.html')

@@ -30,4 +30,4 @@ def addStudent(request):
         return render(request, 'student_templates/add_student_template.html')
 
 def manageStudent(request):
-    pass
+    return render(request, 'student_templates/manage_student_template.html')
