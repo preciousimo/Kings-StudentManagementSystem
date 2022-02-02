@@ -11,19 +11,12 @@
     {% include 'hod_templates/includes/links/css_links.html' %}
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition dark-mode sidebar-mini layout-fixed">
     <div class="wrapper">
-
-        <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__wobble" src="{% static 'logo/kislogo.jpg' %}" alt="KingsLogo" height="60" width="60">
-        </div>
-
+        <!--Preloader-->
+        {% include 'hod_templates/includes/preloader.html' %}
+        <!--Navbars-->
         {% include 'hod_templates/includes/navbars/navbar.html' %}
-        </nav>
-
-
-        <!-- Main Sidebar Container -->
         {% include 'student_templates/includes/navbars/sidebar.html' %}
 
         <!-- Content Wrapper. Contains page content -->
