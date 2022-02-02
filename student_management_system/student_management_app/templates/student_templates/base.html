@@ -11,7 +11,7 @@
     {% include 'hod_templates/includes/links/css_links.html' %}
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed">
+<body class="hold-transition  sidebar-mini layout-fixed">
     <div class="wrapper">
         <!--Preloader-->
         {% include 'hod_templates/includes/preloader.html' %}
@@ -21,8 +21,23 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">{% block page_title %}{% endblock page_title %}</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="/student-home">Home</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Main content -->
-            {% include 'student_templates/home_content.html' %}
+            {% block home_content %}{% endblock home_content %}
 
         </div>
         <!-- /.content-wrapper -->

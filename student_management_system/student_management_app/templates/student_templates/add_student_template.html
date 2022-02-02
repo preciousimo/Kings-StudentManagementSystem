@@ -1,5 +1,5 @@
-{% extends 'staff_templates/base.html' %}
-{% block page_title %}Add Staff{% endblock page_title %}
+{% extends 'student_templates/base.html' %}
+{% block page_title %}Add Student{% endblock page_title %}
 {% block home_content %}
 <section class="content">
     <div class="container-fluid">
@@ -9,10 +9,10 @@
                 <!-- general form elements -->
                 <div class="card card-dark">
                     <div class="card-header">
-                        <h3 class="card-title">Add Staff</h3>
+                        <h3 class="card-title">Add Student</h3>
                     </div>
 
-                    <form action="/add-staff/" method='post'>
+                    <form action="/add-student/" method='post'>
                         {% csrf_token %}
                         <div class="card-body">
                             <div class="form-group">
@@ -106,7 +106,7 @@
                         </div>
                         {% endif %}
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-success btn-block">Add Staff</button>
+                            <button type="submit" class="btn btn-success btn-block">Add Student</button>
                         </div>
                     </form>
                 </div>
