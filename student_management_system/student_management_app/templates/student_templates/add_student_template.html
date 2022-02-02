@@ -7,11 +7,10 @@
             <!-- left column -->
             <div class="col-md-12">
                 <!-- general form elements -->
-                <div class="card card-dark">
+                <div class="card card-light">
                     <div class="card-header">
                         <h3 class="card-title">Create new Student</h3>
                     </div>
-
                     <form action="/add-student/" method='post'>
                         {% csrf_token %}
                         <div class="card-body">
@@ -34,7 +33,6 @@
                                 <input type="date" class="form-control" name="date_of_birth"
                                     placeholder="Enter last name">
                             </div>
-
                             <div class="form-group">
                                 <label>Email address</label>
                                 <input type="email" class="form-control" name="email" placeholder="Enter email">
@@ -76,7 +74,6 @@
                                     placeholder="Enter nationality">
                             </div>
                         </div>
-                        <!-- /.card-body -->
                         {% if messages %}
                         <div class="col-12">
                             {% for message in messages %}
