@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.contrib import messages
-from student_management_app.models import Students
 from django.http import HttpResponse
+from student_management_app.models import Students
 def studentHome(request):
-    return render(request, 'student_templates/base.html')
+    return render(request, 'student_templates/home_content.html')
+
 def addStudent(request):
     if request.method == 'POST':
         first_name = request.POST['first_name']
@@ -27,5 +28,3 @@ def addStudent(request):
             return render(request, 'student_templates/add_student_template.html')    
     else:
         return render(request, 'student_templates/add_student_template.html')
-
-    
