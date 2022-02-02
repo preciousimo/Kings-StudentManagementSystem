@@ -28,3 +28,6 @@ def addStudent(request):
             return render(request, 'student_templates/add_student_template.html')    
     else:
         return render(request, 'student_templates/add_student_template.html')
+
+def manageStudent(request):
+    pass

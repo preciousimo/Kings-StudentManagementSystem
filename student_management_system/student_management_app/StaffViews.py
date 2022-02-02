@@ -29,3 +29,6 @@ def addStaff(request):
             return render(request, 'staff_templates/add_staff_template.html')    
     else:
         return render(request, 'staff_templates/add_staff_template.html')
+
+def manageStaff(request):
+    pass

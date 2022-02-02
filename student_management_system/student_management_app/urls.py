@@ -11,9 +11,10 @@ urlpatterns = [
     #Student Views
     path('student-home', StudentViews.studentHome),
     path('add-student/', StudentViews.addStudent),
+    path('manage-student/', StudentViews.manageStudent),
     #Staff Views
     path('staff-home/', StaffViews.staffHome),
     path('add-staff/', StaffViews.addStaff),
-    
+    path('manage-staff/', StaffViews.manageStaff),
     
 ]
