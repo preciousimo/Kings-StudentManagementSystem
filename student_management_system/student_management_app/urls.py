@@ -10,8 +10,10 @@ urlpatterns = [
     path('contacts', HodViews.contacts),
     #Student Views
     path('student-home', StudentViews.studentHome),
+    path('add-student/', StudentViews.addStudent),
     #Staff Views
     path('staff-home/', StaffViews.staffHome),
     path('add-staff/', StaffViews.addStaff),
-    #path('add_staff_save', StaffViews.add_staff_save)
+    
+    
 ]
