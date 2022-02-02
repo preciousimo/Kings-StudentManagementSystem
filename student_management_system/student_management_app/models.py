@@ -42,8 +42,8 @@ class Students(models.Model):
     middle_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     date_of_birth = models.DateField()
-    email = models.CharField(max_length=100)
-    phone_number = models.IntegerField()
+    email = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=255)
     gender = models.CharField(max_length=255)
     profile_picture = models.FileField(max_length=255)
     address = models.TextField()
@@ -51,8 +51,6 @@ class Students(models.Model):
     nationality = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    session_start_year = models.DateField()
-    session_end_year = models.DateField()
 
 class Attendance(models.Model):
     id = models.AutoField(primary_key=True)
