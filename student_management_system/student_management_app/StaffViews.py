@@ -50,4 +50,6 @@ def addSubject(request):
     else:
         return render(request, 'staff_templates/add_subject_template.html')
 
- 
+def manageSubject(request):
+    subjects = Subjects.objects.all()
+    return render(request, 'staff_templates/manage_subject_template.html', {'subjects':subjects})
