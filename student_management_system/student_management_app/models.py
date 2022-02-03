@@ -30,8 +30,7 @@ class Staffs(models.Model):
 
 class Subjects(models.Model):
     id = models.AutoField(primary_key=True)
-    subject_code = models.CharField(max_length=255)
-    subject_title = models.CharField(max_length=255)
+    subject_name = models.CharField(max_length=255)
     subject_status = models.CharField(max_length=255)
     admin_id = models.ForeignKey(SchoolAdmin, on_delete=models.CASCADE)
     staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
