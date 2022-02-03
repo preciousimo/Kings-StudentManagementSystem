@@ -30,4 +30,5 @@ def addStudent(request):
         return render(request, 'student_templates/add_student_template.html')
 
 def manageStudent(request):
-    return render(request, 'student_templates/manage_student_template.html')
+    students = Students.objects.all()
+    return render(request, 'student_templates/manage_student_template.html', {'students':students})

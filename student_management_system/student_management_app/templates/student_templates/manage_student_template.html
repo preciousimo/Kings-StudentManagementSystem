@@ -4,51 +4,70 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-13">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Managing existing Student</h3>
+                        <h3 class="card-title">student Details</h3>
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control float-right"
+                                    placeholder="Search">
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <table class="table table-hover table-sm table-bordered table-dark">
-                        <thead>
-                            <tr>
-                                <th scope="col">I.D</th>
-                                <th scope="col">First Name</th>
-                                <th scope="col">Middle Name</th>
-                                <th scope="col">Date of Birth</th>
-                                <th scope="col">Email address</th>
-                                <th scope="col">Phone Number</th>
-                                <th scope="col">Gender</th>
-                                <th scope="col">Profile Picture</th>
-                                <th scope="col">Curicculum Vitae</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">State</th>
-                                <th scope="col">Nationaliity</th>
-                                <th scope="col">Created at</th>
-                                <th scope="col">Updated at</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td><button class="btn btn-success">Edit</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap table-bordered">
+                            <thead style="text-align:center">
+                                <tr>
+                                    <th>I.D</th>
+                                    <th>First Name</th>
+                                    <th>Middle Name</th>
+                                    <th>Last Name</th>
+                                    <th>Date of Birth</th>
+                                    <th>Email address</th>
+                                    <th>Phone Number</th>
+                                    <th>Gender</th>
+                                    <th>Profile Picture</th>
+                                    <th>Curicculum Vitae</th>
+                                    <th>Address</th>
+                                    <th>State</th>
+                                    <th>Nationaliity</th>
+                                    <th>Created at</th>
+                                    <th>Updated at</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody style="text-align:center">
+                                {% for student in students %}
+                                <tr>
+                                    <td>{{student.id}}</td>
+                                    <td>{{student.first_name}}</td>
+                                    <td>{{student.middle_name}}</td>
+                                    <td>{{student.last_name}}</td>
+                                    <td>{{student.date_of_birth}}</td>
+                                    <td>{{student.email}}</td>
+                                    <td>{{student.phone_number}}</td>
+                                    <td>{{student.gender}}</td>
+                                    <td>{{student.profile_picture}}</td>
+                                    <td>{{student.curicculum_vitae}}</td>
+                                    <td>{{student.address}}</td>
+                                    <td>{{student.state}}</td>
+                                    <td>{{student.nationality}}</td>
+                                    <td>{{student.created_at}}</td>
+                                    <td>{{student.updated_at}}</td>
+                                    <td><button class="btn btn-success">Edit</button></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
