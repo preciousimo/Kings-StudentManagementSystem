@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponse
-from student_management_app.models import Staffs
+from student_management_app.models import Staffs, Subjects
 def staffHome(request):
     return render(request, 'staff_templates/home_content.html')
 
@@ -29,10 +29,25 @@ def addStaff(request):
             return render(request, 'staff_templates/add_staff_template.html')    
     else:
         return render(request, 'staff_templates/add_staff_template.html')
-
-def addStaff(request):
-    pass
-    
+   
 def manageStaff(request):
     staffs = Staffs.objects.all()
     return render(request, 'staff_templates/manage_staff_template.html', {'staffs':staffs})
+
+def addSubject(request):
+    if request.method == 'POST':
+        subject_name = request.POST['subject_name']
+        subject_status = request.POST['subject_status']
+        
+        try:
+            new_subject = Subjects.objects.create(subject_name=subject_name,subject_status=subject_status)
+            new_subject.save()
+            messages.success(request, '{} added successfully'.format(subject_name))
+            return render(request, 'staff_templates/add_subject_template.html')   
+        except:
+            messages.error(request, 'Failed to add new subject')
+            return render(request, 'staff_templates/add_subject_template.html')    
+    else:
+        return render(request, 'staff_templates/add_subject_template.html')
+
+ 
