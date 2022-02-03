@@ -15,6 +15,7 @@
                                 <th scope="col">I.D</th>
                                 <th scope="col">First Name</th>
                                 <th scope="col">Middle Name</th>
+                                <th scope="col">Last Name</th>
                                 <th scope="col">Date of Birth</th>
                                 <th scope="col">Email address</th>
                                 <th scope="col">Phone Number</th>
@@ -31,21 +32,24 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
+                                {% for staff in staffs %}
+                                <th scope="row">{{staff.id}}</th>
+                                <td>{{staff.first_name}}</td>
+                                <td>{{staff.middle_name}}</td>
+                                <td>{{staff.last_name}}</td>
+                                <td>{{staff.date_of_birth}}</td>
+                                <td>{{staff.email}}</td>
+                                <td>{{staff.phone_number}}</td>
+                                <td>{{staff.gender}}</td>
+                                <td>{{staff.profile_picture}}</td>
+                                <td>{{staff.curicculum_vitae}}</td>
+                                <td>{{staff.address}}</td>
+                                <td>{{staff.state}}</td>
+                                <td>{{staff.nationality}}</td>
+                                <td>{{staff.created_at}}</td>
+                                <td>{{staff.updated_at}}</td>
                                 <td><button class="btn btn-success">Edit</button></td>
+                                {% endfor %}
                             </tr>
                         </tbody>
                     </table>

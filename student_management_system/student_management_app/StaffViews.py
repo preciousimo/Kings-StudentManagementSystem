@@ -31,4 +31,5 @@ def addStaff(request):
         return render(request, 'staff_templates/add_staff_template.html')
 
 def manageStaff(request):
-    return render(request, 'staff_templates/manage_staff_template.html')
+    staffs = Staffs.objects.all()
+    return render(request, 'staff_templates/manage_staff_template.html', {'staffs':staffs})
