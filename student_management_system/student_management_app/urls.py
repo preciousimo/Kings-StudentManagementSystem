@@ -16,5 +16,6 @@ urlpatterns = [
     path('staff-home/', StaffViews.staffHome),
     path('add-staff/', StaffViews.addStaff),
     path('manage-staff/', StaffViews.manageStaff),
+    path('add-subject/', StaffViews.addSubject),
     
 ]
