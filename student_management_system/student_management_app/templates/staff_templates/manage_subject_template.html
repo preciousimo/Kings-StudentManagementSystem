@@ -1,5 +1,5 @@
 {% extends 'staff_templates/base.html' %}
-{% block page_title %}Manage Staff{% endblock page_title %}
+{% block page_title %}Manage Subject{% endblock page_title %}
 {% block home_content %}
 <section class="content">
     <div class="container-fluid">
@@ -7,7 +7,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Staff Details</h3>
+                        <h3 class="card-title">Subject Details</h3>
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control float-right"
@@ -27,42 +27,18 @@
                             <thead style="text-align:center">
                                 <tr>
                                     <th>I.D</th>
-                                    <th>First Name</th>
-                                    <th>Middle Name</th>
-                                    <th>Last Name</th>
-                                    <th>Date of Birth</th>
-                                    <th>Email address</th>
-                                    <th>Phone Number</th>
-                                    <th>Gender</th>
-                                    <th>Profile Picture</th>
-                                    <th>Curicculum Vitae</th>
-                                    <th>Address</th>
-                                    <th>State</th>
-                                    <th>Nationaliity</th>
-                                    <th>Created at</th>
-                                    <th>Updated at</th>
-                                    <th>Actions</th>
+                                    <th>Subject Name</th>
+                                    <th>Subject Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody style="text-align:center">
-                                {% for staff in staffs %}
+                                {% for subject in subjects %}
                                 <tr>
-                                    <td>{{staff.id}}</td>
-                                    <td>{{staff.first_name}}</td>
-                                    <td>{{staff.middle_name}}</td>
-                                    <td>{{staff.last_name}}</td>
-                                    <td>{{staff.date_of_birth}}</td>
-                                    <td>{{staff.email}}</td>
-                                    <td>{{staff.phone_number}}</td>
-                                    <td>{{staff.gender}}</td>
-                                    <td>{{staff.profile_picture}}</td>
-                                    <td>{{staff.curicculum_vitae}}</td>
-                                    <td>{{staff.address}}</td>
-                                    <td>{{staff.state}}</td>
-                                    <td>{{staff.nationality}}</td>
-                                    <td>{{staff.created_at}}</td>
-                                    <td>{{staff.updated_at}}</td>
-                                    <td><a class="btn btn-success" href="edit_staff/{{ staff.id }}">Edit</a></td>
+                                    <td>{{subject.id}}</td>
+                                    <td>{{subject.subject_name}}</td>
+                                    <td>{{subject.subject_status}}</td>
+                                    <td><a class="btn btn-success" href="edit_subject/{{ subject.id }}">Edit</a></td>
                                 </tr>
                                 {% endfor %}
 
