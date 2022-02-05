@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponse
-from student_management_app.models import Staffs, Subjects
+from student_management_app.models import Staffs, Subjects, SchoolAdmin
 def staffHome(request):
     return render(request, 'staff_templates/home_content.html')
 
@@ -38,9 +38,13 @@ def addSubject(request):
     if request.method == 'POST':
         subject_name = request.POST['subject_name']
         subject_status = request.POST['subject_status']
+        staff_id = request.POST.get('staff')
+        staff = Staffs.objects.get(id)
+        admin_id = request.POST['admin']
+        admin = SchoolAdmin.objects.get(id=admin_id)
         
         try:
-            new_subject = Subjects.objects.create(subject_name=subject_name,subject_status=subject_status)
+            new_subject = Subjects.objects.create(subject_name=subject_name,subject_status=subject_status,staff_id_id=staff_id,admin_id=admin_id)
             new_subject.save()
             messages.success(request, '{} added successfully'.format(subject_name))
             return render(request, 'staff_templates/add_subject_template.html')   
