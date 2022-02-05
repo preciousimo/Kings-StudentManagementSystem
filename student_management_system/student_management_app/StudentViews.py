@@ -32,3 +32,6 @@ def addStudent(request):
 def manageStudent(request):
     students = Students.objects.all()
     return render(request, 'student_templates/manage_student_template.html', {'students':students})
+
+def studentAttendance(request):
+    return HttpResponse('Student Attendance ..')

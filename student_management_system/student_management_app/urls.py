@@ -12,6 +12,7 @@ urlpatterns = [
     path('student-home', StudentViews.studentHome),
     path('add-student/', StudentViews.addStudent),
     path('manage-student/', StudentViews.manageStudent),
+    path('student-attendance/', StudentViews.studentAttendance),
     #Staff Views
     path('staff-home/', StaffViews.staffHome),
     path('add-staff/', StaffViews.addStaff),
