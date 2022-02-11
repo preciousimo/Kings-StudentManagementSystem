@@ -13,16 +13,6 @@
         <li class="nav-item d-none d-sm-inline-block">
             <a href="profile" class="nav-link">Profile</a>
         </li>
-        {% if user.is_authenticated %}
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="/logout" class="nav-link">Logout</a>
-        </li>
-        {% else %}
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="/login" class="nav-link">Login</a>
-        </li>
-        {% endif %}
-
     </ul>
     <!--Right Navbar-->
     <ul class="navbar-nav ml-auto">
@@ -53,5 +43,14 @@
                 <i class="fas fa-expand-arrows-alt"></i>
             </a>
         </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/logout" class="nav-link">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/login" class="nav-link">Login</a>
+        </li>
+        {% endif %}
     </ul>
 </nav>

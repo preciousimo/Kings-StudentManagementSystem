@@ -57,3 +57,7 @@ def addSubject(request):
 def manageSubject(request):
     subjects = Subjects.objects.all()
     return render(request, 'staff_templates/manage_subject_template.html', {'subjects':subjects})
+
+def editStaff(request,staff_id):
+    staff = Staffs.objects.get(id=staff_id)
+    return render(request, 'staff_templates/edit_staff_template.html', {'staff':staff})
