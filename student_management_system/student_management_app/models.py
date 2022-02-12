@@ -1,12 +1,15 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 # Create your models here.
 class CustomUser(AbstractUser):
     user_type_data = ((1,'HOD'),(2,'Staff'),(3,'Student'))
     user_type = models.CharField(default=1, choices=user_type_data, max_length=10)
 
-class AdminHOD(models.Model):
+class SchoolAdmin(models.Model):
     id = models.AutoField(primary_key=True)
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=255)
@@ -40,7 +43,7 @@ class Subjects(models.Model):
     id = models.AutoField(primary_key=True)
     subject_name = models.CharField(max_length=255)
     subject_status = models.CharField(max_length=255)
-    admin_id = models.ForeignKey(AdminHOD, on_delete=models.CASCADE)
+    admin_id = models.ForeignKey(SchoolAdmin, on_delete=models.CASCADE)
     staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
 
 class Students(models.Model):
@@ -133,7 +136,7 @@ class NotificationStaffs(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         if instance.user_type == 1:
-            AdminHOD.objects.create(admin=instance)
+            schooladmin.objects.create(admin=instance)
         if instance.user_type == 2:
             Staffs.objects.create(admin=instance)
         if instance.user_type == 3:
@@ -142,7 +145,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=CustomUser)
 def save_user_profile(sender, instance, **kwargs):
     if instance.user_type == 1:
-        instance.adminhod.save()
+        instance.schooladmin.save()
     if instance.user_type == 2:
         instance.staffs.save()
     if instance.user_type == 3:
