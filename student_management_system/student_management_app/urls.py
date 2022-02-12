@@ -19,6 +19,6 @@ urlpatterns = [
     path('manage-staff/', StaffViews.manageStaff),
     path('add-subject/', StaffViews.addSubject),
     path('manage-subject/', StaffViews.manageSubject),
-    path('edit-staff/<str:staff_id>', StaffViews.editStaff)
-    
+    path('edit-staff/<str:staff_id>', StaffViews.editStaff),
+    path('edit-staff-save', StaffViews.editStaffSave)
 ]

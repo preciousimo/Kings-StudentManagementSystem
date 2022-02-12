@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from student_management_app.models import Staffs, Subjects, SchoolAdmin
 def staffHome(request):
     return render(request, 'staff_templates/home_content.html')
@@ -34,6 +34,53 @@ def manageStaff(request):
     staffs = Staffs.objects.all()
     return render(request, 'staff_templates/manage_staff_template.html', {'staffs':staffs})
 
+def editStaff(request, staff_id):
+    staff = Staffs.objects.get(id=staff_id)
+    return render(request, 'staff_templates/edit_staff_template.html', {'staff':staff})
+
+def editStaffSave(request):
+    if request.method == 'POST':
+        staff_id = request.POST['staff_id']
+        first_name = request.POST['first_name']
+        middle_name = request.POST['middle_name']
+        last_name = request.POST['last_name']
+        date_of_birth = request.POST['date_of_birth']
+        email = request.POST['email']
+        phone_number = request.POST['phone_number']
+        gender = request.POST['gender']
+        #profile_picture = request.POST['profile_picture']
+        #curriculum_vitae = request.POST['curriculum_vitae']
+        address = request.POST['address']
+        state = request.POST['state']
+        nationality = request.POST['nationality']
+        try:
+            user = Staffs.objects.get(id=staff_id)
+            user.first_name = first_name
+            user.middle_name = middle_name
+            user.first_name = first_name
+            user.last_name = last_name
+            user.date_of_birth = date_of_birth
+            user.email = email
+            user.phone_number = phone_number
+            user.gender = gender
+            user.profile_picture = profile_picture
+            user.curriculum_vitae = curriculum_vitae
+            user.address = address
+            user.state = state
+            user.nationality = nationality
+            user.save()
+
+            edit_staff = Staffs.objects.get(id=staff_id)
+            edit_staff.save()
+            messages.success(request, 'Staff Updated successfully')
+            return HttpResponseRedirect('/manage-staff')
+        except:
+            #staff = Staffs.objects.get(id=staff_id)
+            messages.error(request, 'Failed to add new staff')
+            return HttpResponseRedirect('/edit-staff/'+staff_id)
+    else:
+        return render(request, 'staff_templates/edit_staff_template.html')
+
 def addSubject(request):
     if request.method == 'POST':
         subject_name = request.POST['subject_name']
@@ -57,7 +104,3 @@ def addSubject(request):
 def manageSubject(request):
     subjects = Subjects.objects.all()
     return render(request, 'staff_templates/manage_subject_template.html', {'subjects':subjects})
-
-def editStaff(request,staff_id):
-    staff = Staffs.objects.get(id=staff_id)
-    return render(request, 'staff_templates/edit_staff_template.html', {'staff':staff})

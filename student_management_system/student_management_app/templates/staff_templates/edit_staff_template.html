@@ -14,12 +14,13 @@ Edit Staff | #ID: {{staff.id}}
                         <h3 class="card-title">Edit Staff</h3>
                     </div>
 
-                    <form action="/add-staff/" method='post'>
+                    <form action="/edit-staff-save" method='post'>
                         {% csrf_token %}
                         <div class="card-body">
                             <div class="form-group">
                                 <label>First Name</label>
                                 <input type="text" class="form-control" name="first_name" value="{{staff.first_name}}">
+                                <input type="hidden" class="form-control" name="staff_id" value="{{staff.staff_id}}">
                             </div>
                             <div class="form-group">
                                 <label>Middle Name</label>
@@ -33,7 +34,7 @@ Edit Staff | #ID: {{staff.id}}
                             <div class="form-group">
                                 <label>Date of Birth</label>
                                 <input type="date" class="form-control" name="date_of_birth"
-                                    value="{{staff.date_of_birth}}">
+                                    value="{{staff.date_of_birth|date:'m d Y'}}">
                             </div>
 
                             <div class="form-group">
