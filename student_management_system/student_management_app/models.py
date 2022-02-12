@@ -10,6 +10,7 @@ class SchoolAdmin(models.Model):
     password = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
 
 class Staffs(models.Model):
     id = models.AutoField(primary_key=True)
@@ -27,6 +28,7 @@ class Staffs(models.Model):
     nationality = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
 
 class Subjects(models.Model):
     id = models.AutoField(primary_key=True)
@@ -48,8 +50,13 @@ class Students(models.Model):
     address = models.TextField()
     state = models.CharField(max_length=255)
     nationality = models.CharField(max_length=255)
+    term_start_month = models.DateField()
+    term_end_month = models.DateField()
+    session_start_year = models.DateField()
+    session_end_year = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
 
 class Attendance(models.Model):
     id = models.AutoField(primary_key=True)
@@ -59,6 +66,7 @@ class Attendance(models.Model):
     attendance_time = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
 
 class AttendanceReport(models.Model):
     id = models.AutoField(primary_key=True)
@@ -67,6 +75,7 @@ class AttendanceReport(models.Model):
     status = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
 
 class LeaveReportStaff(models.Model):
     id = models.AutoField(primary_key=True)
@@ -77,6 +86,7 @@ class LeaveReportStaff(models.Model):
     leave_status = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
 
 class FeedBackStudents(models.Model):
     id = models.AutoField(primary_key=True)
@@ -85,6 +95,7 @@ class FeedBackStudents(models.Model):
     feedback_reply = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
 
 class FeedBackStaffs(models.Model):
     id = models.AutoField(primary_key=True)
@@ -93,6 +104,7 @@ class FeedBackStaffs(models.Model):
     feedback_reply = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
 
 class NotificationStudents(models.Model):
     id = models.AutoField(primary_key=True)
@@ -100,6 +112,7 @@ class NotificationStudents(models.Model):
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
 
 class NotificationStaffs(models.Model):
     id = models.AutoField(primary_key=True)
@@ -107,3 +120,4 @@ class NotificationStaffs(models.Model):
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
