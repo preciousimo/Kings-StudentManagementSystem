@@ -23,7 +23,7 @@
         <form action="/login/" method="post">
           {% csrf_token %}
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Username" name="username">
+            <input type="email" class="form-control" placeholder="Email address" name="email">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-user"></span>
@@ -44,6 +44,9 @@
               {% for message in messages %}
               {% if message.tags == 'error' %}
               <div class="btn btn-danger btn-block">{{message}}</div>
+              {% endif %}
+              {% if message.tags == 'info' %}
+              <div class="btn btn-info btn-block">{{message}}</div>
               {% endif %}
               {% endfor %}
               {% endif %}
