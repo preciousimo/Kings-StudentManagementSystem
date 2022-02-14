@@ -30,6 +30,15 @@
                                 <input type="text" class="form-control" name="last_name" placeholder="Enter last name">
                             </div>
                             <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" name="username" placeholder="Enter username">
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" name="password"
+                                    placeholder="Enter password">
+                            </div>
+                            <div class="form-group">
                                 <label>Date of Birth</label>
                                 <input type="date" class="form-control" name="date_of_birth"
                                     placeholder="Enter last name">
@@ -99,7 +108,7 @@
                         </div>
                         <!-- /.card-body -->
                         {% if messages %}
-                        <div class="col-12">
+                        <div class="form-group">
                             {% for message in messages %}
                             {% if message.tags == 'error' %}
                             <div class="btn btn-danger btn-block" style="margin-top:10px">{{message}}</div>
