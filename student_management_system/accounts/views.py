@@ -28,7 +28,8 @@ def registerPage(request):
             try:
                 user = CustomUser.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password, user_type=1)
                 user.save() 
-                return redirect('/admin-home')  
+                messages.success(request,'{} registered successfully'.format(username)) 
+                return redirect('/login')  
             except:
                 messages.error(request,'Invalid Credentials') 
                 return render(request, 'register.html')

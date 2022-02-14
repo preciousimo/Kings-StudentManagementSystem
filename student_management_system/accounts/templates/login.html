@@ -48,6 +48,9 @@
               {% if message.tags == 'info' %}
               <div class="btn btn-info btn-block">{{message}}</div>
               {% endif %}
+              {% if message.tags == 'success' %}
+              <div class="btn btn-success btn-block">{{message}}</div>
+              {% endif %}
               {% endfor %}
               {% endif %}
             </div>
