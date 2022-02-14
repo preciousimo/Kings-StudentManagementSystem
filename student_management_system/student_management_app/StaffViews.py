@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
-from student_management_app.models import CustomUser
+from student_management_app.models import CustomUser, Staffs
+from . import models
 def staffHome(request):
     return render(request, 'staff_templates/home_content.html')
 
@@ -22,9 +23,17 @@ def addStaff(request):
         state = request.POST['state']
         nationality = request.POST['nationality']
         try:
-            new_staff = CustomUser.objects.create_user(first_name=first_name,middle_name=middle_name,last_name=last_name,username=username,password=password,date_of_birth=date_of_birth,email=email,phone_number=phone_number,gender=gender,address=address,state=state,nationality=nationality, user_type=2)
-            new_staff.save()
-            messages.success(request, '{} added successfully'.format(first_name))
+            user = CustomUser.objects.create_user(first_name=first_name,last_name=last_name,username=username,password=password,email=email, user_type=2)
+            user.staffs.middle_name = middle_name
+            user.staffs.date_of_birth = date_of_birth
+            user.staffs.phone_number = phone_number
+            user.staffs.gender = gender
+            user.staffs.address = address
+            user.staffs.state = state
+            user.staffs.nationality = nationality
+            user.save()
+
+            messages.success(request, '{} created successfully'.format(username))
             return redirect('/add-staff')   
         except:
             messages.error(request, 'Failed to add new staff')
