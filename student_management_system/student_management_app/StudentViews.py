@@ -29,7 +29,6 @@ def addStudent(request):
             new_student = CustomUser.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password, user_type=3)
             new_student.students.middle_name = middle_name
             new_student.students.date_of_birth = date_of_birth
-            new_student.students.email = email
             new_student.students.phone_number = phone_number
             new_student.students.gender = gender
             new_student.students.address = address
@@ -40,7 +39,7 @@ def addStudent(request):
             new_student.students.session_start_year = session_start_year
             new_student.students.session_end_year = session_end_year
             new_student.save()
-            messages.success(request, '{} added successfully'.format(first_name))
+            messages.success(request, '{} added successfully'.format(username))
             return render(request, 'student_templates/add_student_template.html')   
         except:
             messages.error(request, 'Failed to add new student')
