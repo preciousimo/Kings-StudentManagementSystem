@@ -23,16 +23,15 @@ def addStaff(request):
         state = request.POST['state']
         nationality = request.POST['nationality']
         try:
-            user = CustomUser.objects.create_user(first_name=first_name,last_name=last_name,username=username,password=password,email=email, user_type=2)
-            user.staffs.middle_name = middle_name
-            user.staffs.date_of_birth = date_of_birth
-            user.staffs.phone_number = phone_number
-            user.staffs.gender = gender
-            user.staffs.address = address
-            user.staffs.state = state
-            user.staffs.nationality = nationality
-            user.save()
-
+            new_staff = CustomUser.objects.create_user(first_name=first_name,last_name=last_name,username=username,password=password,email=email, user_type=2)
+            new_staff.staffs.middle_name = middle_name
+            new_staff.staffs.date_of_birth = date_of_birth
+            new_staff.staffs.phone_number = phone_number
+            new_staff.staffs.gender = gender
+            new_staff.staffs.address = address
+            new_staff.staffs.state = state
+            new_staff.staffs.nationality = nationality
+            new_staff.save()
             messages.success(request, '{} created successfully'.format(username))
             return redirect('/add-staff')   
         except:

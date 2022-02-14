@@ -7,4 +7,4 @@ from .models import CustomUser
 class UserModel(UserAdmin):
     pass
 
-admin.site.register(CustomUser, UserAdmin)
+admin.site.register(CustomUser, UserModel)
