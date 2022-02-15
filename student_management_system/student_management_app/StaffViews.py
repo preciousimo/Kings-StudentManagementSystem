@@ -40,6 +40,7 @@ def addStaff(request):
    
 def manageStaff(request):
     staffs = Staffs.objects.all()
+    
     return render(request, 'staff_templates/manage_staff_template.html', {'staffs':staffs})
 
 def editStaff(request, staff_id):

@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
 from django.contrib.auth import login, logout, authenticate
 from student_management_app.models import CustomUser
 from django.contrib import messages
 from student_management_app import urls
 from student_management_app.EmailBackEnd import EmailBackEnd
+from django.http import HttpResponseRedirect
 # Create your views here.
    
 def registerPage(request):
@@ -46,7 +46,15 @@ def loginPage(request):
         user = EmailBackEnd.authenticate(request, username=username,password=password)
         if user != None:
             login(request, user)
-            return redirect('/admin-home')
+            return HttpResponseRedirect('/admin-home')
+            '''
+            if user.user_type == 1:
+                return HttpResponseRedirect('/admin-home')
+            elif user.user_type == 2:
+                return HttpResponseRedirect('/staff-home')
+            elif user.user_type == 3:
+                return HttpResponseRedirect('/student-home')
+            '''
         else:
             messages.error(request, 'Invalid Credentials')
             return render(request, 'login.html')

@@ -30,6 +30,7 @@
                                     <th>First Name</th>
                                     <th>Middle Name</th>
                                     <th>Last Name</th>
+                                    <th>Username</th>
                                     <th>Date of Birth</th>
                                     <th>Email address</th>
                                     <th>Phone Number</th>
@@ -48,11 +49,12 @@
                                 {% for staff in staffs %}
                                 <tr>
                                     <td>{{staff.id}}</td>
-                                    <td>{{staff.first_name}}</td>
+                                    <td>{{staff.admin.first_name}}</td>
                                     <td>{{staff.middle_name}}</td>
-                                    <td>{{staff.last_name}}</td>
+                                    <td>{{staff.admin.last_name}}</td>
+                                    <td>{{staff.admin.username}}</td>
                                     <td>{{staff.date_of_birth}}</td>
-                                    <td>{{staff.email}}</td>
+                                    <td>{{staff.admin.email}}</td>
                                     <td>{{staff.phone_number}}</td>
                                     <td>{{staff.gender}}</td>
                                     <td>{{staff.profile_picture}}</td>
