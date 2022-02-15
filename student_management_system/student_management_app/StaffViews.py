@@ -17,8 +17,6 @@ def addStaff(request):
         email = request.POST['email']
         phone_number = request.POST['phone_number']
         gender = request.POST['gender']
-        #profile_picture = request.POST['profile_picture']
-        #curriculum_vitae = request.POST['curriculum_vitae']
         address = request.POST['address']
         state = request.POST['state']
         nationality = request.POST['nationality']
