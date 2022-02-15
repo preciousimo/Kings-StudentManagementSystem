@@ -51,10 +51,10 @@ class Students(models.Model):
     address = models.TextField()
     state = models.CharField(max_length=255)
     nationality = models.CharField(max_length=255)
-    term_start_month = models.DateField()
-    term_end_month = models.DateField()
-    session_start_year = models.DateField()
-    session_end_year = models.DateField()
+    term_start = models.DateField()
+    term_end = models.DateField()
+    session_start = models.DateField()
+    session_end = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
@@ -129,9 +129,9 @@ def create_user_profile(sender, instance, created, **kwargs):
         if instance.user_type == 1:
             SchoolAdmin.objects.create(admin=instance)
         if instance.user_type == 2:
-            Staffs.objects.create(admin=instance)
+            Staffs.objects.create(admin=instance,middle_name="",date_of_birth="2000-01-01",phone_number="",gender="",address="",state="",nationality="")
         if instance.user_type == 3:
-            Students.objects.create(admin=instance,middle_name="",date_of_birth="2000-01-01",phone_number="",gender="",address="",state="",nationality="")
+            Students.objects.create(admin=instance,middle_name="",date_of_birth="2000-01-01",phone_number="",gender="",address="",state="",nationality="",term_start="2000-01-01",term_end="2000-01-01",session_start="2000-01-01",session_end="2000-01-01")
 
 @receiver(post_save, sender=CustomUser)
 def save_user_profile(sender, instance, **kwargs):
