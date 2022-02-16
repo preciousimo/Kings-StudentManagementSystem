@@ -37,18 +37,15 @@ def addStaff(request):
             return redirect('/add-staff')   
     else:
         return render(request, 'staff_templates/add_staff_template.html')
-   
+
 def manageStaff(request):
     staffs = Staffs.objects.all()
-    
     return render(request, 'staff_templates/manage_staff_template.html', {'staffs':staffs})
 
 def editStaff(request, staff_id):
-    staff = Staffs.objects.get(id=staff_id)
-    return render(request, 'staff_templates/edit_staff_template.html', {'staff':staff})
-
-def editStaffSave(request):
     if request.method == 'POST':
+        staff = Staffs.objects.get(id=staff_id)
+
         staff_id = request.POST['staff_id']
         first_name = request.POST['first_name']
         middle_name = request.POST['middle_name']
@@ -63,32 +60,32 @@ def editStaffSave(request):
         state = request.POST['state']
         nationality = request.POST['nationality']
         try:
-            user = Staffs.objects.get(id=staff_id)
-            user.first_name = first_name
-            user.middle_name = middle_name
+            user = CustomUser.objects.get(admin=staff_id)
             user.first_name = first_name
             user.last_name = last_name
-            user.date_of_birth = date_of_birth
+            user.username = username
+            user.password = password
             user.email = email
-            user.phone_number = phone_number
-            user.gender = gender
-            user.profile_picture = profile_picture
-            user.curriculum_vitae = curriculum_vitae
-            user.address = address
-            user.state = state
-            user.nationality = nationality
             user.save()
 
-            edit_staff = Staffs.objects.get(id=staff_id)
-            edit_staff.save()
-            messages.success(request, 'Staff Updated successfully')
-            return HttpResponseRedirect('/manage-staff')
+            staff_model = Staffs.objects.get(admin=staff_id)
+            staff_model.middle_name = middle_name
+            staff_model.date_of_birth = date_of_birth
+            staff_model.phone_number = phone_number
+            staff_model.gender = gender
+            staff_model.address = address
+            staff_model.state = state
+            staff_model.nationality = nationality
+            staff_model.save()
+
+            messages.success(request, '{} updated successfully'.format(username))
+            return HttpResponseRedirect('/edit-staff/'+staff_id)
         except:
-            #staff = Staffs.objects.get(id=staff_id)
-            messages.error(request, 'Failed to add new staff')
+            messages.error(request, 'Failed to edit {}'.format(username))
             return HttpResponseRedirect('/edit-staff/'+staff_id)
     else:
-        return render(request, 'staff_templates/edit_staff_template.html')
+        staffs = Staffs.objects.all()
+        return render(request, 'staff_templates/edit_staff_template.html', {'staffs':staffs})
 
 def addSubject(request):
     if request.method == 'POST':
@@ -108,7 +105,8 @@ def addSubject(request):
             messages.error(request, 'Failed to add new subject')
             return render(request, 'staff_templates/add_subject_template.html')    
     else:
-        return render(request, 'staff_templates/add_subject_template.html')
+        return HttpResponse('Method not allowed')
+        #return render(request, 'staff_templates/add_subject_template.html')    
 
 def manageSubject(request):
     subjects = Subjects.objects.all()

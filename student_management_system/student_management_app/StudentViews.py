@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from student_management_app.models import CustomUser
+from django.http import HttpResponse
 
 from student_management_app.models import Students
 def studentHome(request):
@@ -8,6 +9,7 @@ def studentHome(request):
 
 def addStudent(request):
     if request.method == 'POST':
+
         first_name = request.POST['first_name']
         middle_name = request.POST['middle_name']
         last_name = request.POST['last_name']
@@ -43,10 +45,10 @@ def addStudent(request):
             return render(request, 'student_templates/add_student_template.html')   
         except:
             messages.error(request, 'Failed to add new student')
-            return render(request, 'student_templates/add_student_template.html')    
+            return render(request, 'student_templates/add_student_template.html')
     else:
-        return render(request, 'student_templates/add_student_template.html')
-
+        return render(request, 'student_templates/add_student_template.html')    
+    
 def manageStudent(request):
     students = Students.objects.all()
     return render(request, 'student_templates/manage_student_template.html', {'students':students})
