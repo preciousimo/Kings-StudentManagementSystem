@@ -7,7 +7,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">student Details</h3>
+                        <h3 class="card-title">Student Details</h3>
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control float-right"
@@ -72,7 +72,8 @@
                                     <td>{{student.session_end}}</td>
                                     <td>{{student.created_at}}</td>
                                     <td>{{student.updated_at}}</td>
-                                    <td><button class="btn btn-success">Edit</button></td>
+                                    <td><a class="btn btn-success" href="/edit-student/{{ student.admin.id }}">Edit</a>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
