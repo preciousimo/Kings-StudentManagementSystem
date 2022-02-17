@@ -43,8 +43,8 @@ def manageStaff(request):
     return render(request, 'staff_templates/manage_staff_template.html', {'staffs':staffs})
 
 def editStaff(request, staff_id):
-    staffs = Staffs.objects.get(id=staff_id)
-    return render(request, 'staff_templates/edit_staff_template.html', {'staffs':staffs})
+    staff = Staffs.objects.get(admin=staff_id)
+    return render(request, 'staff_templates/edit_staff_template.html', {'staff':staff})
 
 def editStaffSave(request):
     if request.method == 'POST':
@@ -63,15 +63,15 @@ def editStaffSave(request):
         state = request.POST['state']
         nationality = request.POST['nationality']
         try:
-            user = CustomUser.objects.get(admin=staff_id)
+            user = CustomUser.objects.get(id=staff_id)
             user.first_name = first_name
             user.last_name = last_name
             user.username = username
-            user.password = password
+
             user.email = email
             user.save()
 
-            staff_model = Staffs.objects.get(id=staff_id)
+            staff_model = Staffs.objects.get(admin=staff_id)
             staff_model.middle_name = middle_name
             staff_model.date_of_birth = date_of_birth
             staff_model.phone_number = phone_number

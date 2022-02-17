@@ -19,42 +19,42 @@ Edit Staff | #ID: {{staffs.id}}
                             <div class="form-group">
                                 <label>First Name</label>
                                 <input type="text" class="form-control" name="first_name"
-                                    value="{{staffs.admin.first_name}}">
-                                <input type="hidden" class="form-control" name="staff_id" value="{{staff.staff_id}}">
+                                    value="{{staff.admin.first_name}}">
+                                <input type="hidden" class="form-control" name="staff_id" value="{{staff.admin.id}}">
                             </div>
                             <div class="form-group">
                                 <label>Middle Name</label>
                                 <input type="text" class="form-control" name="middle_name"
-                                    value="{{staffs.middle_name}}">
+                                    value="{{staff.middle_name}}">
                             </div>
                             <div class="form-group">
                                 <label>Last Name</label>
                                 <input type="text" class="form-control" name="last_name"
-                                    value="{{staffs.admin.last_name}}">
+                                    value="{{staff.admin.last_name}}">
                             </div>
                             <div class="form-group">
                                 <label>Username</label>
                                 <input type="text" class="form-control" name="username"
-                                    value="{{staffs.admin.username}}">
+                                    value="{{staff.admin.username}}">
                             </div>
                             <div class="form-group">
                                 <label>Date of Birth</label>
                                 <input type="date" class="form-control" name="date_of_birth"
-                                    value="{{staffs.date_of_birth|date:'Y-m-d'}}">
+                                    value="{{staff.date_of_birth|date:'Y-m-d'}}">
                             </div>
 
                             <div class="form-group">
                                 <label>Email address</label>
-                                <input type="email" class="form-control" name="email" value="{{staffs.admin.email}}">
+                                <input type="email" class="form-control" name="email" value="{{staff.admin.email}}">
                             </div>
                             <div class="form-group">
                                 <label>Phone Number</label>
                                 <input type="tel" class="form-control" name="phone_number"
-                                    value="{{staffs.phone_number}}">
+                                    value="{{staff.phone_number}}">
                             </div>
                             <div class="form-group">
                                 <label>Gender</label>
-                                <input type="text" class="form-control" name="gender" value="{{staffs.gender}}">
+                                <input type="text" class="form-control" name="gender" value="{{staff.gender}}">
                             </div>
                             <!--<div class="form-group">
                                 <label>Gender</label>
@@ -93,16 +93,16 @@ Edit Staff | #ID: {{staffs.id}}
                             </div>-->
                             <div class="form-group">
                                 <label>Address</label>
-                                <input type="text" class="form-control" name="address" value="{{staffs.address}}">
+                                <input type="text" class="form-control" name="address" value="{{staff.address}}">
                             </div>
                             <div class="form-group">
                                 <label>State</label>
-                                <input type="text" class="form-control" name="state" value="{{staffs.state}}">
+                                <input type="text" class="form-control" name="state" value="{{staff.state}}">
                             </div>
                             <div class="form-group">
                                 <label>Nationality</label>
                                 <input type="text" class="form-control" name="nationality"
-                                    value="{{staffs.nationality}}">
+                                    value="{{staff.nationality}}">
                             </div>
                         </div>
                         <div class="card-footer">
