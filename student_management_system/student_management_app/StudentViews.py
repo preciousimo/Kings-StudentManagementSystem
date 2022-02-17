@@ -1,9 +1,8 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from student_management_app.models import CustomUser
+from student_management_app.models import CustomUser, Students
 from django.http import HttpResponse
 
-from student_management_app.models import Students
 def studentHome(request):
     return render(request, 'student_templates/home_content.html')
 
@@ -52,6 +51,14 @@ def addStudent(request):
 def manageStudent(request):
     students = Students.objects.all()
     return render(request, 'student_templates/manage_student_template.html', {'students':students})
+
+def editStudent(request, student_id):
+    student = Students.objects.get(admin=student_id)
+    return render(request, 'student_templates/edit_student_template.html', {'student':student})
+
+def editStudentSave(request):
+    pass
+
 
 def studentAttendance(request):
     return HttpResponse('Student Attendance ..')
