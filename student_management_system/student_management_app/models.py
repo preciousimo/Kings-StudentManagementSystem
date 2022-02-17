@@ -44,7 +44,6 @@ class Students(models.Model):
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     middle_name = models.CharField(max_length=255)
     date_of_birth = models.DateField()
-    email = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=255)
     gender = models.CharField(max_length=255)
     profile_picture = models.FileField(max_length=255)
