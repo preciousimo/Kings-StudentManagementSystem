@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from student_management_app.models import CustomUser, Students
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 def studentHome(request):
     return render(request, 'student_templates/home_content.html')
