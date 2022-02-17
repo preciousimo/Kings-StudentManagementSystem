@@ -43,9 +43,12 @@ def manageStaff(request):
     return render(request, 'staff_templates/manage_staff_template.html', {'staffs':staffs})
 
 def editStaff(request, staff_id):
-    if request.method == 'POST':
-        staff = Staffs.objects.get(id=staff_id)
+    staffs = Staffs.objects.all() 
+    return render(request, 'staff_templates/edit_staff_template.html', {'staffs':staffs})
 
+def editStaffSave(request):
+    if request.method == 'POST':
+        
         staff_id = request.POST['staff_id']
         first_name = request.POST['first_name']
         middle_name = request.POST['middle_name']
@@ -84,8 +87,8 @@ def editStaff(request, staff_id):
             messages.error(request, 'Failed to edit {}'.format(username))
             return HttpResponseRedirect('/edit-staff/'+staff_id)
     else:
-        staffs = Staffs.objects.all()
-        return render(request, 'staff_templates/edit_staff_template.html', {'staffs':staffs})
+        
+        return render(request, 'staff_templates/edit_staff_template.html')
 
 def addSubject(request):
     if request.method == 'POST':
