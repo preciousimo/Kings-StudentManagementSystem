@@ -105,22 +105,6 @@ Edit Staff | #ID: {{staffs.id}}
                                     value="{{staffs.nationality}}">
                             </div>
                         </div>
-                        <!-- /.card-body -->
-                        {% if messages %}
-                        <div class="col-12">
-                            {% for message in messages %}
-                            {% if message.tags == 'error' %}
-                            <div class="btn btn-danger btn-block" style="margin-top:10px">{{message}}</div>
-                            {% endif %}
-                            {% if message.tags == 'info' %}
-                            <div class="btn btn-info btn-block" style="margin-top:10px">{{message}}</div>
-                            {% endif %}
-                            {% if message.tags == 'success' %}
-                            <div class="btn btn-success btn-block" style="margin-top:10px">{{message}}</div>
-                            {% endif %}
-                            {% endfor %}
-                        </div>
-                        {% endif %}
                         <div class="card-footer">
                             <button type="submit" class="btn btn-success btn-block">Edit Staff</button>
                         </div>
