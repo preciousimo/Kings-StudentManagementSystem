@@ -57,7 +57,55 @@ def editStudent(request, student_id):
     return render(request, 'student_templates/edit_student_template.html', {'student':student})
 
 def editStudentSave(request):
-    pass
+    if request.method == 'POST':
+        student_id = request.POST['student_id']
+        first_name = request.POST['first_name']
+        middle_name = request.POST['middle_name']
+        last_name = request.POST['last_name']
+        username = request.POST['username']
+        date_of_birth = request.POST['date_of_birth']
+        email = request.POST['email']
+        phone_number = request.POST['phone_number']
+        gender = request.POST['gender']
+        #profile_picture = request.POST['profile_picture']
+        #curriculum_vitae = request.POST['curriculum_vitae']
+        address = request.POST['address']
+        state = request.POST['state']
+        nationality = request.POST['nationality']
+        term_start = request.POST['term_start']
+        session_start = request.POST['session_start']
+        term_end = request.POST['term_end']
+        session_end = request.POST['session_end']
+        try:
+            user = CustomUser.objects.get(id=student_id)
+            user.first_name = first_name
+            user.last_name = last_name
+            user.username = username
+            user.email = email
+            user.save()
+
+            student_model = Students.objects.get(admin=student_id)
+            student_model.middle_name = middle_name
+            student_model.date_of_birth = date_of_birth
+            student_model.phone_number = phone_number
+            student_model.gender = gender
+            student_model.address = address
+            student_model.state = state
+            student_model.nationality = nationality
+            student_model.term_start = term_start
+            student_model.session_start = session_start
+            student_model.term_end = term_end
+            student_model.session_end = session_end
+            student_model.save()
+
+            messages.success(request, '{} updated successfully'.format(username))
+            return HttpResponseRedirect('/manage-student')
+        except:
+            messages.error(request, 'Failed to edit {}'.format(username))
+            return HttpResponseRedirect('/manage-student')
+    else:
+        return render(request, 'student_templates/edit_student_template.html')
+
 
 
 def studentAttendance(request):
