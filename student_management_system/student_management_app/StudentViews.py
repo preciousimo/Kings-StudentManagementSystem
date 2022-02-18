@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from student_management_app.models import CustomUser, Students
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.files.storage import FileSystemStorage
 
 def studentHome(request):
     return render(request, 'student_templates/home_content.html')
@@ -18,7 +19,7 @@ def addStudent(request):
         email = request.POST['email']
         phone_number = request.POST['phone_number']
         gender = request.POST['gender']
-        #profile_picture = request.POST['profile_picture']
+        
         address = request.POST['address']
         state = request.POST['state']
         nationality = request.POST['nationality']
@@ -26,6 +27,10 @@ def addStudent(request):
         term_end = request.POST['term_end']
         session_start = request.POST['session_start']
         session_end = request.POST['session_end']
+        profile_picture = request.FILES['profile_picture']
+        fs = FileSystemStorage()
+        filename = fs.save(profile_picture.name, profile_picture)
+        profile_picture_url = fs.url(filename)
         try:
             new_student = CustomUser.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password, user_type=3)
             new_student.students.middle_name = middle_name
@@ -33,6 +38,7 @@ def addStudent(request):
             new_student.students.phone_number = phone_number
             new_student.students.gender = gender
             new_student.students.address = address
+            new_student.students.profile_picture = profile_picture_url
             new_student.students.state = state
             new_student.students.nationality = nationality
             new_student.students.term_start = term_start
