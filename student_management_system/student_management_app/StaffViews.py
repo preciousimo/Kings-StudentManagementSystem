@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from student_management_app.models import CustomUser, Staffs
+from django.core.files.storage import FileSystemStorage
 from . import models
 def staffHome(request):
     return render(request, 'staff_templates/home_content.html')
@@ -20,12 +21,18 @@ def addStaff(request):
         address = request.POST['address']
         state = request.POST['state']
         nationality = request.POST['nationality']
+        profile_picture = request.FILES['profile_picture']
+        fs = FileSystemStorage()
+        filename = fs.save(profile_picture.name,profile_picture)
+        profile_picture_url = fs.url(filename)
+
         try:
             new_staff = CustomUser.objects.create_user(first_name=first_name,last_name=last_name,username=username,password=password,email=email, user_type=2)
             new_staff.staffs.middle_name = middle_name
             new_staff.staffs.date_of_birth = date_of_birth
             new_staff.staffs.phone_number = phone_number
             new_staff.staffs.gender = gender
+            new_staff.staffs.profile_picture = profile_picture_url
             new_staff.staffs.address = address
             new_staff.staffs.state = state
             new_staff.staffs.nationality = nationality
