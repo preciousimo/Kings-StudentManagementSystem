@@ -100,6 +100,7 @@ def editStudentSave(request):
             student_model.date_of_birth = date_of_birth
             student_model.phone_number = phone_number
             student_model.gender = gender
+            student_model.profile_picture = profile_picture_url
             student_model.address = address
             student_model.state = state
             student_model.nationality = nationality
