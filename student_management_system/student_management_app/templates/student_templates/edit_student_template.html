@@ -13,7 +13,7 @@ Edit Student | #ID: {{student.id}}
                     <div class="card-header">
                         <h3 class="card-title">Edit Student</h3>
                     </div>
-                    <form action="/edit-student-save/" method='post'>
+                    <form action="/edit-student-save/" method='post' enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="card-body">
                             <div class="form-group">
@@ -55,6 +55,11 @@ Edit Student | #ID: {{student.id}}
                             <div class="form-group">
                                 <label>Gender</label>
                                 <input type="text" class="form-control" name="gender" value="{{student.gender}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Profile Image</label>
+                                <input type="file" class="form-control" name="profile_picture"
+                                    value="{{student.profile_picture}}">
                             </div>
                             <!--<div class="form-group">
                                 <label>Gender</label>
