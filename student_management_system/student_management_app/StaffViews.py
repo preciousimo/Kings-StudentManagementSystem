@@ -64,7 +64,13 @@ def editStaffSave(request):
         email = request.POST['email']
         phone_number = request.POST['phone_number']
         gender = request.POST['gender']
-        #profile_picture = request.POST['profile_picture']
+        if request.FILES['profile_picture']:
+            profile_picture = request.FILES['profile_picture']
+            fs = FileSystemStorage()
+            filename = fs.save(profile_picture.name,profile_picture)
+            profile_picture_url = fs.url(filename)
+        else:
+            profile_picture_url = None
         #curriculum_vitae = request.POST['curriculum_vitae']
         address = request.POST['address']
         state = request.POST['state']
@@ -83,6 +89,7 @@ def editStaffSave(request):
             staff_model.date_of_birth = date_of_birth
             staff_model.phone_number = phone_number
             staff_model.gender = gender
+            staff_model.profile_picture = profile_picture_url
             staff_model.address = address
             staff_model.state = state
             staff_model.nationality = nationality
