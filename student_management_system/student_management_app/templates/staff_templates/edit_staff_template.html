@@ -13,7 +13,7 @@ Edit Staff | #ID: {{staffs.id}}
                     <div class="card-header">
                         <h3 class="card-title">Edit Staff</h3>
                     </div>
-                    <form action="/edit-staff-save/" method='post'>
+                    <form action="/edit-staff-save/" method='post' enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="card-body">
                             <div class="form-group">
@@ -56,6 +56,11 @@ Edit Staff | #ID: {{staffs.id}}
                                 <label>Gender</label>
                                 <input type="text" class="form-control" name="gender" value="{{staff.gender}}">
                             </div>
+                            <div class="form-group">
+                                <label>Profile Image</label>
+                                <input type="file" class="form-control" name="profile_picture"
+                                    value="{{staff.profile_picture}}">
+                            </div>
                             <!--<div class="form-group">
                                 <label>Gender</label>
                                 <select class="form-select" aria-label="Default select example">
@@ -64,19 +69,6 @@ Edit Staff | #ID: {{staffs.id}}
                                     <option name="Female">Female</option>
                                     <option name="Others">Others</option>
                                 </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputFile">Profile Picture</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="image" class="custom-file-input" id="exampleInputFile"
-                                            name="profile_picture">
-                                        <label class="custom-file-label" for="exampleInputFile">Choose photo</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">Upload</span>
-                                    </div>
-                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputFile">Curriculum Vitae</label>
