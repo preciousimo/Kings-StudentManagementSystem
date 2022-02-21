@@ -60,7 +60,7 @@ def manageStudent(request):
 
 def editStudent(request, student_id):
     student = Students.objects.get(admin=student_id)
-    return render(request, 'student_templates/edit_student_template.html', {'student':student})
+    return render(request, 'student_templates/edit_student_template.html', {'student':student,'id':student_id})
 
 def editStudentSave(request):
     if request.method == 'POST':
@@ -117,8 +117,6 @@ def editStudentSave(request):
             return HttpResponseRedirect('/manage-student')
     else:
         return render(request, 'student_templates/edit_student_template.html')
-
-
 
 def studentAttendance(request):
     return HttpResponse('Student Attendance ..')
