@@ -18,7 +18,7 @@
                 <a href="#" class="d-block" style="text-decoration: none;">Hello, {{user.username}}</a>
                 {% else %}
                 <p class="d-block" style="color:white">Hello, Admin <span class="right badge badge-info"><a
-                            href="/login"> Login</a></span></p>
+                            href="{% url 'login' %}"> Login</a></span></p>
 
                 {% endif %}
             </div>
@@ -38,7 +38,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="/add-student" class="nav-link">
+                    <a href="{% url 'add-student' %}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Add Student
@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/manage-student" class="nav-link">
+                    <a href="{% url 'manage-student' %}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Manage Student
@@ -56,7 +56,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/student-attendance" class="nav-link">
+                    <a href="{% url 'student-attendance' %}" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Attendance
@@ -64,24 +64,7 @@
                         <i class="fas fa-angle-right right"></i>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="/student-notification" class="nav-link">
-                        <i class="nav-icon fas fa-edit"></i>
-                        <p>
-                            Notifications
-                        </p>
-                        <i class="fas fa-angle-right right"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/student-feedback" class="nav-link">
-                        <i class="nav-icon fas fa-edit"></i>
-                        <p>
-                            Feedbacks
-                        </p>
-                        <i class="fas fa-angle-right right"></i>
-                    </a>
-                </li>
+
             </ul>
         </nav>
     </div>
