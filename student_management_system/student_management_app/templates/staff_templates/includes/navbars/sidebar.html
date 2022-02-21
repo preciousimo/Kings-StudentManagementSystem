@@ -38,7 +38,9 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{% url 'add-staff' %}" class="nav-link">
+                    {% url 'add-staff' as add_staff %}
+                    <a href="{% url 'add-staff' %}"
+                        class="nav-link {% if request.path == add_staff %} active {% endif %}">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Add Staff
@@ -47,7 +49,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'manage-staff' %}" class="nav-link">
+                    {% url 'manage-staff' as manage_staff %}
+                    <a href="{% url 'manage-staff' %}"
+                        class="nav-link {% if request.path == manage_staff %} active {% endif %}">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Manage Staff
@@ -56,7 +60,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'add-subject' %}" class="nav-link">
+                    {% url 'add-subject' as add_subject %}
+                    <a href="{% url 'add-subject' %}"
+                        class="nav-link {% if request.path == add_subject %} active {% endif %}">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Add Subject
@@ -65,7 +71,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'manage-subject' %}" class="nav-link">
+                    {% url 'manage-subject' as manage_subject %}
+                    <a href="{% url 'manage-subject' %}"
+                        class="nav-link {% if request.path == manage_subject %} active {% endif %}">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Manage Subject
