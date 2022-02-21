@@ -50,8 +50,9 @@
                 </li>
                 <li class="nav-item">
                     {% url 'manage-staff' as manage_staff %}
+                    {% url 'edit-staff' staff_id=id as edit_staff %}
                     <a href="{% url 'manage-staff' %}"
-                        class="nav-link {% if request.path == manage_staff %} active {% endif %}">
+                        class="nav-link {% if request.path == manage_staff %} active {% endif %}{% if request.path == edit_staff %} active {% endif %}">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Manage Staff
@@ -72,6 +73,7 @@
                 </li>
                 <li class="nav-item">
                     {% url 'manage-subject' as manage_subject %}
+                    {% url 'edit-subject' staff_id=id as edit_subject %}
                     <a href="{% url 'manage-subject' %}"
                         class="nav-link {% if request.path == manage_subject %} active {% endif %}">
                         <i class="nav-icon fas fa-edit"></i>

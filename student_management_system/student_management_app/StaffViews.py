@@ -51,7 +51,7 @@ def manageStaff(request):
 
 def editStaff(request, staff_id):
     staff = Staffs.objects.get(admin=staff_id)
-    return render(request, 'staff_templates/edit_staff_template.html', {'staff':staff})
+    return render(request, 'staff_templates/edit_staff_template.html', {'staff':staff, 'id':staff_id})
 
 def editStaffSave(request):
     if request.method == 'POST':
