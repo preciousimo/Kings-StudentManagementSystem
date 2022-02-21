@@ -65,12 +65,12 @@ def editStaffSave(request):
         phone_number = request.POST['phone_number']
         gender = request.POST['gender']
         if request.FILES['profile_picture']:
-            profile_picture = request.FILES['profile_picture']
+            profile_picture = request.FILES.get('profile_picture',False)
             fs = FileSystemStorage()
             filename = fs.save(profile_picture.name,profile_picture)
             profile_picture_url = fs.url(filename)
         profile_picture = request.POST['profile_picture']
-        if request.FILES['curicculum_vitae']:
+        if request.FILES.get('curicculum_vitae', False):
             curicculum_vitae = request.FILES['curicculum_vitae']
             fs = FileSystemStorage()
             filename = fs.save(curicculum_vitae.name,curicculum_vitae)
