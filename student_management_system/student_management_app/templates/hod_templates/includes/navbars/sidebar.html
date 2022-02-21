@@ -39,26 +39,30 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
                     <a href="#" class="nav-link active">
-                        <i class="nav-icon far fa-circle text-success"></i>
+                        <i class="nav-icon far fa-circle text-dark"></i>
                         <p>
                             Admin Dashboard
                             <i class="right fas fa-angle-down"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="student-home" class="nav-link">
-                                <i class="nav-icon far fa-circle text-white"></i>
-                                <p>Student Dashboard</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="staff-home" class="nav-link">
-                                <i class="nav-icon far fa-circle text-info"></i>
-                                <p>Staff Dashboard</p>
-                            </a>
-                        </li>
-                    </ul>
+                </li>
+                <li class="nav-header">Student Dashboard</li>
+                <li class="nav-item">
+                    <a href="{% url 'student-home' %}" class="nav-link">
+                        <i class="nav-icon far fa-circle text-light"></i>
+                        <p>
+                            Student Home
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-header">Staff Dashboard</li>
+                <li class="nav-item">
+                    <a href="{% url 'staff-home' %}" class="nav-link">
+                        <i class="nav-icon far fa-circle text-info"></i>
+                        <p>
+                            Staff Home
+                        </p>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="courses" class="nav-link">
@@ -142,15 +146,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-header">Other Features</li>
-                <li class="nav-item">
-                    <a href="calendar.html" class="nav-link">
-                        <i class="nav-icon far fa-calendar-alt"></i>
-                        <p>
-                            Calendar
-                        </p>
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a href="gallery" class="nav-link">
                         <i class="nav-icon far fa-image"></i>
@@ -300,29 +296,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-search"></i>
-                        <p>
-                            Search
-                            <i class="fas fa-angle-down right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="search/simple.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Simple Search</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="search/enhanced.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Enhanced</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+
             </ul>
         </nav>
     </div>
