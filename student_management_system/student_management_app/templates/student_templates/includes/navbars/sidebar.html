@@ -38,7 +38,9 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{% url 'add-student' %}" class="nav-link">
+                    {% url 'add-student' as add_student %}
+                    <a href="{% url 'add-student' %}"
+                        class="nav-link {% if request.path == add_student %} active {% endif %}">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Add Student
@@ -47,7 +49,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'manage-student' %}" class="nav-link">
+                    {% url 'manage-student' as manage_student %}
+                    <a href="{% url 'manage-student' %}"
+                        class="nav-link {% if request.path == manage_student %} active {% endif %}">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Manage Student
@@ -56,7 +60,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'student-attendance' %}" class="nav-link">
+                    {% url 'student-attendance' as student_attendance %}
+                    <a href="{% url 'student-attendance' %}"
+                        class="nav-link {% if request.path == student_attendance %} active {% endif %}">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Attendance
