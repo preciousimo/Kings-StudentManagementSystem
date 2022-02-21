@@ -11,6 +11,7 @@ urlpatterns = [
     #Student Views
     path('student-home', StudentViews.studentHome, name="student-home"),
     path('add-student/', StudentViews.addStudent, name="add-student"),
+    path('add-student-save/', StudentViews.addStudentSave, name="add-student-save"),
     path('manage-student/', StudentViews.manageStudent, name="manage-student"),
     path('edit-student/<str:student_id>', StudentViews.editStudent, name="edit-student"),
     path('edit-student-save/', StudentViews.editStudentSave, name="edit-student-save"),

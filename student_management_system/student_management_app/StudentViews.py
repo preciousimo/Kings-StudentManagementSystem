@@ -1,15 +1,21 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from student_management_app.models import CustomUser, Students
+from student_management_app.Forms import AddStudentForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.files.storage import FileSystemStorage
+
 
 def studentHome(request):
     return render(request, 'student_templates/home_content.html')
 
 def addStudent(request):
-    if request.method == 'POST':
+    form = AddStudentForm()
+    return render(request, 'student_templates/add_student_template.html', {'form':form})
 
+def addStudentSave(request):
+    if request.method == 'POST':
+        form = AddStudentForm()
         first_name = request.POST['first_name']
         middle_name = request.POST['middle_name']
         last_name = request.POST['last_name']
