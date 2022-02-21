@@ -38,7 +38,9 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{% url 'admin-home' %}" class="nav-link active">
+                    {% url 'admin-home' as admin_home %}
+                    <a href="{% url 'admin-home' %}"
+                        class="nav-link {% if request.path == admin_home %} active {% endif %}">
                         <i class="nav-icon far fa-circle text-dark"></i>
                         <p>
                             Admin Dashboard
