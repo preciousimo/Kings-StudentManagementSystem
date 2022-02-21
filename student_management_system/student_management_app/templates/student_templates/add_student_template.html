@@ -11,10 +11,17 @@
                     <div class="card-header">
                         <h3 class="card-title">Create new Student</h3>
                     </div>
-                    {{ form }}
+                    <form action="/add-student-save/" method='post' enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            {{ form }}
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success btn-block">Add Student</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
 </section>
 {% endblock home_content %}
