@@ -15,48 +15,52 @@ def addStudent(request):
 
 def addStudentSave(request):
     if request.method == 'POST':
-        form = AddStudentForm()
-        first_name = request.POST['first_name']
-        middle_name = request.POST['middle_name']
-        last_name = request.POST['last_name']
-        username = request.POST['username']
-        password = request.POST['password']
-        date_of_birth = request.POST['date_of_birth']
-        email = request.POST['email']
-        phone_number = request.POST['phone_number']
-        gender = request.POST['gender']
-        
-        address = request.POST['address']
-        state = request.POST['state']
-        nationality = request.POST['nationality']
-        term_start = request.POST['term_start']
-        term_end = request.POST['term_end']
-        session_start = request.POST['session_start']
-        session_end = request.POST['session_end']
-        profile_picture = request.FILES['profile_picture']
-        fs = FileSystemStorage()
-        filename = fs.save(profile_picture.name, profile_picture)
-        profile_picture_url = fs.url(filename)
-        try:
-            new_student = CustomUser.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password, user_type=3)
-            new_student.students.middle_name = middle_name
-            new_student.students.date_of_birth = date_of_birth
-            new_student.students.phone_number = phone_number
-            new_student.students.gender = gender
-            new_student.students.address = address
-            new_student.students.profile_picture = profile_picture_url
-            new_student.students.state = state
-            new_student.students.nationality = nationality
-            new_student.students.term_start = term_start
-            new_student.students.term_end = term_end
-            new_student.students.session_start = session_start
-            new_student.students.session_end = session_end
-            new_student.save()
-            messages.success(request, '{} added successfully'.format(username))
-            return redirect('/add-student')
-        except:
-            messages.error(request, 'Failed to add new student')
-            return render(request, 'student_templates/add_student_template.html')
+        form = AddStudentForm(request.POST, request.FILES)
+        if form.is_valid():
+            first_name = form.cleaned_data['first_name']
+            middle_name = form.cleaned_data['middle_name']
+            last_name = form.cleaned_data['last_name']
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            date_of_birth = form.cleaned_data['date_of_birth']
+            email = form.cleaned_data['email']
+            phone_number = form.cleaned_data['phone_number']
+            gender = form.cleaned_data['gender']
+            
+            address = form.cleaned_data['address']
+            state = form.cleaned_data['state']
+            nationality = form.cleaned_data['nationality']
+            term_start = form.cleaned_data['term_start']
+            term_end = form.cleaned_data['term_end']
+            session_start = form.cleaned_data['session_start']
+            session_end = form.cleaned_data['session_end']
+            profile_picture = request.FILES['profile_picture']
+            fs = FileSystemStorage()
+            filename = fs.save(profile_picture.name, profile_picture)
+            profile_picture_url = fs.url(filename)
+            try:
+                new_student = CustomUser.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password, user_type=3)
+                new_student.students.middle_name = middle_name
+                new_student.students.date_of_birth = date_of_birth
+                new_student.students.phone_number = phone_number
+                new_student.students.gender = gender
+                new_student.students.address = address
+                new_student.students.profile_picture = profile_picture_url
+                new_student.students.state = state
+                new_student.students.nationality = nationality
+                new_student.students.term_start = term_start
+                new_student.students.term_end = term_end
+                new_student.students.session_start = session_start
+                new_student.students.session_end = session_end
+                new_student.save()
+                messages.success(request, '{} added successfully'.format(username))
+                return redirect('/add-student')
+            except:
+                messages.error(request, 'Failed to add new student')
+                return redirect('/add-student')
+        else:
+            form = AddStudentForm(request.POST)
+            return render(request, 'student_templates/add_student_template.html', {'form':form})    
     else:
         return render(request, 'student_templates/add_student_template.html')    
     
@@ -70,15 +74,15 @@ def editStudent(request, student_id):
 
 def editStudentSave(request):
     if request.method == 'POST':
-        student_id = request.POST['student_id']
-        first_name = request.POST['first_name']
-        middle_name = request.POST['middle_name']
-        last_name = request.POST['last_name']
-        username = request.POST['username']
-        date_of_birth = request.POST['date_of_birth']
-        email = request.POST['email']
-        phone_number = request.POST['phone_number']
-        gender = request.POST['gender']
+        student_id = form.cleaned_data['student_id']
+        first_name = form.cleaned_data['first_name']
+        middle_name = form.cleaned_data['middle_name']
+        last_name = form.cleaned_data['last_name']
+        username = form.cleaned_data['username']
+        date_of_birth = form.cleaned_data['date_of_birth']
+        email = form.cleaned_data['email']
+        phone_number = form.cleaned_data['phone_number']
+        gender = form.cleaned_data['gender']
         if request.FILES['profile_picture']:
             profile_picture = request.FILES['profile_picture']
             fs = FileSystemStorage()
@@ -86,13 +90,13 @@ def editStudentSave(request):
             profile_picture_url = fs.url(filename)
         else:
             profile_picture_url = None
-        address = request.POST['address']
-        state = request.POST['state']
-        nationality = request.POST['nationality']
-        term_start = request.POST['term_start']
-        session_start = request.POST['session_start']
-        term_end = request.POST['term_end']
-        session_end = request.POST['session_end']
+        address = form.cleaned_data['address']
+        state = form.cleaned_data['state']
+        nationality = form.cleaned_data['nationality']
+        term_start = form.cleaned_data['term_start']
+        session_start = form.cleaned_data['session_start']
+        term_end = form.cleaned_data['term_end']
+        session_end = form.cleaned_data['session_end']
         try:
             user = CustomUser.objects.get(id=student_id)
             user.first_name = first_name
