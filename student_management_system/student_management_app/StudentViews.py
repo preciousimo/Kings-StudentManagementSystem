@@ -53,7 +53,7 @@ def addStudentSave(request):
             new_student.students.session_end = session_end
             new_student.save()
             messages.success(request, '{} added successfully'.format(username))
-            return render(request, 'student_templates/add_student_template.html')   
+            return redirect('/add-student')
         except:
             messages.error(request, 'Failed to add new student')
             return render(request, 'student_templates/add_student_template.html')
