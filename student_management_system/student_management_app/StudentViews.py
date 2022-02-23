@@ -2,7 +2,6 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from student_management_app.models import CustomUser, Students
 from student_management_app.Forms import AddStudentForm
-from django.http import HttpResponse, HttpResponseRedirect
 from django.core.files.storage import FileSystemStorage
 
 
@@ -119,10 +118,10 @@ def editStudentSave(request):
             student_model.save()
 
             messages.success(request, '{} updated successfully'.format(username))
-            return HttpResponseRedirect('/manage-student')
+            return redirect('/manage-student')
         except:
             messages.error(request, 'Failed to edit {}'.format(username))
-            return HttpResponseRedirect('/manage-student')
+            return redirect('/manage-student')
     else:
         return render(request, 'student_templates/edit_student_template.html')
 
