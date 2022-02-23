@@ -3,11 +3,15 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from student_management_app.models import CustomUser, Staffs
 from django.core.files.storage import FileSystemStorage
-from . import models
+from student_management_app.Forms import AddStaffForm
 def staffHome(request):
     return render(request, 'staff_templates/home_content.html')
 
 def addStaff(request):
+    form = AddStaffForm()
+    return render(request, 'staff_templates/add_staff_template.html', {'form':form})
+
+def addStaffSave(request):
     if request.method == 'POST':
         first_name = request.POST['first_name']
         middle_name = request.POST['middle_name']

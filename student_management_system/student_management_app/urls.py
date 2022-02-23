@@ -19,6 +19,7 @@ urlpatterns = [
     #Staff Views
     path('staff-home/', StaffViews.staffHome, name="staff-home"),
     path('add-staff/', StaffViews.addStaff, name="add-staff"),
+    path('add-staff-save/', StaffViews.addStaffSave, name="add-staff-save"),
     path('manage-staff/', StaffViews.manageStaff, name="manage-staff"),
     path('add-subject/', StaffViews.addSubject, name="add-subject"),
     path('manage-subject/', StaffViews.manageSubject, name="manage-subject"),
