@@ -88,8 +88,6 @@ def editStudentSave(request):
             fs = FileSystemStorage()
             filename = fs.save(profile_picture.name, profile_picture)
             profile_picture_url = fs.url(filename)
-        else:
-            profile_picture_url = None
         address = form.cleaned_data['address']
         state = form.cleaned_data['state']
         nationality = form.cleaned_data['nationality']

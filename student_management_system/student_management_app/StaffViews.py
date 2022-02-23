@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, redirect
 from student_management_app.models import CustomUser, Staffs
 from django.core.files.storage import FileSystemStorage
 from student_management_app.Forms import AddStaffForm
@@ -27,10 +27,16 @@ def addStaffSave(request):
             address = form.cleaned_data['address']
             state = form.cleaned_data['state']
             nationality = form.cleaned_data['nationality']
-            profile_picture = request.FILES['profile_picture']
-            fs = FileSystemStorage()
-            filename = fs.save(profile_picture.name,profile_picture)
-            profile_picture_url = fs.url(filename)
+            if request.FILES['profile_picture']:
+                profile_picture = request.FILES['profile_picture']
+                fs = FileSystemStorage()
+                filename = fs.save(profile_picture.name,profile_picture)
+                profile_picture_url = fs.url(filename)
+            if request.FILES['curriculum_vitae']:
+                curriculum_vitae = request.FILES['curriculum_vitae']
+                fs = FileSystemStorage()
+                filename = fs.save(curriculum_vitae.name,curriculum_vitae)
+                curriculum_vitae_url = fs.url(filename)
             try:
                 new_staff = CustomUser.objects.create_user(first_name=first_name,last_name=last_name,username=username,password=password,email=email, user_type=2)
                 new_staff.staffs.middle_name = middle_name
@@ -110,10 +116,10 @@ def editStaffSave(request):
             staff_model.save()
 
             messages.success(request, '{} updated successfully'.format(username))
-            return HttpResponseRedirect('/manage-staff')
+            return redirect('/manage-staff')
         except:
             messages.error(request, 'Failed to edit {}'.format(username))
-            return HttpResponseRedirect('/manage-staff')
+            return redirect('/manage-staff')
     else:
         return render(request, 'staff_templates/edit_staff_template.html')
 
@@ -130,13 +136,12 @@ def addSubject(request):
             new_subject = Subjects.objects.create(subject_name=subject_name,subject_status=subject_status,staff_id_id=staff_id,admin_id=admin_id)
             new_subject.save()
             messages.success(request, '{} added successfully'.format(subject_name))
-            return render(request, 'staff_templates/add_subject_template.html')   
+            return redirect('add-subject')
         except:
             messages.error(request, 'Failed to add new subject')
-            return render(request, 'staff_templates/add_subject_template.html')    
+            return redirect('add-subject')
     else:
-        return HttpResponse('Method not allowed')
-        #return render(request, 'staff_templates/add_subject_template.html')    
+        return render(request, 'staff_templates/add_subject_template.html')    
 
 def manageSubject(request):
     subjects = Subjects.objects.all()

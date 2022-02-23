@@ -24,7 +24,7 @@ class Staffs(models.Model):
     phone_number = models.CharField(max_length=255)
     gender = models.CharField(max_length=255)
     profile_picture = models.FileField(max_length=255)
-    curicculum_vitae = models.FileField(max_length=255)
+    curriculum_vitae = models.FileField(max_length=255)
     address = models.TextField()
     state = models.CharField(max_length=255)
     nationality = models.CharField(max_length=255)
