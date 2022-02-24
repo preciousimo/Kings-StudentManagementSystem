@@ -13,10 +13,8 @@ Edit Student | #ID: {{student.id}}
                     <div class="card-header">
                         <h3 class="card-title">Edit Student</h3>
                     </div>
-                    <form action="/edit-student-save/" method='post' enctype="multipart/form-data">
-                        {% csrf_token %}
-
-                    </form>
+                    {% url 'edit-student-save' as action_path %}
+                    {% include 'student_templates/form_template.html' %}
                 </div>
             </div>
         </div>

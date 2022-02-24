@@ -28,7 +28,6 @@ class EditStudentForm(forms.Form):
     last_name = forms.CharField(label = "Last Name",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     username = forms.CharField(label = "Username",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     email = forms.EmailField(label = "Email",max_length=50, widget=forms.EmailInput(attrs={'class':'form-control'}))
-    password = forms.CharField(label = "Password",max_length=50, widget=forms.PasswordInput(attrs={'class':'form-control'}))
     date_of_birth = forms.DateField(widget=DateInput(attrs={'class':'form-control'}))
     phone_number = forms.CharField(label = "Phone Number",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     gender = forms.CharField(label = "Gender",max_length=50, widget=TextInput(attrs={'class':'form-control'}))

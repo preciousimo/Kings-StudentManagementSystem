@@ -82,10 +82,10 @@ def editStudent(request, student_id):
     form.fields['address'].initial = student.address
     form.fields['state'].initial = student.state
     form.fields['nationality'].initial = student.nationality
-    form.fields['term_starts'].initial = student.term_starts
+    form.fields['term_start'].initial = student.term_start
     form.fields['session_start'].initial = student.session_start
-    form.fields['term_ends'].initial = student.term_ends
-    form.fields['session_ends'].initial = student.session_ends
+    form.fields['term_end'].initial = student.term_end
+    form.fields['session_end'].initial = student.session_end
     return render(request, 'student_templates/edit_student_template.html', {'student':student,'id':student_id,'form':form})
 
 def editStudentSave(request):
