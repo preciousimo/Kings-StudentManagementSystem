@@ -75,10 +75,10 @@ def editStudent(request, student_id):
     form.fields['last_name'].initial = student.admin.last_name
     form.fields['username'].initial = student.admin.username
     form.fields['email'].initial = student.admin.email
-    form.fields['password'].initial = student.admin.password
     form.fields['date_of_birth'].initial = student.date_of_birth
     form.fields['gender'].initial = student.gender
     form.fields['phone_number'].initial = student.phone_number
+    form.fields['profile_picture'].initial = student.profile_picture
     form.fields['address'].initial = student.address
     form.fields['state'].initial = student.state
     form.fields['nationality'].initial = student.nationality
@@ -86,7 +86,7 @@ def editStudent(request, student_id):
     form.fields['session_start'].initial = student.session_start
     form.fields['term_ends'].initial = student.term_ends
     form.fields['session_ends'].initial = student.session_ends
-    return render(request, 'student_templates/edit_student_template.html', {'student':student,'id':student_id})
+    return render(request, 'student_templates/edit_student_template.html', {'student':student,'id':student_id,'form':form})
 
 def editStudentSave(request):
     if request.method == 'POST':
