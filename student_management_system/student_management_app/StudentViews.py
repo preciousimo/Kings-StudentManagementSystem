@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from student_management_app.models import CustomUser, Students
-from student_management_app.Forms import AddStudentForm
+from student_management_app.Forms import AddStudentForm, EditStudentForm
 from django.core.files.storage import FileSystemStorage
 
 
@@ -69,6 +69,23 @@ def manageStudent(request):
 
 def editStudent(request, student_id):
     student = Students.objects.get(admin=student_id)
+    form = EditStudentForm()
+    form.fields['first_name'].initial = student.admin.first_name
+    form.fields['middle_name'].initial = student.middle_name
+    form.fields['last_name'].initial = student.admin.last_name
+    form.fields['username'].initial = student.admin.username
+    form.fields['email'].initial = student.admin.email
+    form.fields['password'].initial = student.admin.password
+    form.fields['date_of_birth'].initial = student.date_of_birth
+    form.fields['gender'].initial = student.gender
+    form.fields['phone_number'].initial = student.phone_number
+    form.fields['address'].initial = student.address
+    form.fields['state'].initial = student.state
+    form.fields['nationality'].initial = student.nationality
+    form.fields['term_starts'].initial = student.term_starts
+    form.fields['session_start'].initial = student.session_start
+    form.fields['term_ends'].initial = student.term_ends
+    form.fields['session_ends'].initial = student.session_ends
     return render(request, 'student_templates/edit_student_template.html', {'student':student,'id':student_id})
 
 def editStudentSave(request):

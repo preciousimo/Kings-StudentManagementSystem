@@ -36,9 +36,9 @@ class EditStudentForm(forms.Form):
     address = forms.CharField(label = "Address",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     state = forms.CharField(label = "State",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     nationality = forms.CharField(label = "Nationality", max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    term_start = forms.DateField(label = "Term Begins", widget=DateInput(attrs={'class':'form-control'}))
+    term_start = forms.DateField(label = "Term Starts", widget=DateInput(attrs={'class':'form-control'}))
     term_end = forms.DateField(label = "Term Ends", widget=DateInput(attrs={'class':'form-control'}))
-    session_start = forms.DateField(label = "Session Begins", widget=DateInput(attrs={'class':'form-control'}))
+    session_start = forms.DateField(label = "Session Starts", widget=DateInput(attrs={'class':'form-control'}))
     session_end = forms.DateField(label = "Session Ends", widget=DateInput(attrs={'class':'form-control'}))
 
 class AddStaffForm(forms.Form):
