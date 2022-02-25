@@ -14,7 +14,7 @@ Edit Staff | #ID: {{staff.id}}
                         <h3 class="card-title">Edit Staff</h3>
                     </div>
                     {% url 'edit-staff-save' as action_path %}
-                    {% include 'staff_templates/form_template.html' %}
+                    {% include 'staff_templates/form_template.html' with button="Edit Staff" %}
                 </div>
             </div>
         </div>

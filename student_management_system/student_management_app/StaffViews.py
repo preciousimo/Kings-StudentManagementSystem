@@ -84,57 +84,65 @@ def editStaff(request, staff_id):
 
 def editStaffSave(request):
     if request.method == 'POST':
-        staff_id = form.cleaned_data['staff_id']
-        first_name = form.cleaned_data['first_name']
-        middle_name = form.cleaned_data['middle_name']
-        last_name = form.cleaned_data['last_name']
-        username = form.cleaned_data['username']
-        date_of_birth = form.cleaned_data['date_of_birth']
-        email = form.cleaned_data['email']
-        phone_number = form.cleaned_data['phone_number']
-        gender = form.cleaned_data['gender']
-        if request.FILES['profile_picture']:
-            profile_picture = request.FILES.get('profile_picture',False)
-            fs = FileSystemStorage()
-            filename = fs.save(profile_picture.name,profile_picture)
-            profile_picture_url = fs.url(filename)
-        profile_picture = form.cleaned_data['profile_picture']
-        if request.FILES.get('curicculum_vitae', False):
-            curicculum_vitae = request.FILES['curicculum_vitae']
-            fs = FileSystemStorage()
-            filename = fs.save(curicculum_vitae.name,curicculum_vitae)
-            curicculum_vitae_url = fs.url(filename)
-        curicculum_vitae = form.cleaned_data['curicculum_vitae']
-        address = form.cleaned_data['address']
-        state = form.cleaned_data['state']
-        nationality = form.cleaned_data['nationality']
-        try:
-            user = CustomUser.objects.get(id=staff_id)
-            user.first_name = first_name
-            user.last_name = last_name
-            user.username = username
+        staff_id = request.session.get('staff_id')
+        if staff_id == None:
+            return redirect('/manage-student')
+        form = EditStaffForm(request.POST, request.FILES)
+        if form.is_valid():
+            first_name = form.cleaned_data['first_name']
+            middle_name = form.cleaned_data['middle_name']
+            last_name = form.cleaned_data['last_name']
+            username = form.cleaned_data['username']
+            date_of_birth = form.cleaned_data['date_of_birth']
+            email = form.cleaned_data['email']
+            phone_number = form.cleaned_data['phone_number']
+            gender = form.cleaned_data['gender']
+            if request.FILES['profile_picture']:
+                profile_picture = request.FILES.get('profile_picture',False)
+                fs = FileSystemStorage()
+                filename = fs.save(profile_picture.name,profile_picture)
+                profile_picture_url = fs.url(filename)
+            profile_picture = form.cleaned_data['profile_picture']
+            if request.FILES.get('curriculum_vitae', False):
+                curriculum_vitae = request.FILES['curriculum_vitae']
+                fs = FileSystemStorage()
+                filename = fs.save(curriculum_vitae.name,curriculum_vitae)
+                curriculum_vitae_url = fs.url(filename)
+            curriculum_vitae = form.cleaned_data['curriculum_vitae']
+            address = form.cleaned_data['address']
+            state = form.cleaned_data['state']
+            nationality = form.cleaned_data['nationality']
+            try:
+                user = CustomUser.objects.get(id=staff_id)
+                user.first_name = first_name
+                user.last_name = last_name
+                user.username = username
 
-            user.email = email
-            user.save()
+                user.email = email
+                user.save()
 
-            staff_model = Staffs.objects.get(admin=staff_id)
-            staff_model.middle_name = middle_name
-            staff_model.date_of_birth = date_of_birth
-            staff_model.phone_number = phone_number
-            staff_model.gender = gender
-            if profile_picture_url != None:
-                staff_model.profile_picture = profile_picture_url
-            staff_model.curicculum_vitae = curicculum_vitae_url
-            staff_model.address = address
-            staff_model.state = state
-            staff_model.nationality = nationality
-            staff_model.save()
-
-            messages.success(request, '{} updated successfully'.format(username))
+                staff_model = Staffs.objects.get(admin=staff_id)
+                staff_model.middle_name = middle_name
+                staff_model.date_of_birth = date_of_birth
+                staff_model.phone_number = phone_number
+                staff_model.gender = gender
+                if profile_picture_url != None:
+                    staff_model.profile_picture = profile_picture_url
+                staff_model.curriculum_vitae = curriculum_vitae_url
+                staff_model.address = address
+                staff_model.state = state
+                staff_model.nationality = nationality
+                staff_model.save()
+                del request.session['student_id']
+                messages.success(request, '{} updated successfully'.format(username))
+                return redirect('/manage-staff')
+            except:
+                messages.error(request, 'Failed to edit {}'.format(username))
+                return redirect('/manage-staff')
+        else:
+            form = EditStaffForm(request.POST)
             return redirect('/manage-staff')
-        except:
-            messages.error(request, 'Failed to edit {}'.format(username))
-            return redirect('/manage-staff')
+            messages.info('Failed to edit Staff')
     else:
         return render(request, 'staff_templates/edit_staff_template.html')
 

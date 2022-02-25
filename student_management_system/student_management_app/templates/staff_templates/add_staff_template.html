@@ -12,7 +12,7 @@
                         <h3 class="card-title">Create new Staff</h3>
                     </div>
                     {% url 'add-staff-save' as action_path %}
-                    {% include 'staff_templates/form_template.html' %}
+                    {% include 'staff_templates/form_template.html' with button="Add Staff" %}
                 </div>
             </div>
         </div>

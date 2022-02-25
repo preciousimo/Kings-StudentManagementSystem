@@ -145,11 +145,9 @@ def editStudentSave(request):
                 messages.error(request, 'Failed to edit {}'.format(username))
                 return redirect('/manage-student')
         else:
-            form = EditStudentForm(request.POST)
-            student = Students.objects.get(admin=student_id)
-            #username = form.cleaned_data['username']
-            #messages.info(request, '{} wasn\'t changed'.format(username))
-            return render(request, 'student_templates/edit_student_template.html', {'student':student})
+            form = EditStaffForm(request.POST)
+            return redirect('/manage-staff')
+            messages.info('Failed to edit Staff')
     else:
         return render(request, 'student_templates/edit_student_template.html')
 
