@@ -13,7 +13,8 @@ Edit Staff | #ID: {{staff.id}}
                     <div class="card-header">
                         <h3 class="card-title">Edit Staff</h3>
                     </div>
-
+                    {% url 'edit-staff-save' as action_path %}
+                    {% include 'staff_templates/form_template.html' %}
                 </div>
             </div>
         </div>
