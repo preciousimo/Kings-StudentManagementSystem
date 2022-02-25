@@ -12,7 +12,7 @@
                         <h3 class="card-title">Create new Student</h3>
                     </div>
                     {% url 'add-student-save' as action_path %}
-                    {% include 'student_templates/form_template.html' %}
+                    {% include 'student_templates/form_template.html' with button="Add Student" %}
                 </div>
             </div>
         </div>
