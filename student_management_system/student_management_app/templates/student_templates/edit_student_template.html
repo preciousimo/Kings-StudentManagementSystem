@@ -14,7 +14,7 @@ Edit Student | #ID: {{student.id}}
                         <h3 class="card-title">Edit Student</h3>
                     </div>
                     {% url 'edit-student-save' as action_path %}
-                    {% include 'student_templates/form_template.html' %}
+                    {% include 'student_templates/form_template.html' with button="Edit Student" %}
                 </div>
             </div>
         </div>
