@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from student_management_app.models import CustomUser, Staffs
 from django.core.files.storage import FileSystemStorage
-from student_management_app.Forms import AddStaffForm
+from student_management_app.Forms import AddStaffForm, EditStaffForm
 def staffHome(request):
     return render(request, 'staff_templates/home_content.html')
 
@@ -63,8 +63,24 @@ def manageStaff(request):
     return render(request, 'staff_templates/manage_staff_template.html', {'staffs':staffs})
 
 def editStaff(request, staff_id):
+    request.session['staff_id'] = staff_id
     staff = Staffs.objects.get(admin=staff_id)
-    return render(request, 'staff_templates/edit_staff_template.html', {'staff':staff, 'id':staff_id})
+    form = EditStaffForm()
+    form.fields['first_name'].initial = staff.admin.first_name
+    form.fields['middle_name'].initial = staff.middle_name
+    form.fields['last_name'].initial = staff.admin.last_name
+    form.fields['username'].initial = staff.admin.username
+    form.fields['email'].initial = staff.admin.email
+    form.fields['date_of_birth'].initial = staff.date_of_birth
+    form.fields['gender'].initial = staff.gender
+    form.fields['phone_number'].initial = staff.phone_number
+    form.fields['profile_picture'].initial = staff.profile_picture
+    form.fields['curriculum_vitae'].initial = staff.curriculum_vitae
+    form.fields['address'].initial = staff.address
+    form.fields['state'].initial = staff.state
+    form.fields['nationality'].initial = staff.nationality
+    
+    return render(request, 'staff_templates/edit_staff_template.html', {'staff':staff, 'id':staff_id, 'form':form})
 
 def editStaffSave(request):
     if request.method == 'POST':
