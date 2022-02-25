@@ -68,6 +68,7 @@ def manageStudent(request):
     return render(request, 'student_templates/manage_student_template.html', {'students':students})
 
 def editStudent(request, student_id):
+    request.session['student_id'] = student_id
     student = Students.objects.get(admin=student_id)
     form = EditStudentForm()
     form.fields['first_name'].initial = student.admin.first_name
@@ -90,55 +91,65 @@ def editStudent(request, student_id):
 
 def editStudentSave(request):
     if request.method == 'POST':
-        student_id = form.cleaned_data['student_id']
-        first_name = form.cleaned_data['first_name']
-        middle_name = form.cleaned_data['middle_name']
-        last_name = form.cleaned_data['last_name']
-        username = form.cleaned_data['username']
-        date_of_birth = form.cleaned_data['date_of_birth']
-        email = form.cleaned_data['email']
-        phone_number = form.cleaned_data['phone_number']
-        gender = form.cleaned_data['gender']
-        if request.FILES['profile_picture']:
-            profile_picture = request.FILES['profile_picture']
-            fs = FileSystemStorage()
-            filename = fs.save(profile_picture.name, profile_picture)
-            profile_picture_url = fs.url(filename)
-        address = form.cleaned_data['address']
-        state = form.cleaned_data['state']
-        nationality = form.cleaned_data['nationality']
-        term_start = form.cleaned_data['term_start']
-        session_start = form.cleaned_data['session_start']
-        term_end = form.cleaned_data['term_end']
-        session_end = form.cleaned_data['session_end']
-        try:
-            user = CustomUser.objects.get(id=student_id)
-            user.first_name = first_name
-            user.last_name = last_name
-            user.username = username
-            user.email = email
-            user.save()
-
-            student_model = Students.objects.get(admin=student_id)
-            student_model.middle_name = middle_name
-            student_model.date_of_birth = date_of_birth
-            student_model.phone_number = phone_number
-            student_model.gender = gender
-            student_model.profile_picture = profile_picture_url
-            student_model.address = address
-            student_model.state = state
-            student_model.nationality = nationality
-            student_model.term_start = term_start
-            student_model.session_start = session_start
-            student_model.term_end = term_end
-            student_model.session_end = session_end
-            student_model.save()
-
-            messages.success(request, '{} updated successfully'.format(username))
+        student_id = request.session.get('student_id')
+        if student_id == None:
             return redirect('/manage-student')
-        except:
-            messages.error(request, 'Failed to edit {}'.format(username))
-            return redirect('/manage-student')
+        form = EditStudentForm(request.POST, request.FILES)
+        if form.is_valid():
+            first_name = form.cleaned_data['first_name']
+            middle_name = form.cleaned_data['middle_name']
+            last_name = form.cleaned_data['last_name']
+            username = form.cleaned_data['username']
+            date_of_birth = form.cleaned_data['date_of_birth']
+            email = form.cleaned_data['email']
+            phone_number = form.cleaned_data['phone_number']
+            gender = form.cleaned_data['gender']
+            if request.FILES['profile_picture']:
+                profile_picture = request.FILES['profile_picture']
+                fs = FileSystemStorage()
+                filename = fs.save(profile_picture.name, profile_picture)
+                profile_picture_url = fs.url(filename)
+            address = form.cleaned_data['address']
+            state = form.cleaned_data['state']
+            nationality = form.cleaned_data['nationality']
+            term_start = form.cleaned_data['term_start']
+            session_start = form.cleaned_data['session_start']
+            term_end = form.cleaned_data['term_end']
+            session_end = form.cleaned_data['session_end']
+            try:
+                user = CustomUser.objects.get(id=student_id)
+                user.first_name = first_name
+                user.last_name = last_name
+                user.username = username
+                user.email = email
+                user.save()
+
+                student_model = Students.objects.get(admin=student_id)
+                student_model.middle_name = middle_name
+                student_model.date_of_birth = date_of_birth
+                student_model.phone_number = phone_number
+                student_model.gender = gender
+                student_model.profile_picture = profile_picture_url
+                student_model.address = address
+                student_model.state = state
+                student_model.nationality = nationality
+                student_model.term_start = term_start
+                student_model.session_start = session_start
+                student_model.term_end = term_end
+                student_model.session_end = session_end
+                student_model.save()
+                del request.session['student_id']
+                messages.success(request, '{} updated successfully'.format(username))
+                return redirect('/manage-student')
+            except:
+                messages.error(request, 'Failed to edit {}'.format(username))
+                return redirect('/manage-student')
+        else:
+            form = EditStudentForm(request.POST)
+            student = Students.objects.get(admin=student_id)
+            #username = form.cleaned_data['username']
+            #messages.info(request, '{} wasn\'t changed'.format(username))
+            return render(request, 'student_templates/edit_student_template.html', {'student':student})
     else:
         return render(request, 'student_templates/edit_student_template.html')
 
