@@ -3,6 +3,8 @@ from django.contrib import messages
 from student_management_app.models import CustomUser, Staffs
 from django.core.files.storage import FileSystemStorage
 from student_management_app.Forms import AddStaffForm, EditStaffForm
+from django.urls import reverse
+
 def staffHome(request):
     return render(request, 'staff_templates/home_content.html')
 
@@ -48,10 +50,10 @@ def addStaffSave(request):
                 new_staff.staffs.nationality = nationality
                 new_staff.save()
                 messages.success(request, '{} created successfully'.format(username))
-                return redirect('/add-staff')   
+                return redirect(reverse('add-staff'))
             except:
                 messages.error(request, 'Failed to add new staff')
-                return redirect('/add-staff')   
+                return redirect(reverse('add-staff'))
         else:
             form = AddStaffForm(request.POST)
             return render(request, 'staff_templates/add_staff_template.html', {'form':form})    
@@ -86,7 +88,7 @@ def editStaffSave(request):
     if request.method == 'POST':
         staff_id = request.session.get('staff_id')
         if staff_id == None:
-            return redirect('/manage-student')
+            return redirect(reverse('manage-student'))
         form = EditStaffForm(request.POST, request.FILES)
         if form.is_valid():
             first_name = form.cleaned_data['first_name']
@@ -135,13 +137,13 @@ def editStaffSave(request):
                 staff_model.save()
                 del request.session['student_id']
                 messages.success(request, '{} updated successfully'.format(username))
-                return redirect('/manage-staff')
+                return redirect(reverse('manage-staff'))
             except:
                 messages.error(request, 'Failed to edit {}'.format(username))
-                return redirect('/manage-staff')
+                return redirect(reverse('manage-staff'))
         else:
             form = EditStaffForm(request.POST)
-            return redirect('/manage-staff')
+            return redirect(reverse('manage-staff'))
             messages.info('Failed to edit Staff')
     else:
         return render(request, 'staff_templates/edit_staff_template.html')
@@ -159,10 +161,10 @@ def addSubject(request):
             new_subject = Subjects.objects.create(subject_name=subject_name,subject_status=subject_status,staff_id_id=staff_id,admin_id=admin_id)
             new_subject.save()
             messages.success(request, '{} added successfully'.format(subject_name))
-            return redirect('add-subject')
+            return redirect(reverse('dd-subject'))
         except:
             messages.error(request, 'Failed to add new subject')
-            return redirect('add-subject')
+            return redirect(reverse('dd-subject'))
     else:
         return render(request, 'staff_templates/add_subject_template.html')    
 
