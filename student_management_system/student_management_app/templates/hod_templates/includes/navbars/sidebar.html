@@ -171,4 +171,11 @@
             </ul>
         </nav>
     </div>
+    <div style="margin: 10px;">
+        {% if user.is_authenticated %}
+        <button class="btn btn-danger btn-block" href="{% url 'logout' %}">Logout</button>
+        {% else %}
+        <button class="btn btn-info btn-block" href="{% url 'login' %}">Login</button>
+        {% endif %}
+    </div>
 </aside>
