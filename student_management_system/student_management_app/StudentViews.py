@@ -3,7 +3,6 @@ from django.contrib import messages
 from student_management_app.models import CustomUser, Students
 from student_management_app.Forms import AddStudentForm, EditStudentForm
 from django.core.files.storage import FileSystemStorage
-from django.urls import reverse
 
 
 def studentHome(request):
@@ -54,10 +53,10 @@ def addStudentSave(request):
                 new_student.students.session_end = session_end
                 new_student.save()
                 messages.success(request, '{} added successfully'.format(username))
-                return redirect(reverse('add-student'))
+                return redirect('add-student')
             except:
                 messages.error(request, 'Failed to add new student')
-                return redirect(reverse('add-student'))
+                return redirect('add-student')
         else:
             form = AddStudentForm(request.POST)
             return render(request, 'student_templates/add_student_template.html', {'form':form})    
@@ -94,7 +93,7 @@ def editStudentSave(request):
     if request.method == 'POST':
         student_id = request.session.get('student_id')
         if student_id == None:
-            return redirect(reverse('manage-student'))
+            return redirect('manage-student')
         form = EditStudentForm(request.POST, request.FILES)
         if form.is_valid():
             first_name = form.cleaned_data['first_name']
@@ -141,13 +140,13 @@ def editStudentSave(request):
                 student_model.save()
                 del request.session['student_id']
                 messages.success(request, '{} updated successfully'.format(username))
-                return redirect(reverse('manage-student'))
+                return redirect('manage-student')
             except:
                 messages.error(request, 'Failed to edit {}'.format(username))
-                return redirect(reverse('manage-student'))
+                return redirect('manage-student')
         else:
             form = EditStaffForm(request.POST)
-            return redirect(reverse('manage-staff'))
+            return redirect('manage-staff')
             messages.info('Failed to edit Staff')
     else:
         return render(request, 'student_templates/edit_student_template.html')
