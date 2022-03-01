@@ -12,7 +12,12 @@ class AddStudentForm(forms.Form):
     password = forms.CharField(label = "Password",max_length=50, widget=forms.PasswordInput(attrs={'class':'form-control'}))
     date_of_birth = forms.DateField(widget=DateInput(attrs={'class':'form-control'}))
     phone_number = forms.CharField(label = "Phone Number",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    gender = forms.CharField(label = "Gender",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
+    gender_choice = (
+        ('Others', 'Others'),
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+    )
+    gender = forms.ChoiceField(label = "Gender",choices=gender_choice, widget=forms.Select(attrs={'class':'form-control'}))
     profile_picture = forms.FileField(label = "Profile Picture",max_length=50, widget=FileInput(attrs={'class':'form-control'}))
     address = forms.CharField(label = "Address",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     state = forms.CharField(label = "State",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
@@ -30,7 +35,12 @@ class EditStudentForm(forms.Form):
     email = forms.EmailField(label = "Email",max_length=50, widget=forms.EmailInput(attrs={'class':'form-control'}))
     date_of_birth = forms.DateField(widget=DateInput(attrs={'class':'form-control'}))
     phone_number = forms.CharField(label = "Phone Number",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    gender = forms.CharField(label = "Gender",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
+    gender_choice = (
+        ('Others', 'Others'),
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+    )
+    gender = forms.ChoiceField(label = "Gender",choices=gender_choice, widget=forms.Select(attrs={'class':'form-control'}))
     profile_picture = forms.FileField(label = "Profile Picture",max_length=50, widget=FileInput(attrs={'class':'form-control'}))
     address = forms.CharField(label = "Address",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     state = forms.CharField(label = "State",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
@@ -49,7 +59,12 @@ class AddStaffForm(forms.Form):
     password = forms.CharField(label = "Password",max_length=50, widget=forms.PasswordInput(attrs={'class':'form-control'}))
     date_of_birth = forms.DateField(widget=DateInput(attrs={'class':'form-control'}))
     phone_number = forms.CharField(label = "Phone Number",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    gender = forms.CharField(label = "Gender",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
+    gender_choice = (
+        ('Others', 'Others'),
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+    )
+    gender = forms.ChoiceField(label = "Gender",choices=gender_choice, widget=forms.Select(attrs={'class':'form-control'}))
     profile_picture = forms.FileField(label = "Profile Picture",max_length=50, widget=FileInput(attrs={'class':'form-control'}))
     curriculum_vitae = forms.FileField(label = "Curriculum Vitae",max_length=50, widget=FileInput(attrs={'class':'form-control'}))
     address = forms.CharField(label = "Address",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
@@ -64,7 +79,12 @@ class EditStaffForm(forms.Form):
     email = forms.EmailField(label = "Email",max_length=50, widget=forms.EmailInput(attrs={'class':'form-control'}))
     date_of_birth = forms.DateField(widget=DateInput(attrs={'class':'form-control'}))
     phone_number = forms.CharField(label = "Phone Number",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    gender = forms.CharField(label = "Gender",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
+    gender_choice = (
+        ('Others', 'Others'),
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+    )
+    gender = forms.ChoiceField(label = "Gender",choices=gender_choice, widget=forms.Select(attrs={'class':'form-control'}))
     profile_picture = forms.FileField(label = "Profile Picture",max_length=50, widget=FileInput(attrs={'class':'form-control'}))
     curriculum_vitae = forms.FileField(label = "Curriculum Vitae",max_length=50, widget=FileInput(attrs={'class':'form-control'}))
     address = forms.CharField(label = "Address",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
