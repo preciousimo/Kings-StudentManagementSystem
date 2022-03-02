@@ -11,42 +11,8 @@
                     <div class="card-header">
                         <h3 class="card-title">Create new Subject</h3>
                     </div>
-
-                    <form action="/add-subject/" method='post'>
-                        {% csrf_token %}
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>Subject Name</label>
-                                <input type="text" class="form-control" name="subject_name"
-                                    placeholder="Enter subject name">
-                            </div>
-                            <!--Create a dropdown for the status(choices=General or Elective)-->
-                            <div class="form-group">
-                                <label>Subject Status</label>
-                                <input type="text" class="form-control" name="subject_status"
-                                    placeholder="Enter subject status">
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
-                        {% if messages %}
-                        <div class="col-12">
-                            {% for message in messages %}
-                            {% if message.tags == 'error' %}
-                            <div class="btn btn-danger btn-block" style="margin-top:10px">{{message}}</div>
-                            {% endif %}
-                            {% if message.tags == 'info' %}
-                            <div class="btn btn-info btn-block" style="margin-top:10px">{{message}}</div>
-                            {% endif %}
-                            {% if message.tags == 'success' %}
-                            <div class="btn btn-success btn-block" style="margin-top:10px">{{message}}</div>
-                            {% endif %}
-                            {% endfor %}
-                        </div>
-                        {% endif %}
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-success btn-block">Add Subject</button>
-                        </div>
-                    </form>
+                    {% url 'add-subject-save' as action_path %}
+                    {% include 'staff_templates/form_template.html' with button="Add Subject" %}
                 </div>
             </div>
         </div>

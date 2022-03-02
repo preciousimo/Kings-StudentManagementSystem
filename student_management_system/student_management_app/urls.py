@@ -22,6 +22,7 @@ urlpatterns = [
     path('add-staff-save/', StaffViews.addStaffSave, name="add-staff-save"),
     path('manage-staff/', StaffViews.manageStaff, name="manage-staff"),
     path('add-subject/', StaffViews.addSubject, name="add-subject"),
+    path('add-subject-save/', StaffViews.addSubjectSave, name="add-subject-save"),
     path('manage-subject/', StaffViews.manageSubject, name="manage-subject"),
     path('edit-staff/<str:staff_id>', StaffViews.editStaff, name="edit-staff"),
     path('edit-staff-save/', StaffViews.editStaffSave, name="edit-staff-save"),

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from student_management_app.models import CustomUser, Staffs
 from django.core.files.storage import FileSystemStorage
-from student_management_app.Forms import AddStaffForm, EditStaffForm
+from student_management_app.Forms import AddStaffForm, EditStaffForm, AddSubjectForm
 
 def staffHome(request):
     return render(request, 'staff_templates/home_content.html')
@@ -148,7 +148,12 @@ def editStaffSave(request):
         return render(request, 'staff_templates/edit_staff_template.html')
 
 def addSubject(request):
+    form = AddSubjectForm()
+    return render(request, 'staff_templates/add_subject_template.html', {'form':form})    
+
+def addSubjectSave(request):
     if request.method == 'POST':
+        
         subject_name = form.cleaned_data['subject_name']
         subject_status = form.cleaned_data['subject_status']
         staff_id = request.POST.get('staff')
