@@ -94,7 +94,7 @@ class EditStaffForm(forms.Form):
 class AddSubject(forms.Form):
     subject_name = forms.CharField(label = "Subject Name", max_length=10, widget=TextInput(attrs={'class':'form-control'}))
     subject_status_choice = (
-        ('Core', 'Core'),
+        ('General', 'General'),
         ('Elective', 'Elective')        
     )
     subject_status = forms.ChoiceField(label = "Subject Status",choices=subject_status_choice, widget=forms.Select(attrs={'class':'form-control'}))

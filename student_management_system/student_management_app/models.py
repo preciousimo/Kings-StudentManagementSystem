@@ -36,7 +36,8 @@ class Staffs(models.Model):
 class Subjects(models.Model):
     id = models.AutoField(primary_key=True)
     subject_name = models.CharField(max_length=255)
-    subject_status = models.CharField(max_length=255)
+    subject_status_choice = models.TextChoices('subject_status_choice', 'General Elective')
+    subject_status = models.CharField(blank=True, choices=subject_status_choice, max_length=10)
     admin_id = models.ForeignKey(SchoolAdmin, on_delete=models.CASCADE)
     staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
 
