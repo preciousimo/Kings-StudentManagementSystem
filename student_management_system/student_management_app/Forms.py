@@ -22,6 +22,15 @@ class AddStudentForm(forms.Form):
     address = forms.CharField(label = "Address",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     state = forms.CharField(label = "State",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     nationality = forms.CharField(label = "Nationality", max_length=50, widget=TextInput(attrs={'class':'form-control'}))
+    class_choice = (
+        ('JSS1', 'JSS 1'),
+        ('JSS2', 'JSS 2'),        
+        ('JSS3', 'JSS 3'),
+        ('SSS1', 'SSS 1'),
+        ('SSS2', 'SSS 2'),
+        ('SSS3', 'SSS 3'),
+    )
+    classs = forms.ChoiceField(label = "Class",choices=class_choice, widget=forms.Select(attrs={'class':'form-control'}))
     term_start = forms.DateField(label = "Term Begins", widget=DateInput(attrs={'class':'form-control'}))
     term_end = forms.DateField(label = "Term Ends", widget=DateInput(attrs={'class':'form-control'}))
     session_start = forms.DateField(label = "Session Begins", widget=DateInput(attrs={'class':'form-control'}))
