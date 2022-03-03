@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from student_management_app.models import CustomUser, Staffs
+from student_management_app.models import CustomUser, Staffs, Subjects
 from django.core.files.storage import FileSystemStorage
 from student_management_app.Forms import AddStaffForm, EditStaffForm, AddSubjectForm
 

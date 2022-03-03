@@ -38,6 +38,8 @@ class Subjects(models.Model):
     subject_name = models.CharField(max_length=255)
     subject_status_choice = models.TextChoices('subject_status_choice', 'General Elective')
     subject_status = models.CharField(blank=True, choices=subject_status_choice.choices, max_length=10)
+    class_choice = models.TextChoices('class_choice', 'JSS1 JSS2 JSS3 SS2 SSS2 SSS3')
+    classs = models.CharField(blank=True, choices=class_choice.choices, max_length=10)
     admin_id = models.ForeignKey(SchoolAdmin, on_delete=models.CASCADE)
     staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
 
