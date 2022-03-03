@@ -55,6 +55,8 @@ class Students(models.Model):
     address = models.TextField()
     state = models.CharField(max_length=255)
     nationality = models.CharField(max_length=255)
+    class_choice = models.TextChoices('class_choice', 'JSS1 JSS2 JSS3 SS2 SSS2 SSS3')
+    classs = models.CharField(blank=True, choices=class_choice.choices, max_length=10)
     term_start = models.DateField()
     term_end = models.DateField()
     session_start = models.DateField()
