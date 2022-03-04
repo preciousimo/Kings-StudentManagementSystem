@@ -8,7 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 def studentHome(request):
     return render(request, 'student_templates/home_content.html')
-    
+
 def addStudent(request):
     form = AddStudentForm()
     return render(request, 'student_templates/add_student_template.html', {'form':form})
@@ -64,7 +64,6 @@ def addStudentSave(request):
             return render(request, 'student_templates/add_student_template.html', {'form':form})    
     else:
         return HttpResponse('Method not allowed')
-        return HttpResponseRedirect('/add-student')
     
 def manageStudent(request):
     students = Students.objects.all()
@@ -82,9 +81,9 @@ def editStudent(request, student_id):
     form.fields['date_of_birth'].initial = student.date_of_birth
     form.fields['gender'].initial = student.gender
     form.fields['phone_number'].initial = student.phone_number
-    form.fields['profile_picture'].initial = student.profile_picture
     form.fields['address'].initial = student.address
     form.fields['state'].initial = student.state
+    form.fields['classs'].initial = student.classs
     form.fields['nationality'].initial = student.nationality
     form.fields['term_start'].initial = student.term_start
     form.fields['session_start'].initial = student.session_start
@@ -97,7 +96,7 @@ def editStudentSave(request):
         student_id = request.session.get('student_id')
         if student_id == None:
             return redirect('manage-student')
-        form = EditStudentForm(request.POST, request.FILES)
+        form = EditStudentForm(request.POST)
         if form.is_valid():
             first_name = form.cleaned_data['first_name']
             middle_name = form.cleaned_data['middle_name']
@@ -107,14 +106,10 @@ def editStudentSave(request):
             email = form.cleaned_data['email']
             phone_number = form.cleaned_data['phone_number']
             gender = form.cleaned_data['gender']
-            if request.FILES['profile_picture']:
-                profile_picture = request.FILES['profile_picture']
-                fs = FileSystemStorage()
-                filename = fs.save(profile_picture.name, profile_picture)
-                profile_picture_url = fs.url(filename)
             address = form.cleaned_data['address']
             state = form.cleaned_data['state']
             nationality = form.cleaned_data['nationality']
+            classs = form.cleaned_data['classs']
             term_start = form.cleaned_data['term_start']
             session_start = form.cleaned_data['session_start']
             term_end = form.cleaned_data['term_end']
@@ -132,10 +127,10 @@ def editStudentSave(request):
                 student_model.date_of_birth = date_of_birth
                 student_model.phone_number = phone_number
                 student_model.gender = gender
-                student_model.profile_picture = profile_picture_url
                 student_model.address = address
                 student_model.state = state
                 student_model.nationality = nationality
+                student_model.classs = classs
                 student_model.term_start = term_start
                 student_model.session_start = session_start
                 student_model.term_end = term_end
@@ -148,11 +143,11 @@ def editStudentSave(request):
                 messages.error(request, 'Failed to edit {}'.format(username))
                 return redirect('manage-student')
         else:
-            form = EditStaffForm(request.POST)
+            form = EditStudentForm(request.POST)
             return redirect('manage-staff')
             messages.info('Failed to edit Staff')
     else:
-        return render(request, 'student_templates/edit_student_template.html')
+        return HttpResponse('Method not allowed')
 
 def studentAttendance(request):
     return HttpResponse('Student Attendance ..')
