@@ -3,11 +3,12 @@ from django.contrib import messages
 from student_management_app.models import CustomUser, Students
 from student_management_app.Forms import AddStudentForm, EditStudentForm
 from django.core.files.storage import FileSystemStorage
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 def studentHome(request):
     return render(request, 'student_templates/home_content.html')
-
+    
 def addStudent(request):
     form = AddStudentForm()
     return render(request, 'student_templates/add_student_template.html', {'form':form})
@@ -25,10 +26,10 @@ def addStudentSave(request):
             email = form.cleaned_data['email']
             phone_number = form.cleaned_data['phone_number']
             gender = form.cleaned_data['gender']
-            
             address = form.cleaned_data['address']
             state = form.cleaned_data['state']
             nationality = form.cleaned_data['nationality']
+            classs = form.cleaned_data['classs']
             term_start = form.cleaned_data['term_start']
             term_end = form.cleaned_data['term_end']
             session_start = form.cleaned_data['session_start']
@@ -46,6 +47,7 @@ def addStudentSave(request):
                 new_student.students.address = address
                 new_student.students.profile_picture = profile_picture_url
                 new_student.students.state = state
+                new_student.students.classs = classs
                 new_student.students.nationality = nationality
                 new_student.students.term_start = term_start
                 new_student.students.term_end = term_end
@@ -61,7 +63,8 @@ def addStudentSave(request):
             form = AddStudentForm(request.POST)
             return render(request, 'student_templates/add_student_template.html', {'form':form})    
     else:
-        return render(request, 'student_templates/add_student_template.html')    
+        return HttpResponse('Method not allowed')
+        return HttpResponseRedirect('/add-student')
     
 def manageStudent(request):
     students = Students.objects.all()
