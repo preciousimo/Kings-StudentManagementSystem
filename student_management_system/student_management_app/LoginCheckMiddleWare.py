@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.utils.depreciation import MiddlewareMixin
 
@@ -28,6 +28,8 @@ class LoginCheckMiddleWare(MiddlewareMixin):
                     pass
                 else:
                     return HttpResponseRedirect(reverse('/student-home'))
+            else:
+                return HttpResponse('You are not authorised to be here')
         else:
             if request.path == reverse('login'):
                 pass
