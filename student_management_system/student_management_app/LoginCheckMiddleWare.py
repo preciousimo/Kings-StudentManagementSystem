@@ -21,6 +21,8 @@ class LoginCheckMiddleWare(MiddlewareMixin):
                     pass
                 elif modulename == "student_management_app.views":
                     pass
+                elif modulename == "accounts.views":
+                    pass 
                 else:
                     return HttpResponseRedirect('/admin-home')
             # Staff Page Restriction
@@ -29,6 +31,8 @@ class LoginCheckMiddleWare(MiddlewareMixin):
                     pass
                 elif modulename == "student_management_app.views":
                     pass
+                elif modulename == "accounts.views":
+                    pass 
                 else:
                     return HttpResponse('You are not authorised to be here')
             # Student Page Restriction
@@ -37,11 +41,13 @@ class LoginCheckMiddleWare(MiddlewareMixin):
                     pass
                 elif modulename == "student_management_app.views":
                     pass
+                elif modulename == "accounts.views":
+                    pass    
                 else:
                     return HttpResponse('You are not authorised to be here')
         else:
             if (request.path == '/login'):
                 pass
             else:
-                return render(request, 'login.html')
+                pass
 
