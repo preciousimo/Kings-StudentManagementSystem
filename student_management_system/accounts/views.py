@@ -4,7 +4,8 @@ from student_management_app.models import CustomUser
 from django.contrib import messages
 from student_management_app import urls
 from student_management_app.EmailBackEnd import EmailBackEnd
-
+from django.http import HttpResponse
+from student_management_app.models import CustomUser
 # Create your views here.
    
 def registerPage(request):
@@ -42,19 +43,18 @@ def registerPage(request):
 def loginPage(request):
     if request.method == 'POST':
         username = request.POST.get('email')
-        password = request.POST['password']
+        password = request.POST.get('password')
         user = EmailBackEnd.authenticate(request, username=username,password=password)
         if user != None:
             login(request, user)
-            return redirect('/admin-home')
-            '''
-            if user.user_type == 1:
+            if user.user_type == "1" :
                 return redirect('/admin-home')
-            elif user.user_type == 2:
+            elif user.user_type == "2" :
                 return redirect('/staff-home')
-            elif user.user_type == 3:
+            elif user.user_type == "3" :
                 return redirect('/student-home')
-            '''
+            else:
+                return HttpResponse('Invalid User')
         else:
             messages.error(request, 'Invalid Credentials')
             return render(request, 'login.html')

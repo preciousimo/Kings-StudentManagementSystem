@@ -3,6 +3,7 @@ from django.contrib import messages
 from student_management_app.models import CustomUser, Staffs, Subjects
 from django.core.files.storage import FileSystemStorage
 from student_management_app.Forms import AddStaffForm, EditStaffForm, AddSubjectForm
+from django.http import HttpResponse
 
 def staffHome(request):
     return render(request, 'staff_templates/home_content.html')
@@ -153,24 +154,25 @@ def addSubject(request):
 
 def addSubjectSave(request):
     if request.method == 'POST':
-        
-        subject_name = form.cleaned_data['subject_name']
-        subject_status = form.cleaned_data['subject_status']
-        staff_id = request.POST.get('staff')
-        staff = Staffs.objects.get(id)
-        admin_id = form.cleaned_data['admin']
-        admin = SchoolAdmin.objects.get(id=admin_id)
-        
-        try:
-            new_subject = Subjects.objects.create(subject_name=subject_name,subject_status=subject_status,staff_id_id=staff_id,admin_id=admin_id)
-            new_subject.save()
-            messages.success(request, '{} added successfully'.format(subject_name))
-            return redirect('dd-subject')
-        except:
-            messages.error(request, 'Failed to add new subject')
-            return redirect('dd-subject')
+        form = AddSubjectForm(request.POST)
+        if form.is_valid():
+            subject_name = form.cleaned_data['subject_name']
+            subject_status = form.cleaned_data['subject_status']
+            classs = form.cleaned_data['classs']
+               
+            try:
+                new_subject = Subjects.objects.create(subject_name=subject_name,subject_status=subject_status,classs=classs)
+                new_subject.save()
+                messages.success(request, '{} added successfully'.format(subject_name))
+                return redirect('/add-subject')
+            except:
+                messages.error(request, 'Failed to add new subject')
+                return redirect('/add-subject')
+        else:
+            messages.error(request, 'Form is not valid')
+            return redirect('/add-subject')
     else:
-        return render(request, 'staff_templates/add_subject_template.html')    
+        return HttpResponse('Method not allowed')
 
 def manageSubject(request):
     subjects = Subjects.objects.all()

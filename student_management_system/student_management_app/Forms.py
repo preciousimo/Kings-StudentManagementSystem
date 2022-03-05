@@ -109,7 +109,7 @@ class EditStaffForm(forms.Form):
     nationality = forms.CharField(label = "Nationality", max_length=50, widget=TextInput(attrs={'class':'form-control'}))
 
 class AddSubjectForm(forms.Form):
-    subject_name = forms.CharField(label = "Subject Name", max_length=10, widget=TextInput(attrs={'class':'form-control'}))
+    subject_name = forms.CharField(label = "Subject Name", max_length=100, widget=TextInput(attrs={'class':'form-control'}))
     subject_status_choice = (
         ('General', 'General'),
         ('Elective', 'Elective')        
