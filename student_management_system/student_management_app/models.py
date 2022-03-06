@@ -9,11 +9,6 @@ class CustomUser(AbstractUser):
     user_type_data = ((1,'SchoolAdmin'),(2,'Staffs'),(3,'Students'))
     user_type = models.CharField(default=1, choices=user_type_data, max_length=10)
 
-class SessionYear(models.Model):
-    id = models.AutoField(primary_key=True)
-    session_start = models.DateField()
-    session_end = models.DateField()
-
 class SchoolAdmin(models.Model):
     id = models.AutoField(primary_key=True)
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
@@ -46,6 +41,16 @@ class Subjects(models.Model):
     class_choice = models.TextChoices('class_choice', 'JSS1 JSS2 JSS3 SS2 SSS2 SSS3')
     classs = models.CharField(blank=True, choices=class_choice.choices, max_length=100)
     staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
+
+class SessionYear(models.Model):
+    id = models.AutoField(primary_key=True)
+    session_start = models.DateField()
+    session_end = models.DateField()
+    
+class TermYear(models.Model):
+    id = models.AutoField(primary_key=True)
+    term_start = models.DateField()
+    term_end = models.DateField()
 
 class Students(models.Model):
     id = models.AutoField(primary_key=True)
