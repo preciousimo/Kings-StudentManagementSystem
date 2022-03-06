@@ -46,7 +46,7 @@ class SessionYear(models.Model):
     id = models.AutoField(primary_key=True)
     session_start = models.DateField()
     session_end = models.DateField()
-    
+
 class TermYear(models.Model):
     id = models.AutoField(primary_key=True)
     term_start = models.DateField()
@@ -66,10 +66,8 @@ class Students(models.Model):
     nationality = models.CharField(max_length=255)
     class_choice = models.TextChoices('class_choice', 'JSS1 JSS2 JSS3 SS2 SSS2 SSS3')
     classs = models.CharField(blank=True, choices=class_choice.choices, max_length=10)
-    term_start = models.DateField()
-    term_end = models.DateField()
-    session_start = models.DateField()
-    session_end = models.DateField()
+    term_year_id = models.ForeignKey(TermYear, on_delete=models.CASCADE)
+    session_year_id = models.ForeignKey(SessionYear, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
