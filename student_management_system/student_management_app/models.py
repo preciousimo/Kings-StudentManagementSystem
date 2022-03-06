@@ -9,6 +9,11 @@ class CustomUser(AbstractUser):
     user_type_data = ((1,'SchoolAdmin'),(2,'Staffs'),(3,'Students'))
     user_type = models.CharField(default=1, choices=user_type_data, max_length=10)
 
+class SessionYear(models.Model):
+    id = models.AutoField(primary_key=True)
+    session_start = models.DateField()
+    session_end = models.DateField()
+
 class SchoolAdmin(models.Model):
     id = models.AutoField(primary_key=True)
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
