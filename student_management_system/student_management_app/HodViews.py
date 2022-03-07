@@ -2,8 +2,8 @@ from django.shortcuts import render
 from accounts import urls
 from student_management_app.Forms import AddSessionForm
 def adminHome(request):
-    return render(request, 'hod_templates/base.html')
-    
+    return render(request, 'hod_templates/home_content.html')
+
 def profile(request):
 
     return render(request, 'hod_templates/profile.html')
