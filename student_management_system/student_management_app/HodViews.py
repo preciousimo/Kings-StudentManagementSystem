@@ -12,6 +12,9 @@ def contactUs(request):
 def contacts(request):
 
     return render(request, 'hod_templates/contacts.html')
+def addSession(request):
+
+    return render(request, 'hod_template/add_session.html')
 def manageSession(request):
 
-    pass
+    return render(request, 'hod_template/manage_session.html')
