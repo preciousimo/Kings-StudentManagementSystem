@@ -1,0 +1,21 @@
+{% extends 'staff_templates/base.html' %}
+{% block page_title %}Add Session{% endblock page_title %}
+{% block home_content %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-dark">
+                    <div class="card-header">
+                        <h3 class="card-title">Create new Session</h3>
+                    </div>
+                    {% url 'add-session-save' as action_path %}
+                    {% include 'hod_templates/form_template.html' with button="Add Session" %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock home_content %}
