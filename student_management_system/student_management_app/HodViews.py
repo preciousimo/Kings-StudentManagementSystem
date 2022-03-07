@@ -14,7 +14,7 @@ def contacts(request):
     return render(request, 'hod_templates/contacts.html')
 def addSession(request):
 
-    return render(request, 'hod_template/add_session.html')
+    return render(request, 'hod_templates/add_session_template.html')
 def manageSession(request):
 
-    return render(request, 'hod_template/manage_session.html')
+    return render(request, 'hod_templates/manage_session_template.html')

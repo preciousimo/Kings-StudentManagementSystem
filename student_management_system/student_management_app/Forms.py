@@ -31,10 +31,6 @@ class AddStudentForm(forms.Form):
         ('SSS3', 'SSS 3'),
     )
     classs = forms.ChoiceField(label = "Class",choices=class_choice, widget=forms.Select(attrs={'class':'form-control'}))
-    term_start = forms.DateField(label = "Term Begins", widget=DateInput(attrs={'class':'form-control'}))
-    session_start = forms.DateField(label = "Session Begins", widget=DateInput(attrs={'class':'form-control'}))
-    term_end = forms.DateField(label = "Term Ends", widget=DateInput(attrs={'class':'form-control'}))
-    session_end = forms.DateField(label = "Session Ends", widget=DateInput(attrs={'class':'form-control'}))
 
 class EditStudentForm(forms.Form):
     first_name = forms.CharField(label = "First Name",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
@@ -124,3 +120,9 @@ class AddSubjectForm(forms.Form):
         ('SSS 3', 'SSS 3'),
     )
     classs = forms.ChoiceField(label = "Class",choices=class_choice, widget=forms.Select(attrs={'class':'form-control'}))
+
+class AddSessionForm(forms.Form):
+    term_start = forms.DateField(label = "Term Begins", widget=DateInput(attrs={'class':'form-control'}))
+    session_start = forms.DateField(label = "Session Begins", widget=DateInput(attrs={'class':'form-control'}))
+    term_end = forms.DateField(label = "Term Ends", widget=DateInput(attrs={'class':'form-control'}))
+    session_end = forms.DateField(label = "Session Ends", widget=DateInput(attrs={'class':'form-control'}))
