@@ -140,7 +140,8 @@ def editStaffSave(request):
 
 def addSubject(request):
     form = AddSubjectForm()
-    return render(request, 'staff_templates/add_subject_template.html', {'form':form})    
+    staff = CustomUser.objects.filter(user_type=2)
+    return render(request, 'staff_templates/add_subject_template.html', {'form':form, 'staff':staff})    
 
 def addSubjectSave(request):
     if request.method == 'POST':
@@ -149,6 +150,7 @@ def addSubjectSave(request):
             subject_name = form.cleaned_data['subject_name']
             subject_status = form.cleaned_data['subject_status']
             classs = form.cleaned_data['classs']
+            staff_id = Staffs.objects.get(id)
             try:
                 new_subject = Subjects.objects.create(subject_name=subject_name,subject_status=subject_status,classs=classs)
                 new_subject.save()

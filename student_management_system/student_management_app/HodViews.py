@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from accounts import urls
 from student_management_app.Forms import AddSessionForm
 from django.http import HttpResponse
@@ -30,13 +30,16 @@ def addSessionSave(request):
             term_end = form.cleaned_data['term_end']
             session_end = form.cleaned_data['session_end']
             try:
-                session = Session.objects.create_user(term_start=term_start,session_start=session_start,term_end=term_end,session_end=session_end)
+                session = Session.objects.create(term_start=term_start,session_start=session_start,term_end=term_end,session_end=session_end)
                 session.save()
                 messages.success(request, 'Session Created Successfully')
                 return redirect('add-session')
             except:
                 messages.error(request, 'Failed to add Session')
                 return redirect('add-session')
+        else:
+            messages.error(request, 'Form is not valid')
+            return redirect('/add-session')
 
     else:
         return HttpResponse('Method not allowed')
