@@ -168,3 +168,6 @@ def addSubjectSave(request):
 def manageSubject(request):
     subjects = Subjects.objects.all()
     return render(request, 'staff_templates/manage_subject_template.html', {'subjects':subjects})
+
+def takeAttendance(request):
+    pass

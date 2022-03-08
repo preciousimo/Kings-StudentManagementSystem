@@ -83,6 +83,17 @@
                         <i class="fas fa-angle-right right"></i>
                     </a>
                 </li>
+                <li class="nav-item">
+                    {% url 'take-attendance' as take_attendance %}
+                    <a href="{% url 'take-attendance' %}"
+                        class="nav-link {% if request.path == take_attendance %} active {% endif %}">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Take Attendance
+                        </p>
+                        <i class="fas fa-angle-right right"></i>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
