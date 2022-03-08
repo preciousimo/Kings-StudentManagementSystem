@@ -149,7 +149,6 @@ def addSubjectSave(request):
             subject_name = form.cleaned_data['subject_name']
             subject_status = form.cleaned_data['subject_status']
             classs = form.cleaned_data['classs']
-               
             try:
                 new_subject = Subjects.objects.create(subject_name=subject_name,subject_status=subject_status,classs=classs)
                 new_subject.save()

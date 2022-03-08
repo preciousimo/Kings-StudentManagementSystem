@@ -53,7 +53,7 @@ class Subjects(models.Model):
     subject_status = models.CharField(blank=True, choices=subject_status_choice.choices, max_length=10)
     class_choice = models.TextChoices('class_choice', 'JSS1 JSS2 JSS3 SS2 SSS2 SSS3')
     classs = models.CharField(blank=True, choices=class_choice.choices, max_length=100)
-    staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
+    objects = models.Manager()
 
 class Session(models.Model):
     id = models.AutoField(primary_key=True)
