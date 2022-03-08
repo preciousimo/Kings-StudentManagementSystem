@@ -24,8 +24,21 @@ class Staffs(models.Model):
     phone_number = models.CharField(max_length=255)
     gender_choice = models.TextChoices('gender_choice', 'Male Female Others')
     gender = models.CharField(blank=True, choices=gender_choice.choices, max_length=10)
-    profile_picture = models.FileField(max_length=255)
-    curriculum_vitae = models.FileField(max_length=255)
+    address = models.TextField()
+    state = models.CharField(max_length=255)
+    nationality = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
+
+class Students(models.Model):
+    id = models.AutoField(primary_key=True)
+    admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    middle_name = models.CharField(max_length=255)
+    date_of_birth = models.DateField()
+    phone_number = models.CharField(max_length=255)
+    gender_choice = models.TextChoices('gender_choice', 'Male Female Others')
+    gender = models.CharField(blank=True, choices=gender_choice.choices, max_length=10)
     address = models.TextField()
     state = models.CharField(max_length=255)
     nationality = models.CharField(max_length=255)
@@ -42,35 +55,12 @@ class Subjects(models.Model):
     classs = models.CharField(blank=True, choices=class_choice.choices, max_length=100)
     staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
 
-class SessionYear(models.Model):
-    id = models.AutoField(primary_key=True)
-    session_start = models.DateField()
-    session_end = models.DateField()
-
-class TermYear(models.Model):
+class Session(models.Model):
     id = models.AutoField(primary_key=True)
     term_start = models.DateField()
     term_end = models.DateField()
-
-class Students(models.Model):
-    id = models.AutoField(primary_key=True)
-    admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    middle_name = models.CharField(max_length=255)
-    date_of_birth = models.DateField()
-    phone_number = models.CharField(max_length=255)
-    gender_choice = models.TextChoices('gender_choice', 'Male Female Others')
-    gender = models.CharField(blank=True, choices=gender_choice.choices, max_length=10)
-    profile_picture = models.FileField(max_length=255)
-    address = models.TextField()
-    state = models.CharField(max_length=255)
-    nationality = models.CharField(max_length=255)
-    class_choice = models.TextChoices('class_choice', 'JSS1 JSS2 JSS3 SS2 SSS2 SSS3')
-    classs = models.CharField(blank=True, choices=class_choice.choices, max_length=10)
-    term_year_id = models.ForeignKey(TermYear, on_delete=models.CASCADE)
-    session_year_id = models.ForeignKey(SessionYear, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
+    session_start = models.DateField()
+    session_end = models.DateField()
 
 class Attendance(models.Model):
     id = models.AutoField(primary_key=True)

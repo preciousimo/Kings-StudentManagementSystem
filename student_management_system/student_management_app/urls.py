@@ -9,6 +9,7 @@ urlpatterns = [
     path('contact-us', HodViews.contactUs, name="contact-us"),
     path('contacts', HodViews.contacts, name="contacts"),
     path('add-session', HodViews.addSession, name="add-session"),
+    path('add-session-save', HodViews.addSession, name="add-session-save"),
     path('manage-session', HodViews.manageSession, name="manage-session"),
     #Student Views
     path('student-home', StudentViews.studentHome, name="student-home"),

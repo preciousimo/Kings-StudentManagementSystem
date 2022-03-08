@@ -2,7 +2,6 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from student_management_app.models import CustomUser, Students
 from student_management_app.Forms import AddStudentForm, EditStudentForm
-from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse, HttpResponseRedirect
 
 
@@ -15,7 +14,7 @@ def addStudent(request):
 
 def addStudentSave(request):
     if request.method == 'POST':
-        form = AddStudentForm(request.POST, request.FILES)
+        form = AddStudentForm(request.POST)
         if form.is_valid():
             first_name = form.cleaned_data['first_name']
             middle_name = form.cleaned_data['middle_name']
@@ -29,36 +28,26 @@ def addStudentSave(request):
             address = form.cleaned_data['address']
             state = form.cleaned_data['state']
             nationality = form.cleaned_data['nationality']
-            classs = form.cleaned_data['classs']
-            term_start = form.cleaned_data['term_start']
-            term_end = form.cleaned_data['term_end']
-            session_start = form.cleaned_data['session_start']
-            session_end = form.cleaned_data['session_end']
-            profile_picture = request.FILES['profile_picture']
-            fs = FileSystemStorage()
-            filename = fs.save(profile_picture.name, profile_picture)
-            profile_picture_url = fs.url(filename)
-            try:
-                new_student = CustomUser.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password, user_type=3)
+            
+            try:   
+                
+                new_student = CustomUser.objects.create_user(first_name=first_name,last_name=last_name,username=username,password=password,email=email, user_type=3)
+    
                 new_student.students.middle_name = middle_name
                 new_student.students.date_of_birth = date_of_birth
                 new_student.students.phone_number = phone_number
                 new_student.students.gender = gender
                 new_student.students.address = address
-                new_student.students.profile_picture = profile_picture_url
                 new_student.students.state = state
-                new_student.students.classs = classs
                 new_student.students.nationality = nationality
-                new_student.students.term_start = term_start
-                new_student.students.term_end = term_end
-                new_student.students.session_start = session_start
-                new_student.students.session_end = session_end
                 new_student.save()
-                messages.success(request, '{} added successfully'.format(username))
+
+                messages.success(request, 'Student created successfully')
                 return redirect('add-student')
+               
             except:
-                messages.error(request, 'Failed to add new student')
-                return redirect('add-student')
+                messages.error(request, 'Failed to create new student')
+                return redirect('add-student') 
         else:
             form = AddStudentForm(request.POST)
             return render(request, 'student_templates/add_student_template.html', {'form':form})    

@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from student_management_app.models import CustomUser, Staffs, Subjects
-from django.core.files.storage import FileSystemStorage
 from student_management_app.Forms import AddStaffForm, EditStaffForm, AddSubjectForm
 from django.http import HttpResponse
 
@@ -14,7 +13,7 @@ def addStaff(request):
 
 def addStaffSave(request):
     if request.method == 'POST':
-        form = AddStaffForm(request.POST, request.FILES)
+        form = AddStaffForm(request.POST)
         if form.is_valid():
             first_name = form.cleaned_data['first_name']
             middle_name = form.cleaned_data['middle_name']
@@ -27,32 +26,23 @@ def addStaffSave(request):
             gender = form.cleaned_data['gender']
             address = form.cleaned_data['address']
             state = form.cleaned_data['state']
-            nationality = form.cleaned_data['nationality']
-            if request.FILES['profile_picture']:
-                profile_picture = request.FILES['profile_picture']
-                fs = FileSystemStorage()
-                filename = fs.save(profile_picture.name,profile_picture)
-                profile_picture_url = fs.url(filename)
-            if request.FILES['curriculum_vitae']:
-                curriculum_vitae = request.FILES['curriculum_vitae']
-                fs = FileSystemStorage()
-                filename = fs.save(curriculum_vitae.name,curriculum_vitae)
-                curriculum_vitae_url = fs.url(filename)
+            nationality = form.cleaned_data['nationality']             
             try:
                 new_staff = CustomUser.objects.create_user(first_name=first_name,last_name=last_name,username=username,password=password,email=email, user_type=2)
+
                 new_staff.staffs.middle_name = middle_name
                 new_staff.staffs.date_of_birth = date_of_birth
                 new_staff.staffs.phone_number = phone_number
                 new_staff.staffs.gender = gender
-                new_staff.staffs.profile_picture = profile_picture_url
                 new_staff.staffs.address = address
                 new_staff.staffs.state = state
                 new_staff.staffs.nationality = nationality
                 new_staff.save()
+                
                 messages.success(request, '{} created successfully'.format(username))
                 return redirect('add-staff')
             except:
-                messages.error(request, 'Failed to add new staff')
+                messages.error(request, 'Failed to create new staff')
                 return redirect('add-staff')
         else:
             form = AddStaffForm(request.POST)
