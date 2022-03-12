@@ -18,19 +18,19 @@ class AddStudentForm(forms.Form):
         ('Female', 'Female'),
     )
     gender = forms.ChoiceField(label = "Gender",choices=gender_choice, widget=forms.Select(attrs={'class':'form-control'}))
-    address = forms.CharField(label = "Address",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    state = forms.CharField(label = "State",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    nationality = forms.CharField(label = "Nationality", max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    '''class_choice = (
+    classs_choice = (
         ('JSS1', 'JSS 1'),
-        ('JSS2', 'JSS 2'),        
+        ('JSS2', 'JSS 2'),
         ('JSS3', 'JSS 3'),
         ('SSS1', 'SSS 1'),
         ('SSS2', 'SSS 2'),
-        ('SSS3', 'SSS 3'),
+        ('SSS3', 'SSS 3'),  
     )
-    classs = forms.ChoiceField(label = "Class",choices=class_choice, widget=forms.Select(attrs={'class':'form-control'}))'''
-
+    classs = forms.ChoiceField(label = "Class",choices=classs_choice, widget=forms.Select(attrs={'class':'form-control'}))
+    address = forms.CharField(label = "Address",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
+    state = forms.CharField(label = "State",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
+    nationality = forms.CharField(label = "Nationality", max_length=50, widget=TextInput(attrs={'class':'form-control'}))
+    
 class EditStudentForm(forms.Form):
     first_name = forms.CharField(label = "First Name",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     middle_name = forms.CharField(label = "Middle Name",max_length=50, widget=TextInput(attrs={'class':'form-control'}))

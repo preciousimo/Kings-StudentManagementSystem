@@ -39,6 +39,8 @@ class Students(models.Model):
     phone_number = models.CharField(max_length=255)
     gender_choice = models.TextChoices('gender_choice', 'Male Female Others')
     gender = models.CharField(blank=True, choices=gender_choice.choices, max_length=10)
+    classs_choice = models.TextChoices('classs_choice', 'JSS1 JSS2 JSS3 SSS1 SSS2 SSS3')
+    gender = models.CharField(blank=True, choices=classs_choice.choices, max_length=10)
     address = models.TextField()
     state = models.CharField(max_length=255)
     nationality = models.CharField(max_length=255)
@@ -135,7 +137,7 @@ def create_user_profile(sender, instance, created, **kwargs):
         if instance.user_type == 2:
             Staffs.objects.create(admin=instance,middle_name="",date_of_birth="2000-01-01",phone_number="",gender="",address="",state="",nationality="")
         if instance.user_type == 3:
-            Students.objects.create(admin=instance,middle_name="",date_of_birth="2000-01-01",phone_number="",gender="",address="",state="",nationality="",term_start="2000-01-01",term_end="2000-01-01",session_start="2000-01-01",session_end="2000-01-01")
+            Students.objects.create(admin=instance,middle_name="",date_of_birth="2000-01-01",phone_number="",gender="",address="",state="",nationality="")
 
 @receiver(post_save, sender=CustomUser)
 def save_user_profile(sender, instance, **kwargs):

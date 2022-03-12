@@ -4,7 +4,6 @@ from student_management_app.models import CustomUser, Students
 from student_management_app.Forms import AddStudentForm, EditStudentForm
 from django.http import HttpResponse, HttpResponseRedirect
 
-
 def studentHome(request):
     return render(request, 'student_templates/home_content.html')
 
@@ -27,12 +26,11 @@ def addStudentSave(request):
             gender = form.cleaned_data['gender']
             address = form.cleaned_data['address']
             state = form.cleaned_data['state']
-            nationality = form.cleaned_data['nationality']
-            
-            try:   
-                
+            nationality = form.cleaned_data['nationality']             
+            classs = form.cleaned_data['classs']
+            try:
                 new_student = CustomUser.objects.create_user(first_name=first_name,last_name=last_name,username=username,password=password,email=email, user_type=3)
-    
+                    
                 new_student.students.middle_name = middle_name
                 new_student.students.date_of_birth = date_of_birth
                 new_student.students.phone_number = phone_number
@@ -40,20 +38,20 @@ def addStudentSave(request):
                 new_student.students.address = address
                 new_student.students.state = state
                 new_student.students.nationality = nationality
+                new_student.students.classs = classs
                 new_student.save()
-
-                messages.success(request, 'Student created successfully')
+                
+                messages.success(request, '{} created successfully'.format(username))
                 return redirect('add-student')
-               
             except:
                 messages.error(request, 'Failed to create new student')
-                return redirect('add-student') 
+                return redirect('add-student')
         else:
             form = AddStudentForm(request.POST)
             return render(request, 'student_templates/add_student_template.html', {'form':form})    
     else:
         return HttpResponse('Method not allowed')
-    
+
 def manageStudent(request):
     students = Students.objects.all()
     return render(request, 'student_templates/manage_student_template.html', {'students':students})
@@ -133,8 +131,8 @@ def editStudentSave(request):
                 return redirect('manage-student')
         else:
             form = EditStudentForm(request.POST)
-            return redirect('manage-staff')
-            messages.info('Failed to edit Staff')
+            return redirect('manage-student')
+            messages.info('Failed to edit Student')
     else:
         return HttpResponse('Method not allowed')
 
