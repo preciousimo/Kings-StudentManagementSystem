@@ -101,23 +101,6 @@ class EditStaffForm(forms.Form):
     state = forms.CharField(label = "State",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     nationality = forms.CharField(label = "Nationality", max_length=50, widget=TextInput(attrs={'class':'form-control'}))
 
-class AddSubjectForm(forms.Form):
-    subject_name = forms.CharField(label = "Subject Name", max_length=100, widget=TextInput(attrs={'class':'form-control'}))
-    subject_status_choice = (
-        ('General', 'General'),
-        ('Elective', 'Elective')        
-    )
-    subject_status = forms.ChoiceField(label = "Subject Status",choices=subject_status_choice, widget=forms.Select(attrs={'class':'form-control'}))
-    class_choice = (
-        ('JSS 1', 'JSS 1'),
-        ('JSS 2', 'JSS 2'),        
-        ('JSS 3', 'JSS 3'),
-        ('SSS 1', 'SSS 1'),
-        ('SSS 2', 'SSS 2'),
-        ('SSS 3', 'SSS 3'),
-    )
-    classs = forms.ChoiceField(label = "Class",choices=class_choice, widget=forms.Select(attrs={'class':'form-control'}))
-
 class AddSessionForm(forms.Form):
     term_start = forms.DateField(label = "Term Begins", widget=DateInput(attrs={'class':'form-control'}))
     session_start = forms.DateField(label = "Session Begins", widget=DateInput(attrs={'class':'form-control'}))

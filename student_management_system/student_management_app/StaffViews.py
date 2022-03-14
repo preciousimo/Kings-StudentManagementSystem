@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from student_management_app.models import CustomUser, Staffs, Subjects
-from student_management_app.Forms import AddStaffForm, EditStaffForm, AddSubjectForm
+from student_management_app.Forms import AddStaffForm, EditStaffForm
 from django.http import HttpResponse
 
 def staffHome(request):
@@ -139,26 +139,24 @@ def editStaffSave(request):
         return render(request, 'staff_templates/edit_staff_template.html')
 
 def addSubject(request):
-    form = AddSubjectForm()
-    staff = CustomUser.objects.filter(user_type=2)
-    return render(request, 'staff_templates/add_subject_template.html', {'form':form, 'staff':staff})    
+    staffs = CustomUser.objects.filter(user_type=2)
+    return render(request, 'staff_templates/add_subject_template.html', {'staffs':staffs})    
 
 def addSubjectSave(request):
     if request.method == 'POST':
-        form = AddSubjectForm(request.POST)
-        if form.is_valid():
-            subject_name = form.cleaned_data['subject_name']
-            subject_status = form.cleaned_data['subject_status']
-            classs = form.cleaned_data['classs']
-            staff_id = Staffs.objects.get(id)
-            try:
-                new_subject = Subjects.objects.create(subject_name=subject_name,subject_status=subject_status,classs=classs)
-                new_subject.save()
-                messages.success(request, '{} added successfully'.format(subject_name))
-                return redirect('/add-subject')
-            except:
-                messages.error(request, 'Failed to add new subject')
-                return redirect('/add-subject')
+        subject_name = request.POST['subject_name']
+        subject_status = request.POST['subject_status']
+        classs = request.POST['classs']
+        staff_id = request.POST['staff']
+        staff = CustomUser.objects.get(id=staff_id)
+        try:
+            new_subject = Subjects.objects.create(subject_name=subject_name,subject_status=subject_status,classs=classs)
+            new_subject.save()
+            messages.success(request, '{} added successfully'.format(subject_name))
+            return redirect('/add-subject')
+        except:
+            messages.error(request, 'Failed to add new subject')
+            return redirect('/add-subject')
         else:
             messages.error(request, 'Form is not valid')
             return redirect('/add-subject')
