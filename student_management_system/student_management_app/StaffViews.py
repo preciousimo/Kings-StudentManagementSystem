@@ -150,15 +150,12 @@ def addSubjectSave(request):
         staff_id = request.POST['staff']
         staff = CustomUser.objects.get(id=staff_id)
         try:
-            new_subject = Subjects.objects.create(subject_name=subject_name,subject_status=subject_status,classs=classs)
+            new_subject = Subjects(subject_name=subject_name,subject_status=subject_status,classs=classs,staff_id=staff)
             new_subject.save()
             messages.success(request, '{} added successfully'.format(subject_name))
             return redirect('/add-subject')
         except:
             messages.error(request, 'Failed to add new subject')
-            return redirect('/add-subject')
-        else:
-            messages.error(request, 'Form is not valid')
             return redirect('/add-subject')
     else:
         return HttpResponse('Method not allowed')
