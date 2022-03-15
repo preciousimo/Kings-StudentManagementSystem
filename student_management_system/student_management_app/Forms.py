@@ -1,5 +1,6 @@
 from django import forms
 from django.forms.widgets import TextInput, FileInput
+from student_management_app.models import Session
 class DateInput(forms.DateInput):
     input_type = "date"
 
@@ -27,6 +28,24 @@ class AddStudentForm(forms.Form):
         ('SSS3', 'SSS 3'),  
     )
     classs = forms.ChoiceField(label = "Class",choices=classs_choice, widget=forms.Select(attrs={'class':'form-control'}))
+    term_year_list = []
+    try: 
+        sessions = Session.objects.all()
+        for term in sessions:
+            small_term = (term.id, str(term.term_start)+' to '+str(term.term_end))
+            term_year_list.append(small_term)
+    except:
+        pass
+    term_year = forms.ChoiceField(label = "Term Year", choices=term_year_list, widget=forms.Select(attrs={'class':'form-control'}))
+    session_year_list = []
+    try:
+        sessions = Session.objects.all()
+        for ses in sessions:
+            small_ses = (ses.id, str(ses.session_start)+' to '+str(ses.session_end))
+            session_year_list.append(small_ses)
+    except:
+        pass
+    session_year = forms.ChoiceField(label = "Session Year", choices=session_year_list, widget=forms.Select(attrs={'class':'form-control'}))
     address = forms.CharField(label = "Address",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     state = forms.CharField(label = "State",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     nationality = forms.CharField(label = "Nationality", max_length=50, widget=TextInput(attrs={'class':'form-control'}))
