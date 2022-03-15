@@ -83,19 +83,19 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            {% url 'add-session' as add_session %}
-                            <a href="{% url 'add-session' %}"
-                                class="nav-link {% if request.path == add_session %} active {% endif %}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Session</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             {% url 'edit-term' as edit_term %}
                             <a href="{% url 'edit-term' %}"
                                 class="nav-link {% if request.path == edit_term %} active {% endif %}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Edit Term</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            {% url 'add-session' as add_session %}
+                            <a href="{% url 'add-session' %}"
+                                class="nav-link {% if request.path == add_session %} active {% endif %}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Session</p>
                             </a>
                         </li>
                         <li class="nav-item">
