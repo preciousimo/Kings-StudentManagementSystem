@@ -31,7 +31,7 @@ def addTermSave(request):
                 term = Term.objects.create(term_start=term_start,term_end=term_end)
                 term.save()
                 messages.success(request, 'Term Created Successfully')
-                return redirect('add-term')
+                return redirect('add-session')
             except:
                 messages.error(request, 'Failed to add Term')
                 return redirect('add-term')
@@ -56,7 +56,7 @@ def addSessionSave(request):
                 session = Session.objects.create(session_start=session_start,session_end=session_end)
                 session.save()
                 messages.success(request, 'Session Created Successfully')
-                return redirect('add-session')
+                return redirect('admin-home')
             except:
                 messages.error(request, 'Failed to add Session')
                 return redirect('add-session')

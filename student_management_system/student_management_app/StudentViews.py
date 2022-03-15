@@ -24,21 +24,28 @@ def addStudentSave(request):
             email = form.cleaned_data['email']
             phone_number = form.cleaned_data['phone_number']
             gender = form.cleaned_data['gender']
+            classs = form.cleaned_data['classs']
+            term_year_id = form.cleaned_data['term_year_id']
+            session_year_id = form.cleaned_data['session_year_id']
             address = form.cleaned_data['address']
             state = form.cleaned_data['state']
-            nationality = form.cleaned_data['nationality']             
-            classs = form.cleaned_data['classs']
+            nationality = form.cleaned_data['nationality'] 
+            
             try:
                 new_student = CustomUser.objects.create_user(first_name=first_name,last_name=last_name,username=username,password=password,email=email, user_type=3)
-                    
+        
                 new_student.students.middle_name = middle_name
                 new_student.students.date_of_birth = date_of_birth
                 new_student.students.phone_number = phone_number
                 new_student.students.gender = gender
+                new_student.students.classs = classs
+                term_year = Term.object.get(id=term_year_id)
+                new_student.students.term_year_id = term_year
+                session_year = Session.object.get(id=session_year_id)
+                new_student.students.session_year_id = session_year_id
                 new_student.students.address = address
                 new_student.students.state = state
                 new_student.students.nationality = nationality
-                new_student.students.classs = classs
                 new_student.save()
                 
                 messages.success(request, '{} created successfully'.format(username))
@@ -46,6 +53,7 @@ def addStudentSave(request):
             except:
                 messages.error(request, 'Failed to create new student')
                 return redirect('add-student')
+            
         else:
             form = AddStudentForm(request.POST)
             return render(request, 'student_templates/add_student_template.html', {'form':form})    
