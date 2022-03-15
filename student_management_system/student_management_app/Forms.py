@@ -1,6 +1,7 @@
 from django import forms
 from django.forms.widgets import TextInput, FileInput
 from student_management_app.models import Term, Session
+
 class DateInput(forms.DateInput):
     input_type = "date"
 
@@ -9,7 +10,7 @@ class AddStudentForm(forms.Form):
     middle_name = forms.CharField(label = "Middle Name",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     last_name = forms.CharField(label = "Last Name",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     username = forms.CharField(label = "Username",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    email = forms.EmailField(label = "Email",max_length=50, widget=forms.EmailInput(attrs={'class':'form-control'}))
+    email = forms.EmailField(label = "Email",max_length=100, widget=forms.EmailInput(attrs={'class':'form-control'}))
     password = forms.CharField(label = "Password",max_length=50, widget=forms.PasswordInput(attrs={'class':'form-control'}))
     date_of_birth = forms.DateField(widget=DateInput(attrs={'class':'form-control'}))
     phone_number = forms.CharField(label = "Phone Number",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
@@ -28,6 +29,7 @@ class AddStudentForm(forms.Form):
         ('SSS3', 'SSS 3'),  
     )
     classs = forms.ChoiceField(label = "Class",choices=classs_choice, widget=forms.Select(attrs={'class':'form-control'}))
+    '''
     term_year_list = []
     try: 
         term_model = Term.objects.all()
@@ -46,7 +48,8 @@ class AddStudentForm(forms.Form):
     except:
         pass
     session_year_id = forms.ChoiceField(label = "Session Year", choices=session_year_list, widget=forms.Select(attrs={'class':'form-control'}))
-    address = forms.CharField(label = "Address",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
+    '''
+    address = forms.CharField(label = "Address",max_length=500, widget=TextInput(attrs={'class':'form-control'}))
     state = forms.CharField(label = "State",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     nationality = forms.CharField(label = "Nationality", max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     

@@ -25,8 +25,10 @@ def addStudentSave(request):
             phone_number = form.cleaned_data['phone_number']
             gender = form.cleaned_data['gender']
             classs = form.cleaned_data['classs']
+            '''
             term_year_id = form.cleaned_data['term_year_id']
             session_year_id = form.cleaned_data['session_year_id']
+            '''
             address = form.cleaned_data['address']
             state = form.cleaned_data['state']
             nationality = form.cleaned_data['nationality'] 
@@ -39,10 +41,12 @@ def addStudentSave(request):
                 new_student.students.phone_number = phone_number
                 new_student.students.gender = gender
                 new_student.students.classs = classs
+                '''
                 term_year = Term.object.get(id=term_year_id)
                 new_student.students.term_year_id = term_year
                 session_year = Session.object.get(id=session_year_id)
                 new_student.students.session_year_id = session_year_id
+                '''
                 new_student.students.address = address
                 new_student.students.state = state
                 new_student.students.nationality = nationality
