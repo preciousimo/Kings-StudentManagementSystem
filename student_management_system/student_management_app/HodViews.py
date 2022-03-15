@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from accounts import urls
 from student_management_app.Forms import AddTermForm, EditTermForm, AddSessionForm, EditSessionForm
 from django.http import HttpResponse
-from student_management_app.models import Session
+from student_management_app.models import Term, Session
 from django.contrib import messages
 
 def adminHome(request):
@@ -69,7 +69,7 @@ def addSessionSave(request):
 
 def editTerm(request):
     form = EditSessionForm()
-    return render(request, 'hod_templates/edit_session_template.html', {'form':form})
+    return render(request, 'hod_templates/edit_term_template.html', {'form':form})
 
 def editTermSave(request):
     if request.method == 'POST':

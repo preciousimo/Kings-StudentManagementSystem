@@ -1,5 +1,5 @@
 {% extends 'hod_templates/base.html' %}
-{% block page_title %}Edit Session{% endblock page_title %}
+{% block page_title %}Edit Term{% endblock page_title %}
 {% block home_content %}
 <section class="content">
     <div class="container-fluid">
@@ -9,10 +9,10 @@
                 <!-- general form elements -->
                 <div class="card card-dark">
                     <div class="card-header">
-                        <h3 class="card-title">Edit existing Session</h3>
+                        <h3 class="card-title">Edit existing term</h3>
                     </div>
-                    {% url 'edit-session-save' as action_path %}
-                    {% include 'hod_templates/form_template.html' with button="Save Session" %}
+                    {% url 'edit-term-save' as action_path %}
+                    {% include 'hod_templates/form_template.html' with button="Save Term" %}
                 </div>
             </div>
         </div>
