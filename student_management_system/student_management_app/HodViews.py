@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from accounts import urls
-from student_management_app.Forms import AddSessionForm
+from student_management_app.Forms import AddSessionForm, EditSessionForm
 from django.http import HttpResponse
 from student_management_app.models import Session
 from django.contrib import messages
@@ -9,14 +9,14 @@ def adminHome(request):
     return render(request, 'hod_templates/home_content.html')
 
 def profile(request):
-
     return render(request, 'hod_templates/profile.html')
+
 def contactUs(request):
-
     return render(request, 'hod_templates/contact-us.html')
-def contacts(request):
 
+def contacts(request):
     return render(request, 'hod_templates/contacts.html')
+
 def addSession(request):
     form = AddSessionForm()
     return render(request, 'hod_templates/add_session_template.html', {'form':form})
@@ -44,6 +44,31 @@ def addSessionSave(request):
     else:
         return HttpResponse('Method not allowed')
 
-def manageSession(request):
+def editSession(request):
+    form = EditSessionForm()
+    return render(request, 'hod_templates/edit_session_template.html', {'form':form})
 
-    return render(request, 'hod_templates/manage_session_template.html')
+def editSessionSave(request):
+    if request.method == 'POST':
+        form = EditSessionForm(request.POST)
+        if form.is_valid():
+            term_start = form.cleaned_data['term_start']
+            session_start = form.cleaned_data['session_start']
+            term_end = form.cleaned_data['term_end']
+            session_end = form.cleaned_data['session_end']
+
+            try:
+                new_session = Session.objects.create(term_start=term_start, session_start=session_start, term_end=term_end)
+                new_session.save()
+                return messages.success(request, 'Session edited successful')
+                return redirect('admin-home')
+            except:
+                return messages.error(request, 'Failed to edit session')
+                return redirect('edit-session')
+
+        else:
+            messages.error(request, 'Form is not valid')
+            return redirect('edit-session')
+
+    else:
+        return HttpResponse('Method not allowed')

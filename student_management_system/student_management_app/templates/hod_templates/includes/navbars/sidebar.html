@@ -83,11 +83,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            {% url 'manage-session' as manage_session %}
-                            <a href="{% url 'manage-session' %}"
-                                class="nav-link {% if request.path == manage_session %} active {% endif %}">
+                            {% url 'edit-session' as edit_session %}
+                            <a href="{% url 'edit-session' %}"
+                                class="nav-link {% if request.path == edit_session %} active {% endif %}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Manage Session</p>
+                                <p>Edit Session</p>
                             </a>
                         </li>
                     </ul>

@@ -10,7 +10,8 @@ urlpatterns = [
     path('contacts', HodViews.contacts, name="contacts"),
     path('add-session', HodViews.addSession, name="add-session"),
     path('add-session-save', HodViews.addSessionSave, name="add-session-save"),
-    path('manage-session', HodViews.manageSession, name="manage-session"),
+    path('edit-session', HodViews.editSession, name="edit-session"),
+    path('edit-session-save', HodViews.editSessionSave, name="edit-session-save"),
     #Student Views
     path('student-home', StudentViews.studentHome, name="student-home"),
     path('add-student/', StudentViews.addStudent, name="add-student"),
