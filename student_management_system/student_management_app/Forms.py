@@ -1,6 +1,6 @@
 from django import forms
 from django.forms.widgets import TextInput, FileInput
-from student_management_app.models import Session
+from student_management_app.models import Term, Session
 class DateInput(forms.DateInput):
     input_type = "date"
 
@@ -30,7 +30,7 @@ class AddStudentForm(forms.Form):
     classs = forms.ChoiceField(label = "Class",choices=classs_choice, widget=forms.Select(attrs={'class':'form-control'}))
     term_year_list = []
     try: 
-        sessions = Session.objects.all()
+        sessions = Term.objects.all()
         for term in sessions:
             small_term = (term.id, str(term.term_start)+'  -  '+str(term.term_end))
             term_year_list.append(small_term)

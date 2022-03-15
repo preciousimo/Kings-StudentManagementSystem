@@ -31,10 +31,16 @@ class Staffs(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
 
-class Session(models.Model):
+class Term(models.Model):
     id = models.AutoField(primary_key=True)
     term_start = models.DateField()
     term_end = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
+
+class Session(models.Model):
+    id = models.AutoField(primary_key=True)
     session_start = models.DateField()
     session_end = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -51,7 +57,8 @@ class Students(models.Model):
     gender = models.CharField(blank=True, choices=gender_choice.choices, max_length=10)
     classs_choice = models.TextChoices('classs_choice', 'JSS1 JSS2 JSS3 SSS1 SSS2 SSS3')
     classs = models.CharField(blank=True, choices=classs_choice.choices, max_length=10)
-    session_id = models.ForeignKey(Session, on_delete=models.CASCADE)
+    term_year = models.ForeignKey(Term, on_delete=models.CASCADE)
+    session_year = models.ForeignKey(Session, on_delete=models.CASCADE)
     address = models.TextField()
     state = models.CharField(max_length=255)
     nationality = models.CharField(max_length=255)
