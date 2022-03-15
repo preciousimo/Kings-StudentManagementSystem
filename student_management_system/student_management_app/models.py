@@ -57,6 +57,8 @@ class Students(models.Model):
     gender = models.CharField(blank=True, choices=gender_choice.choices, max_length=10)
     classs_choice = models.TextChoices('classs_choice', 'JSS1 JSS2 JSS3 SSS1 SSS2 SSS3')
     classs = models.CharField(blank=True, choices=classs_choice.choices, max_length=10)
+    term_year_id = models.ForeignKey(Term, on_delete=models.CASCADE)
+    session_year_id = models.ForeignKey(Session, on_delete=models.CASCADE)
     address = models.TextField()
     state = models.CharField(max_length=255)
     nationality = models.CharField(max_length=255)
