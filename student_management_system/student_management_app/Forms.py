@@ -120,14 +120,18 @@ class EditStaffForm(forms.Form):
     state = forms.CharField(label = "State",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     nationality = forms.CharField(label = "Nationality", max_length=50, widget=TextInput(attrs={'class':'form-control'}))
 
-class AddSessionForm(forms.Form):
+class AddTermForm(forms.Form):
     term_start = forms.DateField(label = "Term Start", widget=DateInput(attrs={'class':'form-control'}))
-    session_start = forms.DateField(label = "Session Start", widget=DateInput(attrs={'class':'form-control'}))
     term_end = forms.DateField(label = "Term End", widget=DateInput(attrs={'class':'form-control'}))
+
+class AddSessionForm(forms.Form):
+    session_start = forms.DateField(label = "Session Start", widget=DateInput(attrs={'class':'form-control'}))
     session_end = forms.DateField(label = "Session End", widget=DateInput(attrs={'class':'form-control'}))
 
-class EditSessionForm(forms.Form):
+class EditTermForm(forms.Form):
     term_start = forms.DateField(label = "Term Start", widget=DateInput(attrs={'class':'form-control'}))
-    session_start = forms.DateField(label = "Session Start", widget=DateInput(attrs={'class':'form-control'}))
     term_end = forms.DateField(label = "Term End", widget=DateInput(attrs={'class':'form-control'}))
+    
+class EditSessionForm(forms.Form):
+    session_start = forms.DateField(label = "Session Start", widget=DateInput(attrs={'class':'form-control'}))
     session_end = forms.DateField(label = "Session End", widget=DateInput(attrs={'class':'form-control'}))
