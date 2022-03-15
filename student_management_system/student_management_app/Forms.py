@@ -32,7 +32,7 @@ class AddStudentForm(forms.Form):
     try: 
         sessions = Session.objects.all()
         for term in sessions:
-            small_term = (term.id, str(term.term_start)+' to '+str(term.term_end))
+            small_term = (term.id, str(term.term_start)+'  -  '+str(term.term_end))
             term_year_list.append(small_term)
     except:
         pass
@@ -41,7 +41,7 @@ class AddStudentForm(forms.Form):
     try:
         sessions = Session.objects.all()
         for ses in sessions:
-            small_ses = (ses.id, str(ses.session_start)+' to '+str(ses.session_end))
+            small_ses = (ses.id, str(ses.session_start)+'  -  '+str(ses.session_end))
             session_year_list.append(small_ses)
     except:
         pass
