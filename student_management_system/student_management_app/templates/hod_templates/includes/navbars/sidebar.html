@@ -66,6 +66,33 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon far fa-envelope"></i>
+                        <p>
+                            Sessions
+                            <i class="fas fa-angle-down right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            {% url 'add-session' as add_session %}
+                            <a href="{% url 'add-session' %}"
+                                class="nav-link {% if request.path == add_session %} active {% endif %}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Session</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            {% url 'manage-session' as manage_session %}
+                            <a href="{% url 'manage-session' %}"
+                                class="nav-link {% if request.path == manage_session %} active {% endif %}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Manage Session</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
                     <a href="courses" class="nav-link">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
@@ -164,29 +191,6 @@
                             <a href="/contact-us" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Contact us</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-envelope"></i>
-                        <p>
-                            Sessions
-                            <i class="fas fa-angle-down right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{% url 'add-session' %}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Session</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{% url 'manage-session' %}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Manage Session</p>
                             </a>
                         </li>
                     </ul>

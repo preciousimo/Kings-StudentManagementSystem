@@ -106,3 +106,9 @@ class AddSessionForm(forms.Form):
     session_start = forms.DateField(label = "Session Begins", widget=DateInput(attrs={'class':'form-control'}))
     term_end = forms.DateField(label = "Term Ends", widget=DateInput(attrs={'class':'form-control'}))
     session_end = forms.DateField(label = "Session Ends", widget=DateInput(attrs={'class':'form-control'}))
+
+class ManageSessionForm(forms.Form):
+    term_start = forms.DateField(label = "Term Begins", widget=DateInput(attrs={'class':'form-control'}))
+    session_start = forms.DateField(label = "Session Begins", widget=DateInput(attrs={'class':'form-control'}))
+    term_end = forms.DateField(label = "Term Ends", widget=DateInput(attrs={'class':'form-control'}))
+    session_end = forms.DateField(label = "Session Ends", widget=DateInput(attrs={'class':'form-control'}))

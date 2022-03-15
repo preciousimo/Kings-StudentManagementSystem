@@ -31,6 +31,16 @@ class Staffs(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
 
+class Session(models.Model):
+    id = models.AutoField(primary_key=True)
+    term_start = models.DateField()
+    term_end = models.DateField()
+    session_start = models.DateField()
+    session_end = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
+
 class Students(models.Model):
     id = models.AutoField(primary_key=True)
     admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
@@ -40,7 +50,8 @@ class Students(models.Model):
     gender_choice = models.TextChoices('gender_choice', 'Male Female Others')
     gender = models.CharField(blank=True, choices=gender_choice.choices, max_length=10)
     classs_choice = models.TextChoices('classs_choice', 'JSS1 JSS2 JSS3 SSS1 SSS2 SSS3')
-    gender = models.CharField(blank=True, choices=classs_choice.choices, max_length=10)
+    classs = models.CharField(blank=True, choices=classs_choice.choices, max_length=10)
+    session_id = models.ForeignKey(Session, on_delete=models.CASCADE)
     address = models.TextField()
     state = models.CharField(max_length=255)
     nationality = models.CharField(max_length=255)
@@ -60,20 +71,11 @@ class Subjects(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
 
-class Session(models.Model):
-    id = models.AutoField(primary_key=True)
-    term_start = models.DateField()
-    term_end = models.DateField()
-    session_start = models.DateField()
-    session_end = models.DateField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
-
 class Attendance(models.Model):
     id = models.AutoField(primary_key=True)
     subject_id = models.ForeignKey(Subjects, on_delete=models.DO_NOTHING)
     staff_id = models.ForeignKey(Staffs, on_delete=models.DO_NOTHING)
+    session_id = models.ForeignKey(Session, on_delete=models.CASCADE)
     attendance_date = models.DateTimeField(auto_now_add=True)
     attendance_time = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now_add=True)
