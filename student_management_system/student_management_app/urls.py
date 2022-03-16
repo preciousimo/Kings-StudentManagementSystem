@@ -31,5 +31,5 @@ urlpatterns = [
     path('edit-staff/<str:staff_id>', StaffViews.editStaff, name="edit-staff"),
     path('edit-staff-save/', StaffViews.editStaffSave, name="edit-staff-save"),
     path('take-attendance/', StaffViews.takeAttendance, name="take-attendance"),
-    path('get-students/', StaffViews.get_students, name="get-students"),
+    path('get_students/', StaffViews.get_students, name="get_students"),
 ]
