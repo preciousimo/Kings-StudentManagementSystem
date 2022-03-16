@@ -165,4 +165,4 @@ def manageSubject(request):
     return render(request, 'staff_templates/manage_subject_template.html', {'subjects':subjects})
 
 def takeAttendance(request):
-    pass
+    return render(request, 'staff_templates/take_attendance_template.html')
