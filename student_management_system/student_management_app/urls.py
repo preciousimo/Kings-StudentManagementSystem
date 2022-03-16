@@ -8,12 +8,8 @@ urlpatterns = [
     path('profile', HodViews.profile, name="profile"),
     path('contact-us', HodViews.contactUs, name="contact-us"),
     path('contacts', HodViews.contacts, name="contacts"),
-    path('add-term', HodViews.addTerm, name="add-term"),
-    path('add-term-save', HodViews.addTermSave, name="add-term-save"),
     path('add-session', HodViews.addSession, name="add-session"),
     path('add-session-save', HodViews.addSessionSave, name="add-session-save"),
-    path('edit-term', HodViews.editTerm, name="edit-term"),
-    path('edit-term-save', HodViews.editTermSave, name="edit-term-save"),
     path('edit-session', HodViews.editSession, name="edit-session"),
     path('edit-session-save', HodViews.editSessionSave, name="edit-session-save"),
     #Student Views

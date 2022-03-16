@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from student_management_app.models import CustomUser, Students
+from student_management_app.models import CustomUser, Students, Session
 from student_management_app.Forms import AddStudentForm, EditStudentForm
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -54,7 +54,9 @@ def addStudentSave(request):
 
 def manageStudent(request):
     students = Students.objects.all()
-    return render(request, 'student_templates/manage_student_template.html', {'students':students})
+    term = Term.objects.all()
+    session = Session.objects.all()
+    return render(request, 'student_templates/manage_student_template.html', {'students':students, 'term':term, 'session':session})
 
 def editStudent(request, student_id):
     request.session['student_id'] = student_id

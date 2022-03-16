@@ -31,14 +31,6 @@ class Staffs(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
 
-class Term(models.Model):
-    id = models.AutoField(primary_key=True)
-    term_start = models.DateField()
-    term_end = models.DateField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
-
 class Session(models.Model):
     id = models.AutoField(primary_key=True)
     session_start = models.DateField()
