@@ -14,7 +14,7 @@
 
                     <div class="card-body">
                         <div class="form-group">
-                            <label>Subject</label>
+                            <label>Subject Name</label>
                             <select class="form-control" name="subject" id="subject">
                                 {% for subject in subjects %}
                                 <option value="{{ subject.id }}">{{ subject.subject_name }}</option>
@@ -25,8 +25,8 @@
                             <label>Session Year</label>
                             <select class="form-control" name="session_year" id="session_year">
                                 {% for session_year in session_years %}
-                                <option value="{{ session_year.id }}">{{ session_year.session_start_year }} - {{
-                                    session_year.session_end_year }}</option>
+                                <option value="{{ session_year.id }}">{{ session_year.session_start_year }} -
+                                    {{session_year.session_end_year }}</option>
                                 {% endfor %}
                             </select>
                         </div>

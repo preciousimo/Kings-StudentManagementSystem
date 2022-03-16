@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from student_management_app.models import CustomUser, Staffs, Subjects
+from student_management_app.models import CustomUser, Staffs, Subjects, SessionYear, Students
 from student_management_app.Forms import AddStaffForm, EditStaffForm
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 def staffHome(request):
     return render(request, 'staff_templates/home_content.html')
@@ -165,4 +166,20 @@ def manageSubject(request):
     return render(request, 'staff_templates/manage_subject_template.html', {'subjects':subjects})
 
 def takeAttendance(request):
-    return render(request, 'staff_templates/take_attendance_template.html')
+    subjects = Subjects.objects.filter(staff_id=request.user.id)
+    session_years = SessionYear.objects.all()
+    context = {
+        'subjects':subjects,
+        'session_years':session_years
+        }
+    return render(request, 'staff_templates/take_attendance_template.html', context)
+
+@csrf_exempt
+def get_students(request):
+    subject_id = request.POST['subject']
+    session_year = request.POST['session_year']
+
+    subject = Subjects.objects.get(id=subject_id)
+    session_model = SessionYear.objects.get(id=session_year)
+    students = Students.objects.filter(session_year_id=session_model)
+    return students
