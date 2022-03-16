@@ -29,26 +29,6 @@ class AddStudentForm(forms.Form):
         ('SSS3', 'SSS 3'),  
     )
     classs = forms.ChoiceField(label = "Class",choices=classs_choice, widget=forms.Select(attrs={'class':'form-control'}))
-    '''
-    term_year_list = []
-    try: 
-        term_model = Term.objects.all()
-        for term in term_model:
-            small_term = (term.id, str(term.term_start)+'  -  '+str(term.term_end))
-            term_year_list.append(small_term)
-    except:
-        pass
-    term_year_id = forms.ChoiceField(label = "Term Year", choices=term_year_list, widget=forms.Select(attrs={'class':'form-control'}))
-    session_year_list = []
-    try:
-        session_model = Session.objects.all()
-        for ses in session_model:
-            small_ses = (ses.id, str(ses.session_start)+'  -  '+str(ses.session_end))
-            session_year_list.append(small_ses)
-    except:
-        pass
-    session_year_id = forms.ChoiceField(label = "Session Year", choices=session_year_list, widget=forms.Select(attrs={'class':'form-control'}))
-    '''
     address = forms.CharField(label = "Address",max_length=500, widget=TextInput(attrs={'class':'form-control'}))
     state = forms.CharField(label = "State",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     nationality = forms.CharField(label = "Nationality", max_length=50, widget=TextInput(attrs={'class':'form-control'}))
