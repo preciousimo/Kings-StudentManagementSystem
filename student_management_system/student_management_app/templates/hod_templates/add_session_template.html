@@ -11,7 +11,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Add Session Year</h3>
                     </div>
-                    <form action="{% url 'add-subject-save' %}" method='post'>
+                    <form action="{% url 'add-session-save' %}" method='post'>
                         {% csrf_token %}
                         <div class="card-body">
                             <div class="form-group">
@@ -23,26 +23,26 @@
                                 <input type="date" name="session_end" class="form-control">
                             </div>
                         </div>
-                    </form>
 
-                    {% if messages %}
-                    <div class="col-12">
-                        {% for message in messages %}
-                        {% if message.tags == 'error' %}
-                        <div class="btn btn-danger btn-block" style="margin-top:10px">{{message}}</div>
+                        {% if messages %}
+                        <div class="col-12">
+                            {% for message in messages %}
+                            {% if message.tags == 'error' %}
+                            <div class="btn btn-danger btn-block" style="margin-top:10px">{{message}}</div>
+                            {% endif %}
+                            {% if message.tags == 'info' %}
+                            <div class="btn btn-info btn-block" style="margin-top:10px">{{message}}</div>
+                            {% endif %}
+                            {% if message.tags == 'success' %}
+                            <div class="btn btn-success btn-block" style="margin-top:10px">{{message}}</div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
                         {% endif %}
-                        {% if message.tags == 'info' %}
-                        <div class="btn btn-info btn-block" style="margin-top:10px">{{message}}</div>
-                        {% endif %}
-                        {% if message.tags == 'success' %}
-                        <div class="btn btn-success btn-block" style="margin-top:10px">{{message}}</div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-success btn-block">Add Session</button>
-                    </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success btn-block">Add Session</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

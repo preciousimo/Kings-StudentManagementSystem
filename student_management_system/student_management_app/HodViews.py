@@ -22,19 +22,15 @@ def addSession(request):
 def addSessionSave(request):
     if request.method == 'POST':
         
-        if form.is_valid():
-            session_start = form.cleaned_data['session_start']
-            session_end = form.cleaned_data['session_end']
-            try:
-                session = Session.objects.create(session_start=session_start,session_end=session_end)
-                session.save()
-                messages.success(request, 'Session Created Successfully')
-                return redirect('admin-home')
-            except:
-                messages.error(request, 'Failed to add Session')
-                return redirect('add-session')
-        else:
-            messages.error(request, 'Form is not valid')
+        session_start = request.POST['session_start']
+        session_end = request.POST['session_end']
+        try:
+            session = Session(session_start=session_start,session_end=session_end)
+            session.save()
+            messages.success(request, 'Session Created Successfully')
+            return redirect('admin-home')
+        except:
+            messages.error(request, 'Failed to add Session')
             return redirect('add-session')
 
     else:
