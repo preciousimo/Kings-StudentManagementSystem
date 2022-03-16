@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from accounts import urls
 from django.http import HttpResponse
-from student_management_app.models import Session
+from student_management_app.models import SessionYear
 from django.contrib import messages
 
 def adminHome(request):
@@ -22,10 +22,10 @@ def addSession(request):
 def addSessionSave(request):
     if request.method == 'POST':
         
-        session_start = request.POST['session_start']
-        session_end = request.POST['session_end']
+        session_start_year = request.POST['session_start_year']
+        session_end_year = request.POST['session_end_year']
         try:
-            session = Session(session_start=session_start,session_end=session_end)
+            session = SessionYear(session_start_year=session_start_year,session_end_year=session_end_year)
             session.save()
             messages.success(request, 'Session Created Successfully')
             return redirect('admin-home')

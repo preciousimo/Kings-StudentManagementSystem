@@ -1,6 +1,6 @@
 from django import forms
 from django.forms.widgets import TextInput, FileInput
-
+from student_management_app.models import SessionYear
 class DateInput(forms.DateInput):
     input_type = "date"
 
@@ -28,6 +28,15 @@ class AddStudentForm(forms.Form):
         ('SSS3', 'SSS 3'),  
     )
     classs = forms.ChoiceField(label = "Class",choices=classs_choice, widget=forms.Select(attrs={'class':'form-control'}))
+    session_list = []
+    try:
+        sessions = SessionYear.objects.all()
+        for ses in sessions:
+            small_ses = (ses.id, str(ses.session_start_year)+"  -  "+str(ses.session_end_year))
+            session_list.append(small_ses)
+    except:
+        pass
+    session_year_id = forms.ChoiceField(label="Session Year", choices=session_list, widget=forms.Select(attrs={'class':'form-control'}))
     address = forms.CharField(label = "Address",max_length=500, widget=TextInput(attrs={'class':'form-control'}))
     state = forms.CharField(label = "State",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     nationality = forms.CharField(label = "Nationality", max_length=50, widget=TextInput(attrs={'class':'form-control'}))
