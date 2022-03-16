@@ -28,7 +28,6 @@ def addStudentSave(request):
             address = form.cleaned_data['address']
             state = form.cleaned_data['state']
             nationality = form.cleaned_data['nationality'] 
-            return HttpResponse(term_year_id+' - '+session_year_id)
             try:
                 new_student = CustomUser.objects.create_user(first_name=first_name,last_name=last_name,username=username,password=password,email=email, user_type=3)
         
