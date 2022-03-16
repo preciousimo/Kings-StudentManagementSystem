@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from student_management_app.models import CustomUser, Staffs, Subjects, SessionYear, Students
 from student_management_app.Forms import AddStaffForm, EditStaffForm
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.core import serializers
 
 def staffHome(request):
     return render(request, 'staff_templates/home_content.html')
@@ -182,4 +183,5 @@ def get_students(request):
     subject = Subjects.objects.get(id=subject_id)
     session_model = SessionYear.objects.get(id=session_year)
     students = Students.objects.filter(session_year_id=session_model)
-    return HttpResponse(students)
+    student_data = serializers.serialize("python",students)
+    return JsonResponse(student_data,content_type="application/json",safe=False)
