@@ -184,7 +184,6 @@ def get_students(request):
     subject = Subjects.objects.get(id=subject_id)
     session_model = SessionYear.objects.get(id=session_year)
     students = Students.objects.filter(session_year_id=session_model)
-    student_data = serializers.serialize("python",students)
 
     list_data = []
     for student in students:
