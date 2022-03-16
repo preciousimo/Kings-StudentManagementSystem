@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from student_management_app.models import CustomUser, Staffs, Subjects, SessionYear, Students
@@ -184,4 +185,10 @@ def get_students(request):
     session_model = SessionYear.objects.get(id=session_year)
     students = Students.objects.filter(session_year_id=session_model)
     student_data = serializers.serialize("python",students)
-    return JsonResponse(student_data,content_type="application/json",safe=False)
+
+    list_data = []
+    for student in students:
+        data_small = {"id":student.admin.id,"name":student.admin.first_name+" "+student.admin.last_name}
+        list_data.append(data_small)
+
+    return JsonResponse(json.dumps(list_data),content_type="application/json",safe=False)
