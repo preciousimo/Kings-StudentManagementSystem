@@ -195,12 +195,22 @@ def get_students(request):
 
 @csrf_exempt
 def save_attendance_data(request):
-    student_ids = request.POST.getlist('studentids[]')
+    student_ids = request.POST['student_ids']
     subject_id = request.POST['subject_id']
     attendance_date = request.POST['attendance_date']
     session_year_id = request.POST['session_year_id']
+    
     subject_model = Subjects.objects.get(id=subject_id)
     session_model = SessionYear.objects.get(id=session_year_id)
-    #attendance = Attendance(subject_id=subject_model, attendance_date=attendance_date, session_year_id=session_model)
+    json_student = json.loads(student_ids)
+    #print(data[0]['id'])
+
+    attendance = Attendance(subject_id=subject_model, attendance_date=attendance_date, session_year_id=session_model)
+    attendance.save()
+
+    for stud in json_student:
+        student = Students.objects.get(admin=stud['id'])
+        attendance_report = AttendanceReport(student_id=student, attendance_id=attendance, status=stud['status'])
+        attendance_report.save()
     return HttpResponse('Ok')
     

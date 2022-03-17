@@ -98,6 +98,7 @@
                 var subject_id = $("#subject").val();
                 var session_year_id = $("#session_year").val()
                 console.log(student_data)
+                student_data = JSON.stringify(student_data)
                 $.ajax({
                     url: "{% url 'save_attendance_data' %}",
                     type: "POST",
