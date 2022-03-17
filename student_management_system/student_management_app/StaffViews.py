@@ -215,3 +215,12 @@ def save_attendance_data(request):
         return HttpResponse('Ok')
     except:
         return HttpResponse('Error Occured')
+
+def update_attendance(request):
+    subjects = Subjects.objects.filter(staff_id=request.user.id)
+    session_years = SessionYear.objects.all()
+    context = {
+        'subjects':subjects,
+        'session_years':session_years
+        }
+    return render(request, 'staff_templates/update_attendance_template.html', context)

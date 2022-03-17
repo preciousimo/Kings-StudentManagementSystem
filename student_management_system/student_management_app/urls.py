@@ -33,4 +33,5 @@ urlpatterns = [
     path('take-attendance/', StaffViews.takeAttendance, name="take-attendance"),
     path('get_students', StaffViews.get_students, name="get_students"),
     path('save_attendance_data', StaffViews.save_attendance_data, name="save_attendance_data"),
+    path('update_attendance', StaffViews.update_attendance, name="update_attendance"),
 ]
