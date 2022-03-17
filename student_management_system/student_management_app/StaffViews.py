@@ -191,3 +191,7 @@ def get_students(request):
         list_data.append(data_small)
 
     return JsonResponse(json.dumps(list_data),content_type="application/json",safe=False)
+
+@csrf_exempt
+def save_attendace_data(request):
+    pass
