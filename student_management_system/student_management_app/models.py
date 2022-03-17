@@ -58,6 +58,7 @@ class Students(models.Model):
     objects = models.Manager()
 
 class Subjects(models.Model):
+    
     id = models.AutoField(primary_key=True)
     subject_name = models.CharField(max_length=255)
     subject_status_choice = models.TextChoices('subject_status_choice', 'General Elective')

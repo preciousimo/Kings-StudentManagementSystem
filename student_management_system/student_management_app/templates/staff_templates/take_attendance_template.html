@@ -86,11 +86,18 @@
                     alert("Error in Fetching Student")
                 })
             $(document).on("click", "#save_attendance", function () {
-                var student_data = $("input[name='student_data[]']").map(function () { return $(this).val(); }).get();
+                var student_data = $("input[name='student_data[]']").map(function () {
+                    if ($(this).is(":checked")) {
+                        return { "id": $(this).val(), "status": 1 };
+                    }
+                    else {
+                        return { "id": $(this).val(), "status": 0 };
+                    }
+                }).get();
                 var attendance_date = $("#attendance_date").val();
                 var subject_id = $("#subject").val();
                 var session_year_id = $("#session_year").val()
-
+                console.log(student_data)
                 $.ajax({
                     url: "{% url 'save_attendance_data' %}",
                     type: "POST",
