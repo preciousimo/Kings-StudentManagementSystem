@@ -94,25 +94,15 @@
                 console.log(student_data);
             })
             $.ajax({
-                url: "{% url 'get_students' %}",
+                url: "{% url 'save_attendance_data' %}",
                 type: "POST",
-                data: { subject: subject, session_year: session_year },
+                data: { student_id: student_data, attendance_date: attendance_date },
             })
                 .done(function (response) {
-                    var json_data = JSON.parse(response);
-                    console.log(json_data);
-                    var div_data = "<div class='form-group'><label>Attendance Date :</label><input type='date' name='attendance_date' id='attendance_date' class='form-control'><div class='form-group'><div class='row'>";
-                    for (key in json_data) {
-                        div_data += "<div class='col-lg-2'><div class='form-check'><input type='checkbox' checked='checked' name='student_data[]' class='form - control' value='" + json_data[key]['id'] + "'><label class='form-check-label'>" + json_data[key]['name'] + "</label></div></div>";
-                    }
-                    div_data += "</div></div>";
-                    div_data += "<div class='form-group'>";
-                    div_data += "<button id='save_attendance' class='btn btn-success btn-block' type='button'>Save Attendance Data</button>"
-                    div_data += "</div>";
-                    $("#student_data").html(div_data);
+                    console.log(response)
                 })
                 .fail(function () {
-                    alert("Error in Fetching Student")
+                    alert("Error in Saving Attendance")
                 })
         })
     })
