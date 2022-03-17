@@ -1,11 +1,12 @@
 import json
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from student_management_app.models import CustomUser, Staffs, Subjects, SessionYear, Students
+from student_management_app.models import CustomUser, Staffs, Subjects, SessionYear, Students, Attendance, AttendanceReport
 from student_management_app.Forms import AddStaffForm, EditStaffForm
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
+from django.forms import model_to_dict
 
 def staffHome(request):
     return render(request, 'staff_templates/home_content.html')
@@ -193,5 +194,7 @@ def get_students(request):
     return JsonResponse(json.dumps(list_data),content_type="application/json",safe=False)
 
 @csrf_exempt
-def save_attendace_data(request):
-    pass
+def save_attendance_data(request):
+    student_ids = request.POST.getlist('studentids[]')
+    print(student_ids)
+    return HttpResponse('Ok')

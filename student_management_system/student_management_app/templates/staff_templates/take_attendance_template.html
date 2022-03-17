@@ -86,24 +86,23 @@
                     alert("Error in Fetching Student")
                 })
             $(document).on("click", "#save_attendance", function () {
-                console.log('Save');
-                console.log($("input[name='student_data[]']").val());
                 var student_data = $("input[name='student_data[]']").map(function () { return $(this).val(); }).get();
                 var attendance_date = $("#attendance_date").val();
-                console.log(attendance_date);
-                console.log(student_data);
-            })
-            $.ajax({
-                url: "{% url 'save_attendance_data' %}",
-                type: "POST",
-                data: { student_id: student_data, attendance_date: attendance_date },
-            })
-                .done(function (response) {
-                    console.log(response)
+                var subject_id = $("#subject").val();
+                var session_year_id = $("#session_year").val()
+
+                $.ajax({
+                    url: "{% url 'save_attendance_data' %}",
+                    type: "POST",
+                    data: { student_ids: student_data, attendance_date: attendance_date, subject_id: subject_id, session_year_id: session_year_id },
                 })
-                .fail(function () {
-                    alert("Error in Saving Attendance")
-                })
+                    .done(function (response) {
+                        console.log(response)
+                    })
+                    .fail(function () {
+                        alert("Error in Saving Attendance")
+                    })
+            })
         })
     })
 </script>
