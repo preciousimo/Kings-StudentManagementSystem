@@ -86,6 +86,8 @@
                     alert("Error in Fetching Student")
                 })
             $(document).on("click", "#save_attendance", function () {
+                $(this).attr("disabled", "disabled")
+                $(this).text("Saving Attendance Data...")
                 var student_data = $("input[name='student_data[]']").map(function () {
                     if ($(this).is(":checked")) {
                         return { "id": $(this).val(), "status": 1 };
@@ -97,7 +99,6 @@
                 var attendance_date = $("#attendance_date").val();
                 var subject_id = $("#subject").val();
                 var session_year_id = $("#session_year").val()
-                console.log(student_data)
                 student_data = JSON.stringify(student_data)
                 $.ajax({
                     url: "{% url 'save_attendance_data' %}",
@@ -105,7 +106,12 @@
                     data: { student_ids: student_data, attendance_date: attendance_date, subject_id: subject_id, session_year_id: session_year_id },
                 })
                     .done(function (response) {
-                        console.log(response)
+                        if (response == 'Ok') {
+                            alert('Attendance Saved')
+                        } else {
+                            alert('Error in Saving Data')
+                        }
+                        location.reload()
                     })
                     .fail(function () {
                         alert("Error in Saving Attendance")

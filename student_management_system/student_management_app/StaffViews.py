@@ -204,13 +204,14 @@ def save_attendance_data(request):
     session_model = SessionYear.objects.get(id=session_year_id)
     json_student = json.loads(student_ids)
     #print(data[0]['id'])
+    try: 
+        attendance = Attendance(subject_id=subject_model, attendance_date=attendance_date, session_year_id=session_model)
+        attendance.save()
 
-    attendance = Attendance(subject_id=subject_model, attendance_date=attendance_date, session_year_id=session_model)
-    attendance.save()
-
-    for stud in json_student:
-        student = Students.objects.get(admin=stud['id'])
-        attendance_report = AttendanceReport(student_id=student, attendance_id=attendance, status=stud['status'])
-        attendance_report.save()
-    return HttpResponse('Ok')
-    
+        for stud in json_student:
+            student = Students.objects.get(admin=stud['id'])
+            attendance_report = AttendanceReport(student_id=student, attendance_id=attendance, status=stud['status'])
+            attendance_report.save()
+        return HttpResponse('Ok')
+    except:
+        return HttpResponse('Error Occured')
