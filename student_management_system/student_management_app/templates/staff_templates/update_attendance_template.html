@@ -46,7 +46,7 @@
                             </div>
                         </div>
                         <div class="form-group" id="fetch_student_block" style="display:none">
-                            <button class="btn btn-primary btn-block" id="fetch_student">Fetch Student Data/button>
+                            <button class="btn btn-dark btn-block" id="fetch_student">Fetch Student Data</button>
                         </div>
                     </div>
                     <div class="card-footer" style="display:none" id="save_student">
@@ -138,8 +138,9 @@
                         $('#attendance_date').html("")
                         $("#error_attendance").hide()
                         $("#attendance_block").show()
-                        $("#save_student").show()
                         $("#attendance_date").html(html_data);
+                        $("#fetch_student_block").show()
+                        $("#save_student").show()
                     }
                     else {
                         $("#error_attendance").html("No Attendance Data Found");

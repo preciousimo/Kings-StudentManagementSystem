@@ -184,6 +184,7 @@ def get_students(request):
 
     subject = Subjects.objects.get(id=subject_id)
     session_model = SessionYear.objects.get(id=session_year)
+    
     students = Students.objects.filter(session_year_id=session_model)
 
     list_data = []
@@ -240,3 +241,16 @@ def get_attendance_dates(request):
         attendance_obj.append(data)
 
     return JsonResponse(json.dumps(attendance_obj), safe=False)
+
+@csrf_exempt
+def get_student_attendance(request):
+    attendance_date = request.POST['attendance_date']
+    attendance = Attendance.objects.filter(id=attendance_date)
+
+    attendance_data = AttendanceReport.objects.filter(attendance_id=attendance)
+    list_data = []
+    for student in attendance_data:
+        data_small = {"id":student.student_id.admin.id,"name":student.student_id.admin.first_name+" "+student.student_id.admin.last_name,"status":student.status}
+        list_data.append(data_small)
+
+    return JsonResponse(json.dumps(list_data),content_type="application/json",safe=False)
