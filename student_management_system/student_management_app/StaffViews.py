@@ -259,14 +259,15 @@ def get_student_attendance(request):
 def save_updated_attendance_data(request):
     student_ids = request.POST['student_ids']
     attendance_date = request.POST['attendance_date']
-    
+    attendance = Attendance.objects.get(id=attendance_date)
     
     json_student = json.loads(student_ids)
     
     try: 
         for stud in json_student:
             student = Students.objects.get(admin=stud['id'])
-            attendance_report = AttendanceReport(student_id=student, attendance_id=attendance, status=stud['status'])
+            attendance_report = AttendanceReport.objects.get(student_id=student, attendance_id=attendance)
+            attendance_report.status = stud['status']
             attendance_report.save()
         return HttpResponse('Ok')
     except:

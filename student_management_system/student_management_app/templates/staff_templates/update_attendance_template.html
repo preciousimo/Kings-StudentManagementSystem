@@ -11,7 +11,6 @@
                     <div class="card-header">
                         <h3 class="card-title">View Student Attendance</h3>
                     </div>
-                    <input type="checkbox">Test</input>
                     <div class="card-body">
                         <div class="form-group">
                             <label>Subject Name</label>
@@ -114,13 +113,13 @@
             var attendance_date = $("#attendance_date").val();
             student_data = JSON.stringify(student_data)
             $.ajax({
-                url: "{% url 'save_attendance_data' %}",
+                url: "{% url 'save_updated_attendance_data' %}",
                 type: "POST",
                 data: { student_ids: student_data, attendance_date: attendance_date },
             })
                 .done(function (response) {
                     if (response == 'Ok') {
-                        alert('Attendance Saved')
+                        alert('Attendance Updated')
                     } else {
                         alert('Error in Saving Data')
                     }
@@ -155,7 +154,7 @@
                     }
                     div_data += "</div></div>";
                     div_data += "<div class='form-group'>";
-                    div_data += "<button id='save_attendance' class='btn btn-success btn-block' type='button'>Save Attendance Data</button>"
+                    div_data += "<button id='save_attendance' class='btn btn-success btn-block' type='button'>Update Attendance Data</button>"
                     div_data += "</div>";
                     $("#student_data").html(div_data);
                 })
