@@ -226,7 +226,7 @@ def update_attendance(request):
     return render(request, 'staff_templates/update_attendance_template.html', context)
 
 @csrf_exempt
-def get_attendance_date(request):
+def get_attendance_dates(request):
     subject = request.POST['subject']
     session_year_id = request.POST['session_year_id']
     subject_obj = Subjects.objects.get(id=subject)
@@ -236,7 +236,7 @@ def get_attendance_date(request):
     attendance_obj = []
 
     for attendance_single in attendance:
-        data = {"id":attendance_single.id, "attendance_date":attendance_single.attendance_date, "session_year_id":attendance_single}
+        data = {"id":attendance_single.id, "attendance_date":str(attendance_single.attendance_date), "session_year_id":attendance_single.session_year_id.id}
         attendance_obj.append(data)
 
     return JsonResponse(json.dumps(attendance_obj), safe=False)
