@@ -245,7 +245,7 @@ def get_attendance_dates(request):
 @csrf_exempt
 def get_student_attendance(request):
     attendance_date = request.POST['attendance_date']
-    attendance = Attendance.objects.filter(id=attendance_date)
+    attendance = Attendance.objects.get(id=attendance_date)
 
     attendance_data = AttendanceReport.objects.filter(attendance_id=attendance)
     list_data = []
