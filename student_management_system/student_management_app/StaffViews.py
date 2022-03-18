@@ -254,3 +254,23 @@ def get_student_attendance(request):
         list_data.append(data_small)
 
     return JsonResponse(json.dumps(list_data),content_type="application/json",safe=False)
+
+@csrf_exempt
+def save_updated_attendance_data(request):
+    student_ids = request.POST['student_ids']
+    attendance_date = request.POST['attendance_date']
+    
+    
+    json_student = json.loads(student_ids)
+    
+    try: 
+        for stud in json_student:
+            student = Students.objects.get(admin=stud['id'])
+            attendance_report = AttendanceReport(student_id=student, attendance_id=attendance, status=stud['status'])
+            attendance_report.save()
+        return HttpResponse('Ok')
+    except:
+        return HttpResponse('Error Occured')
+
+
+
