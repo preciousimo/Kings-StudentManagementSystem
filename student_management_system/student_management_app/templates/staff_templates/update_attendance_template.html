@@ -31,10 +31,10 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success btn-block" id="fetch_attendance">Fetch
-                                Attendance</button>
+                            <button type="submit" class="btn btn-dark btn-block" id="fetch_attendance">Fetch
+                                Attendance Date</button>
                         </div>
-                        <div class="form-group" id="attendance_block">
+                        <div class="form-group" id="attendance_block" style="display:none">
                             <label>Attendance Date</label>
                             <select class="form-control" name="attendance_date" id="attendance_date">
 
@@ -45,8 +45,14 @@
 
                             </div>
                         </div>
+                        <div class="form-group" id="fetch_student_block" style="display:none">
+                            <button class="btn btn-primary btn-block" id="fetch_student">Fetch Student Data/button>
+                        </div>
                     </div>
-
+                    <div class="card-footer" style="display:none" id="save_student">
+                        <button type="button" class="btn btn-success btn-block">Save Data</button>
+                    </div>
+                    <div id="student_data" class="card-footer"></div>
                 </div>
             </div>
         </div>
@@ -129,22 +135,25 @@
                         for (key in json_data) {
                             html_data += "<option value=" + json_data[key]["id"] + ">" + json_data[key]["attendance_date"] + "</option>";
                         }
-                        $('#attendance_date').html(html_data)
-                        $("error_attendance").show()
-                        $("attendance_block").show()
-                        $("attendance_date").html("");
+                        $('#attendance_date').html("")
+                        $("#error_attendance").hide()
+                        $("#attendance_block").show()
+                        $("#save_student").show()
+                        $("#attendance_date").html(html_data);
                     }
                     else {
-                        $("error_attendance").html("No Attendance Data Found");
-                        $("error_attendance").show()
-                        $("attendance_block").hide()
-                        $("attendance_date").html("");
+                        $("#error_attendance").html("No Attendance Data Found");
+                        $("#error_attendance").show()
+                        $("#attendance_block").hide()
+                        $("#fetch_student_block").hide()
+                        $("#attendance_date").html("");
                     }
                 })
                 .fail(function () {
                     alert("Error in Fetching Attendance")
-                    $("error_attendance").html("")
-                    $("attendance_block").show()
+                    $("#error_attendance").html("")
+                    $("#attendance_block").hide()
+                    $("#fetch_student_block").hide()
                 })
         })
     })
