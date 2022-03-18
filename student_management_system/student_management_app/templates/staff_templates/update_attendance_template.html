@@ -34,28 +34,19 @@
                             <button type="submit" class="btn btn-success btn-block" id="fetch_attendance">Fetch
                                 Attendance</button>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="attendance_block">
                             <label>Attendance Date</label>
                             <select class="form-control" name="attendance_date" id="attendance_date">
 
                             </select>
                         </div>
+                        <div class="'form-group">
+                            <div class="alert alert-danger" id="error_attendance" style="display:none">
+
+                            </div>
+                        </div>
                     </div>
-                    {% if messages %}
-                    <div class="col-12">
-                        {% for message in messages %}
-                        {% if message.tags == 'error' %}
-                        <div class="btn btn-danger btn-block" style="margin-top:10px">{{message}}</div>
-                        {% endif %}
-                        {% if message.tags == 'info' %}
-                        <div class="btn btn-info btn-block" style="margin-top:10px">{{message}}</div>
-                        {% endif %}
-                        {% if message.tags == 'success' %}
-                        <div class="btn btn-success btn-block" style="margin-top:10px">{{message}}</div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                    {% endif %}
+
                 </div>
             </div>
         </div>
@@ -133,14 +124,27 @@
             })
                 .done(function (response) {
                     var json_data = JSON.parse(response);
-                    var html_data = "";
-                    for (key in json_data) {
-                        html_data += "<option value=" + json_data[key]["id"] + ">" + json_data[key]["attendance_date"] + "</option>";
+                    if (json_data.length > 0) {
+                        var html_data = "";
+                        for (key in json_data) {
+                            html_data += "<option value=" + json_data[key]["id"] + ">" + json_data[key]["attendance_date"] + "</option>";
+                        }
+                        $('#attendance_date').html(html_data)
+                        $("error_attendance").show()
+                        $("attendance_block").show()
+                        $("attendance_date").html("");
                     }
-                    $('#attendance_date').html(html_data)
+                    else {
+                        $("error_attendance").html("No Attendance Data Found");
+                        $("error_attendance").show()
+                        $("attendance_block").hide()
+                        $("attendance_date").html("");
+                    }
                 })
                 .fail(function () {
                     alert("Error in Fetching Attendance")
+                    $("error_attendance").html("")
+                    $("attendance_block").show()
                 })
         })
     })
