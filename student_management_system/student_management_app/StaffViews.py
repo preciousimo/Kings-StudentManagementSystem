@@ -218,9 +218,25 @@ def save_attendance_data(request):
 
 def update_attendance(request):
     subjects = Subjects.objects.filter(staff_id=request.user.id)
-    session_years = SessionYear.objects.all()
+    session_year_id = SessionYear.objects.all()
     context = {
         'subjects':subjects,
-        'session_years':session_years
+        'session_year_id':session_year_id
         }
     return render(request, 'staff_templates/update_attendance_template.html', context)
+
+@csrf_exempt
+def get_attendance_date(request):
+    subject = request.POST['subject']
+    session_year_id = request.POST['session_year_id']
+    subject_obj = Subjects.objects.get(id=subject)
+    session_year_obj = SessionYear.objects.get(id=session_year_id)
+    
+    attendance = Attendance.objects.filter(subject_id=subject_obj,session_year_id=session_year_obj)
+    attendance_obj = []
+
+    for attendance_single in attendance:
+        data = {"id":attendance_single.id, "attendance_date":attendance_single.attendance_date, "session_year_id":attendance_single}
+        attendance_obj.append(data)
+
+    return JsonResponse(json.dumps(attendance_obj), safe=False)

@@ -23,11 +23,17 @@
                         </div>
                         <div class="form-group">
                             <label>Session Year</label>
-                            <select class="form-control" name="session_year" id="session_year">
-                                {% for session_year in session_years %}
+                            <select class="form-control" name="session_year_id" id="session_year_id">
+                                {% for session_year in session_year_id %}
                                 <option value="{{ session_year.id }}">{{ session_year.session_start_year }} -
                                     {{session_year.session_end_year }}</option>
                                 {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Attendance Date</label>
+                            <select class="form-control" name="attendance_date" id="attendance_date">
+
                             </select>
                         </div>
                     </div>
