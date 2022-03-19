@@ -273,5 +273,10 @@ def save_updated_attendance_data(request):
     except:
         return HttpResponse('Error Occured')
 
+def apply_leave(request):
+    pass
+
+def leave_feedback(request):
+    pass
 
 
