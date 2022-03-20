@@ -104,6 +104,26 @@
                         <i class="fas fa-angle-right right"></i>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{% url 'apply_leave' %}"
+                        class="nav-link {% if request.path == apply_leave %} active {% endif %}">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Leave Application
+                        </p>
+                        <i class="fas fa-angle-right right"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'leave_feedback' %}"
+                        class="nav-link {% if request.path == leave_feedback %} active {% endif %}">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Feedback
+                        </p>
+                        <i class="fas fa-angle-right right"></i>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
