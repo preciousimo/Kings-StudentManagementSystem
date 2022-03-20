@@ -299,6 +299,6 @@ def applyLeaveSave(request):
         return HttpResponse('Method not allowed')
 
 def leaveFeedback(request):
-    pass
+    return render(request, 'staff_templates/leave_feedback_template.html') 
 
 
