@@ -11,7 +11,8 @@
                     <div class="card-header">
                         <h3 class="card-title">Leave Application</h3>
                     </div>
-                    <form action="{% url 'apply-leave-save' %}">
+                    <form action="{% url 'apply-leave-save' %}" method="post">
+                        {% csrf_token %}
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Leave Date</label>
@@ -19,7 +20,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Reason for Leave</label>
-                                <textarea name="leave_reason" class="form-control" rows="6" cols="30"></textarea>
+                                <textarea name="leave_message" class="form-control" rows="6" cols="30"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Return Date</label>

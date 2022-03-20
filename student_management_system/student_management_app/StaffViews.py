@@ -1,7 +1,7 @@
 import json
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from student_management_app.models import CustomUser, Staffs, Subjects, SessionYear, Students, Attendance, AttendanceReport
+from student_management_app.models import CustomUser, Staffs, Subjects, SessionYear, Students, Attendance, AttendanceReport, LeaveReportStaff
 from student_management_app.Forms import AddStaffForm, EditStaffForm
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -277,7 +277,23 @@ def applyLeave(request):
     return render(request, 'staff_templates/apply_leave_template.html')
 
 def applyLeaveSave(request):
-    pass
+    if request.method == 'POST':
+        leave_date = request.POST['leave_date']
+        leave_message = request.POST['leave_message']
+        return_date = request.POST['return_date']
+
+        staff_obj = Staffs.objects.get(admin=request.user.id)
+        try: 
+            leave_report = LeaveReportStaff(leave_date=leave_date, leave_message=leave_message, return_date=return_date, staff_id=staff_obj, leave_status=0)
+            leave_report.save()
+            messages.success(request, 'Application Submitted successfully')
+            return redirect('apply-leave')
+        except:
+            messages.error(request, 'Failed to apply for leave')
+            return redirect('apply-leave')
+
+    else:
+        return HttpResponse('Method not allowed')
 
 def leaveFeedback(request):
     pass

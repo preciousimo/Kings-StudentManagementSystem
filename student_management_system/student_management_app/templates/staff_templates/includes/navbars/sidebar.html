@@ -105,7 +105,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'apply-leave' as apply_leave %}"
+                    {% url 'apply-leave' as apply_leave %}
+                    <a href="{% url 'apply-leave' %}"
                         class="nav-link {% if request.path == apply_leave %} active {% endif %}">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
@@ -115,7 +116,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'leave-feedback' as  leave_feedback %}"
+                    {% url 'leave-feedback' as leave_feedback %}
+                    <a href="{% url 'leave-feedback' %}"
                         class="nav-link {% if request.path == leave_feedback %} active {% endif %}">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
