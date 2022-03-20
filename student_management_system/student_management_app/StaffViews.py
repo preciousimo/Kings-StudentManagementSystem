@@ -274,6 +274,9 @@ def save_updated_attendance_data(request):
         return HttpResponse('Error Occured')
 
 def apply_leave(request):
+    return render(request, 'staff_templates/apply_leave_template.html')
+
+def apply_leave_save(request):
     pass
 
 def leave_feedback(request):
