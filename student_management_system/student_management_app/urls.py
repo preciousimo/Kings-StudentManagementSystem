@@ -37,8 +37,8 @@ urlpatterns = [
     path('get_student_attendance', StaffViews.get_student_attendance, name="get_student_attendance"),
     path('update_attendance', StaffViews.update_attendance, name="update_attendance"),
     path('save_updated_attendance_data', StaffViews.save_updated_attendance_data, name="save_updated_attendance_data"),
-    path('apply_leave', StaffViews.apply_leave, name="apply_leave"),
-    path('apply_leave_save', StaffViews.apply_leave_save, name="apply_leave_save"),
-    path('leave_feedback', StaffViews.leave_feedback, name="leave_feedback"),
+    path('apply-leave', StaffViews.applyLeave, name="apply-leave"),
+    path('apply-leave-save', StaffViews.applyLeaveSave, name="apply-leave-save"),
+    path('leave-feedback', StaffViews.leaveFeedback, name="leave-feedback"),
     
 ]
