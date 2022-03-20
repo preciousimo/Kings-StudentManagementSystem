@@ -56,32 +56,42 @@
                     <!-- ./card-header -->
                     <div class="card-body">
                         <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Leave Date</th>
-                                    <th>Reason</th>
-                                    <th>Return Date</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr data-widget="expandable-table" aria-expanded="false">
-                                    <td>183</td>
-                                    <td>John Doe</td>
-                                    <td class="expandable-body">11-7-2014</td>
-                                    <td>Approved</td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.
-                                    </td>
-                                </tr>
 
-                            </tbody>
+                            <tr>
+                                <th>ID</th>
+                                <th>Leave Date</th>
+                                <th>Reason</th>
+                                <th>Return Date</th>
+                                <th>Status</th>
+                            </tr>
+
+
+                            <tr>
+                                {% for row in leave_data%}
+                                <td>{{ row.id }}</td>
+                                <td>{{ row.leave_date }}</td>
+                                <td class="expandable-body">{{ row.leave_message }}</td>
+                                <td>{{ row.return_date }}</td>
+                                <td>
+                                    {% if row.leave_status == 1 %}
+                                    <span class="btn btn-success">Approved</span>
+                                    {% elif row.leave_status == 0 %}
+                                    <span class="btn btn-info">Pending</span>
+                                    {% else %}
+                                    <span class="btn btn-danger">Rejected</span>
+                                    {% endif %}
+                                </td>
+                                {% endfor %}
+                            </tr>
+
+
                         </table>
+
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 

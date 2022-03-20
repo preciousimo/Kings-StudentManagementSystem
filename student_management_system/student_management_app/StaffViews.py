@@ -274,7 +274,10 @@ def save_updated_attendance_data(request):
         return HttpResponse('Error Occured')
 
 def applyLeave(request):
-    return render(request, 'staff_templates/apply_leave_template.html')
+    staff_obj = Staffs.objects.get(admin=request.user.id)
+    leave_data = LeaveReportStaff.objects.filter(staff_id=staff_obj)
+
+    return render(request, 'staff_templates/apply_leave_template.html', {'leave_data':leave_data})
 
 def applyLeaveSave(request):
     if request.method == 'POST':
