@@ -46,7 +46,7 @@ class LoginCheckMiddleWare(MiddlewareMixin):
                 else:
                     return HttpResponse('You are not authorised to be here')
         else:
-            if (request.path == '/login'):
+            if (request.path == '/login' or modulename == 'django.contrib.auth.urls'):
                 pass
             else:
                 pass

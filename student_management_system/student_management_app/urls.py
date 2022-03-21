@@ -1,8 +1,9 @@
-from django.urls import path
+from django.urls import path, include
 from student_management_app import views, HodViews, StudentViews, StaffViews
 
 
 urlpatterns = [
+    
     #HOD/Admin Views
     path('admin-home', HodViews.adminHome, name="admin-home"),
     path('profile', HodViews.profile, name="profile"),
