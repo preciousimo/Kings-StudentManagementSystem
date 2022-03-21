@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login Page</title>
+  <link rel="shortcut icon" href="{% static 'favicon/kislogo.ico' %}" type="image/x-icon">
+  {% include 'includes/css_links.html' %}
+</head>
+
+<body class="hold-transition login-page">
+  <div class="login-box">
+    <!-- /.login-logo -->
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <a href="#" class="h3"><b>Kings</b><br>Student Management System</a>
+      </div>
+      <div class="card-body">
+        <p class="login-box-msg">Password Reset</p>
+
+        {% block content %} {% endblock content %}
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+  <!-- /.login-box -->
+  {% include 'includes/js_links.html' %}
+</body>
+
+</html>
