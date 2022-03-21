@@ -1,7 +1,7 @@
 import json
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from student_management_app.models import CustomUser, Staffs, Subjects, SessionYear, Students, Attendance, AttendanceReport, LeaveReportStaff
+from student_management_app.models import CustomUser, Staffs, Subjects, SessionYear, Students, Attendance, AttendanceReport, LeaveReportStaff, FeedBackStaffs
 from student_management_app.Forms import AddStaffForm, EditStaffForm
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -299,6 +299,28 @@ def applyLeaveSave(request):
         return HttpResponse('Method not allowed')
 
 def leaveFeedback(request):
-    return render(request, 'staff_templates/leave_feedback_template.html') 
+    staff_obj = Staffs.objects.get(admin=request.user.id)
+    feedback_data = FeedBackStaffs.objects.filter(staff_id=staff_obj)
+    
+    return render(request, 'staff_templates/leave_feedback_template.html', {'feedback_data':feedback_data}) 
+
+def leaveFeedbackSave(request):
+    if request.method == 'POST':
+        
+        feedback_message = request.POST['feedback_message']
+        staff_obj = Staffs.objects.get(admin=request.user.id)
+
+        try: 
+            feedback_report = FeedBackStaffs(feedback=feedback_message, feedback_reply="", staff_id=staff_obj)
+            feedback_report.save()
+            messages.success(request, 'Feedback Submitted successfully')
+            return redirect('leave-feedback')
+        except:
+            messages.error(request, 'Failed to submit Feedback')
+            return redirect('leave-feedback')
+
+    else:
+        return HttpResponse('Method not allowed')
+
 
 

@@ -40,5 +40,7 @@ urlpatterns = [
     path('apply-leave', StaffViews.applyLeave, name="apply-leave"),
     path('apply-leave-save', StaffViews.applyLeaveSave, name="apply-leave-save"),
     path('leave-feedback', StaffViews.leaveFeedback, name="leave-feedback"),
+    path('leave-feedback-save', StaffViews.leaveFeedbackSave, name="leave-feedback-save"),
+    
     
 ]
