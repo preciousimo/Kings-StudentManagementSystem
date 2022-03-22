@@ -71,7 +71,28 @@
                         <i class="fas fa-angle-right right"></i>
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    {% url 'student-apply-leave' as student_apply_leave %}
+                    <a href="{% url 'student-apply-leave' %}"
+                        class="nav-link {% if request.path == student_apply_leave %} active {% endif %}">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Leave Application
+                        </p>
+                        <i class="fas fa-angle-right right"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    {% url 'student-leave-feedback' as student_leave_feedback %}
+                    <a href="{% url 'student-leave-feedback' %}"
+                        class="nav-link {% if request.path == student_leave_feedback %} active {% endif %}">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Feedback
+                        </p>
+                        <i class="fas fa-angle-right right"></i>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
