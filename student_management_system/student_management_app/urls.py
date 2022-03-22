@@ -4,7 +4,9 @@ from student_management_app import views, HodViews, StudentViews, StaffViews
 
 
 urlpatterns = [
-    
+
+    path('accounts/', include('django.contrib.auth.urls')),
+
     #HOD/Admin Views
     path('admin-home', HodViews.adminHome, name="admin-home"),
     path('profile', HodViews.profile, name="profile"),
