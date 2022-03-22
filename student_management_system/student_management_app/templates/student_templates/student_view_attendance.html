@@ -1,5 +1,5 @@
 {% extends 'student_templates/base.html' %}
-{% block page_title %}View Attendance Data{% endblock page_title %}
+{% block page_title %}Student Attendance Data{% endblock page_title %}
 {% block home_content %}
 <section class="content">
     <div class="container-fluid">
@@ -16,7 +16,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Subject Name</label>
-                                <select class="form-control" name="subject" id="subject">
+                                <select class="form-control" name="subject">
                                     {% for subject in subjects %}
                                     <option value="{{ subject.id }}">{{ subject.subject_name }}</option>
                                     {% endfor %}
@@ -37,6 +37,10 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-dark btn-block">Fetch
+                                Attendance</button>
+                        </div>
                     </form>
                     {% if messages %}
                     <div class="col-12">
@@ -53,11 +57,8 @@
                         {% endfor %}
                     </div>
                     {% endif %}
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-dark btn-block">Fetch
-                            Attendance</button>
-                    </div>
-                    <div id="student_data" class="card-footer"></div>
+
+
                 </div>
             </div>
         </div>
