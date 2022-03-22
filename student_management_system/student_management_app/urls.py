@@ -2,6 +2,7 @@ from django.urls import path, include
 from student_management_app import views, HodViews, StudentViews, StaffViews
 
 
+
 urlpatterns = [
     
     #HOD/Admin Views
