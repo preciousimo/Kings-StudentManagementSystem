@@ -11,7 +11,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Leave a Feedback Message</h3>
                     </div>
-                    <form action="{% url 'leave-feedback-save' %}" method="post">
+                    <form action="{% url 'student-leave-feedback-save' %}" method="post">
                         {% csrf_token %}
                         <div class="card-body">
                             <div class="form-group">

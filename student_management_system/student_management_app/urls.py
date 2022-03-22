@@ -25,11 +25,10 @@ urlpatterns = [
     path('edit-student-save/', StudentViews.editStudentSave, name="edit-student-save"),
     path('student-view-attendance/', StudentViews.studentViewAttendance, name="student-view-attendance"),
     path('student-view-attendance-save/', StudentViews.studentViewAttendanceSave, name="student-view-attendance-save"),
-    path('apply-leave', StudentViews.applyLeave, name="apply-leave"),
-    path('apply-leave-save', StudentViews.applyLeaveSave, name="apply-leave-save"),
-    path('leave-feedback', StudentViews.leaveFeedback, name="leave-feedback"),
-    path('leave-feedback-save', StudentViews.leaveFeedbackSave, name="leave-feedback-save"),
-    
+    path('student-apply-leave', StudentViews.applyLeave, name="student-apply-leave"),
+    path('student-apply-leave-save', StudentViews.applyLeaveSave, name="student-apply-leave-save"),
+    path('student-leave-feedback', StudentViews.leaveFeedback, name="student-leave-feedback"),
+    path('student-leave-feedback-save', StudentViews.leaveFeedbackSave, name="student-leave-feedback-save"),
     #Staff Views
     path('staff-home/', StaffViews.staffHome, name="staff-home"),
     path('add-staff/', StaffViews.addStaff, name="add-staff"),
@@ -47,10 +46,10 @@ urlpatterns = [
     path('get_student_attendance', StaffViews.get_student_attendance, name="get_student_attendance"),
     path('update_attendance', StaffViews.update_attendance, name="update_attendance"),
     path('save_updated_attendance_data', StaffViews.save_updated_attendance_data, name="save_updated_attendance_data"),
-    path('apply-leave', StaffViews.applyLeave, name="apply-leave"),
-    path('apply-leave-save', StaffViews.applyLeaveSave, name="apply-leave-save"),
-    path('leave-feedback', StaffViews.leaveFeedback, name="leave-feedback"),
-    path('leave-feedback-save', StaffViews.leaveFeedbackSave, name="leave-feedback-save"),
+    path('staff-apply-leave', StaffViews.applyLeave, name="staff-apply-leave"),
+    path('staff-apply-leave-save', StaffViews.applyLeaveSave, name="staff-apply-leave-save"),
+    path('staff-leave-feedback', StaffViews.leaveFeedback, name="staff-leave-feedback"),
+    path('staff-leave-feedback-save', StaffViews.leaveFeedbackSave, name="staff-leave-feedback-save"),
     
     
 ]
