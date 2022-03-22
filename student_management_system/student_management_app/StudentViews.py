@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from student_management_app.models import CustomUser, Students, SessionYear, Subjects, Attendance, AttendanceReport
+from student_management_app.models import CustomUser, Students, SessionYear, Subjects, Attendance, AttendanceReport, LeaveReportStudent, FeedBackStudents
 from student_management_app.Forms import AddStudentForm, EditStudentForm
 from django.http import HttpResponse, HttpResponseRedirect
 import datetime
@@ -172,3 +172,54 @@ def studentViewAttendanceSave(request):
     }
 
     return render(request, 'student_templates/student_attendance_data.html', context)
+
+def applyLeave(request):
+    student_obj = Students.objects.get(admin=request.user.id)
+    leave_data = LeaveReportStudent.objects.filter(student_id=student_obj)
+
+    return render(request, 'student_templates/apply_leave_template.html', {'leave_data':leave_data})
+
+def applyLeaveSave(request):
+    if request.method == 'POST':
+        leave_date = request.POST['leave_date']
+        leave_message = request.POST['leave_message']
+        return_date = request.POST['return_date']
+
+        student_obj = Students.objects.get(admin=request.user.id)
+        try: 
+            leave_report = LeaveReportStudent(leave_date=leave_date, leave_message=leave_message, return_date=return_date, student_id=student_obj, leave_status=0)
+            leave_report.save()
+            messages.success(request, 'Application Submitted successfully')
+            return redirect('apply-leave')
+        except:
+            messages.error(request, 'Failed to apply for leave')
+            return redirect('apply-leave')
+
+    else:
+        return HttpResponse('Method not allowed')
+
+def leaveFeedback(request):
+    student_obj = Students.objects.get(admin=request.user.id)
+    feedback_data = FeedBackStudents.objects.filter(student_id=student_obj)
+    
+    return render(request, 'student_templates/leave_feedback_template.html', {'feedback_data':feedback_data}) 
+
+def leaveFeedbackSave(request):
+    if request.method == 'POST':
+        
+        feedback_message = request.POST['feedback_message']
+        student_obj = Students.objects.get(admin=request.user.id)
+
+        try: 
+            feedback_report = FeedBackStudents(feedback=feedback_message, feedback_reply="", student_id=student_obj)
+            feedback_report.save()
+            messages.success(request, 'Feedback Submitted successfully')
+            return redirect('leave-feedback')
+        except:
+            messages.error(request, 'Failed to submit Feedback')
+            return redirect('leave-feedback')
+
+    else:
+        return HttpResponse('Method not allowed')
+
+
