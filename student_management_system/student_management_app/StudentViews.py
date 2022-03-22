@@ -141,3 +141,6 @@ def editStudentSave(request):
 
 def studentAttendance(request):
     return HttpResponse('Student Attendance ..')
+
+def studentViewAttendance(request):
+    return render(request, 'student_templates/student_view_attendance.html')
