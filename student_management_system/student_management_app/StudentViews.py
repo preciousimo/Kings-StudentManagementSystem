@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from student_management_app.models import CustomUser, Students, SessionYear
+from student_management_app.models import CustomUser, Students, SessionYear, Subjects
 from student_management_app.Forms import AddStudentForm, EditStudentForm
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -143,4 +143,12 @@ def studentAttendance(request):
     return HttpResponse('Student Attendance ..')
 
 def studentViewAttendance(request):
-    return render(request, 'student_templates/student_view_attendance.html')
+    student = Students.objects.filter(admin=request.user.id)
+    subjects = Subjects.objects.filter(staff_id=request.user.id)
+
+    context = {
+        'subjects':subjects,
+        'student':student
+    }
+
+    return render(request, 'student_templates/student_view_attendance.html', context)
