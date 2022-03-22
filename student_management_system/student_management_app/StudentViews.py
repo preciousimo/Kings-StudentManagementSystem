@@ -139,16 +139,12 @@ def editStudentSave(request):
     else:
         return HttpResponse('Method not allowed')
 
-def studentAttendance(request):
-    return HttpResponse('Student Attendance ..')
-
 def studentViewAttendance(request):
     student = Students.objects.filter(admin=request.user.id)
-    subjects = Subjects.objects.filter(staff_id=request.user.id)
+    subjects = Subjects.objects.all()
 
     context = {
         'subjects':subjects,
-        'student':student
     }
 
     return render(request, 'student_templates/student_view_attendance.html', context)

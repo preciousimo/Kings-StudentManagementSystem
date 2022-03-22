@@ -23,7 +23,6 @@ urlpatterns = [
     path('manage-student/', StudentViews.manageStudent, name="manage-student"),
     path('edit-student/<str:student_id>', StudentViews.editStudent, name="edit-student"),
     path('edit-student-save/', StudentViews.editStudentSave, name="edit-student-save"),
-    path('student-attendance/', StudentViews.studentAttendance, name="student-attendance"),
     path('student-view-attendance/', StudentViews.studentViewAttendance, name="student-view-attendance"),
     path('student-view-attendance-save/', StudentViews.studentViewAttendanceSave, name="student-view-attendance-save"),
     #Staff Views
