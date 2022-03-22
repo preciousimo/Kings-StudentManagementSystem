@@ -163,6 +163,8 @@ def studentViewAttendanceSave(request):
     attendance = Attendance.objects.filter(attendance_date__range=(start_date_parse,end_date_parse),subject_id=subject_obj)
     attendance_reports = AttendanceReport.objects.filter(attendance_id=attendance, student_id=student_obj)
 
-    for attendance_report in attendance_reports:
-        print("Date: "+str(attendance_report.attendance_id), " Status: "+str(attendance_report.status))
+    context = {
+        'attendance_reports':attendance_reports
+    }
 
+    return render(request, 'student_templates/student_attendance_data.html', context)
