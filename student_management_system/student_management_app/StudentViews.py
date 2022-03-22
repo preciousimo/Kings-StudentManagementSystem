@@ -4,6 +4,7 @@ from student_management_app.models import CustomUser, Students, SessionYear, Sub
 from student_management_app.Forms import AddStudentForm, EditStudentForm
 from django.http import HttpResponse, HttpResponseRedirect
 import datetime
+from django.views.decorators.csrf import csrf_exempt
 
 def studentHome(request):
     return render(request, 'student_templates/home_content.html')
@@ -222,7 +223,13 @@ def leaveFeedbackSave(request):
     else:
         return HttpResponse('Method not allowed')
 
+@csrf_exempt
 def checkStudentEmailExist(request):
-    pass
+    email = request.POST['email']
+    user_obj = CustomUser.objects.filter(email=email).exists()
+    if user_obj:
+        return HttpResponse(True)
+    else:
+        return HttpResponse(False)
 
 

@@ -23,10 +23,29 @@
 <script>
     $(document).ready(function () {
         $("#id_email").keyup(function () {
-            console.log($(this).val())
+            var email = ($(this).val())
+
+            $.ajax({
+                url: "{% url 'check-student-email-exist' %}",
+                type: 'POST',
+                data: { email: email }
+            })
+                .done(function (response) {
+                    console.log(response)
+                    if (response == "True") {
+                        $(".email_error").remove();
+                        $("<span class='alert alert-danger email_error'>Email Not Available</span>").insertAfter('#id_email');
+                    } else {
+                        $(".email_error").remove();
+                        $("<span class='alert alert-success email_success'>Email Available</span>").insertAfter('#id_email');
+                    }
+                })
+                .fail(function () {
+                    console.log('Failed')
+                })
         })
     })
 </script>
-{% endblock custon_js %}
+{% endblock custom_js %}
 
 {% endblock home_content %}
