@@ -18,4 +18,32 @@
         </div>
     </div>
 </section>
+{% block custom_js %}
+<script>
+    $(document).ready(function () {
+        $("#id_email").keyup(function () {
+            var email = ($(this).val())
+
+            $.ajax({
+                url: "{% url 'check-staff-email-exist' %}",
+                type: 'POST',
+                data: { email: email }
+            })
+                .done(function (response) {
+                    console.log(response)
+                    if (response == "True") {
+                        $(".email_error").remove();
+                        $("<span class='email_error' style='padding:5px; color:red; font-weight:bold'>Email Not Available</span>").insertAfter('#id_email');
+                    } else {
+                        $(".email_error").remove();
+                        $("<span class='email_error' style='padding:5px; color:green; font-weight:bold'>Email Available</span>").insertAfter('#id_email');
+                    }
+                })
+                .fail(function () {
+                    console.log('Failed')
+                })
+        })
+    })
+</script>
+{% endblock custom_js %}
 {% endblock home_content %}
