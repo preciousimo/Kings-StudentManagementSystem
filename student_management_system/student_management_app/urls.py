@@ -29,6 +29,7 @@ urlpatterns = [
     path('student-apply-leave-save', StudentViews.applyLeaveSave, name="student-apply-leave-save"),
     path('student-leave-feedback', StudentViews.leaveFeedback, name="student-leave-feedback"),
     path('student-leave-feedback-save', StudentViews.leaveFeedbackSave, name="student-leave-feedback-save"),
+    path('check-student-email-exist', StudentViews.checkStudentEmailExist, name="check-student-email-exist"),
     #Staff Views
     path('staff-home/', StaffViews.staffHome, name="staff-home"),
     path('add-staff/', StaffViews.addStaff, name="add-staff"),

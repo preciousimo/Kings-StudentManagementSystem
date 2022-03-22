@@ -222,4 +222,7 @@ def leaveFeedbackSave(request):
     else:
         return HttpResponse('Method not allowed')
 
+def checkStudentEmailExist(request):
+    pass
+
 
