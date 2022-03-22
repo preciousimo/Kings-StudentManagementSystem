@@ -166,7 +166,9 @@ def studentViewAttendanceSave(request):
 
     context = {
         'attendance':attendance,
-        'attendance_reports':attendance_reports
+        'attendance_reports':attendance_reports,
+        'start_date':start_date,
+        'end_date':end_date
     }
 
     return render(request, 'student_templates/student_attendance_data.html', context)

@@ -30,11 +30,9 @@
     }
 </style>
 {% endblock custom_css %}
-{% for dates in attendance %}
 {% block page_title %}
-View Attendance Data: {{ dates.start_data_parse }} - {{ dates.end_data_parse }}
+View Attendance Data:
 {% endblock page_title %}
-{% endfor %}
 {% block home_content %}
 <section class="content">
     <div class="container-fluid">
