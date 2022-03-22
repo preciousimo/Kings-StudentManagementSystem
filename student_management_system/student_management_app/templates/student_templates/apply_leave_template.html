@@ -1,4 +1,4 @@
-{% extends 'staff_templates/base.html' %}
+{% extends 'student_templates/base.html' %}
 {% block page_title %}Leave Report and Apply for Leave{% endblock page_title %}
 {% block home_content %}
 <section class="content">
@@ -65,9 +65,9 @@
                                 <th>Status</th>
                             </tr>
 
-
+                            {% for row in leave_data%}
                             <tr>
-                                {% for row in leave_data%}
+
                                 <td>{{ row.id }}</td>
                                 <td>{{ row.leave_date }}</td>
                                 <td class="expandable-body">{{ row.leave_message }}</td>
@@ -81,9 +81,9 @@
                                     <span class="btn btn-danger">Rejected</span>
                                     {% endif %}
                                 </td>
-                                {% endfor %}
-                            </tr>
 
+                            </tr>
+                            {% endfor %}
 
                         </table>
 

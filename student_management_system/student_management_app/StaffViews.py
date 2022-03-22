@@ -290,10 +290,10 @@ def applyLeaveSave(request):
             leave_report = LeaveReportStaff(leave_date=leave_date, leave_message=leave_message, return_date=return_date, staff_id=staff_obj, leave_status=0)
             leave_report.save()
             messages.success(request, 'Application Submitted successfully')
-            return redirect('apply-leave')
+            return redirect('staff-apply-leave')
         except:
             messages.error(request, 'Failed to apply for leave')
-            return redirect('apply-leave')
+            return redirect('staff-apply-leave')
 
     else:
         return HttpResponse('Method not allowed')
@@ -314,10 +314,10 @@ def leaveFeedbackSave(request):
             feedback_report = FeedBackStaffs(feedback=feedback_message, feedback_reply="", staff_id=staff_obj)
             feedback_report.save()
             messages.success(request, 'Feedback Submitted successfully')
-            return redirect('leave-feedback')
+            return redirect('staff-leave-feedback')
         except:
             messages.error(request, 'Failed to submit Feedback')
-            return redirect('leave-feedback')
+            return redirect('staff-leave-feedback')
 
     else:
         return HttpResponse('Method not allowed')
