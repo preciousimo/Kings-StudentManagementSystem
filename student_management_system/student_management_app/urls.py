@@ -52,5 +52,6 @@ urlpatterns = [
     path('staff-leave-feedback', StaffViews.leaveFeedback, name="staff-leave-feedback"),
     path('staff-leave-feedback-save', StaffViews.leaveFeedbackSave, name="staff-leave-feedback-save"),
     path('check-staff-email-exist', StaffViews.checkStaffEmailExist, name="check-staff-email-exist"),
+    path('check-staff-username-exist', StaffViews.checkStaffUsernameExist, name="check-staff-username-exist"),
     
 ]

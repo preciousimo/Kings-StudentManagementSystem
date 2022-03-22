@@ -330,3 +330,12 @@ def checkStaffEmailExist(request):
         return HttpResponse(True)
     else:
         return HttpResponse(False)
+
+@csrf_exempt
+def checkStaffUsernameExist(request):
+    username = request.POST['username']
+    user_obj = CustomUser.objects.filter(username=username).exists()
+    if user_obj:
+        return HttpResponse(True)
+    else:
+        return HttpResponse(False)
