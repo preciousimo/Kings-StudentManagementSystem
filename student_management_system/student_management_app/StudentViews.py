@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from student_management_app.models import CustomUser, Students, SessionYear, Subjects
+from student_management_app.models import CustomUser, Students, SessionYear, Subjects, Attendance, AttendanceReport
 from student_management_app.Forms import AddStudentForm, EditStudentForm
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -152,3 +152,21 @@ def studentViewAttendance(request):
     }
 
     return render(request, 'student_templates/student_view_attendance.html', context)
+
+def studentViewAttendanceSave(request):
+    subject_id = request.POST['subject_id']
+    start_date = request.POST['start_date']
+    end_date = request.POST['end_date']
+
+    start_date_parse = datetime.datetime.strptime(start_date, "%Y-%m-%d"),date()
+    end_date_parse = datetime.datetime.strptime(start_date, "%Y-%m-%d"),date()
+    subject_obj = Subjects.objects.get(id=subject_id)
+    user_object = CustomUser.objects.get(id=request.user.id)
+    student_obj = Students.objects.get(admin=user_object)
+
+    attendance = Attendance.objects.filter(attendance_date__range=(start_date_parse,end_date_parse),subject_id=subject_obj)
+    attendance_reports = AttendanceReport.objects.filter(attendance_id=attendance, student_id=student_obj)
+
+    for attendance_report in attendance_reports:
+        print("Date: "+str(attendance_report.attendance_id), " Status: "+str(attendance_report.status))
+

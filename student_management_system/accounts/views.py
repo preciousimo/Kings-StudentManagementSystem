@@ -38,7 +38,7 @@ def registerPage(request):
             messages.error(request,'Passwords do not match') 
             return render(request, 'register.html')
     else:
-        return render(request, 'register.html')
+        return render(request, 'registration/register.html')
 
 def loginPage(request):
     if request.method == 'POST':
@@ -59,7 +59,7 @@ def loginPage(request):
             messages.error(request, 'Invalid Credentials')
             return render(request, 'login.html')
     else:
-        return render(request, 'login.html')
+        return render(request, 'registration/login.html')
 
 def logoutPage(request):
     logout(request)
