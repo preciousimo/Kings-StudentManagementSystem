@@ -5,14 +5,14 @@ class DateInput(forms.DateInput):
     input_type = "date"
 
 class AddStudentForm(forms.Form):
-    first_name = forms.CharField(label = "First Name",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    middle_name = forms.CharField(label = "Middle Name",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    last_name = forms.CharField(label = "Last Name",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    username = forms.CharField(label = "Username",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    email = forms.EmailField(label = "Email",max_length=100, widget=forms.EmailInput(attrs={'class':'form-control'}))
+    first_name = forms.CharField(label = "First Name",max_length=50, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
+    middle_name = forms.CharField(label = "Middle Name",max_length=50, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
+    last_name = forms.CharField(label = "Last Name",max_length=50, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
+    username = forms.CharField(label = "Username",max_length=50, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
+    email = forms.EmailField(label = "Email",max_length=100, widget=forms.EmailInput(attrs={'class':'form-control','autocomplete':'off'}))
     password = forms.CharField(label = "Password",max_length=50, widget=forms.PasswordInput(attrs={'class':'form-control'}))
     date_of_birth = forms.DateField(widget=DateInput(attrs={'class':'form-control'}))
-    phone_number = forms.CharField(label = "Phone Number",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
+    phone_number = forms.CharField(label = "Phone Number",max_length=50, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
     gender_choice = (
         ('Others', 'Others'),
         ('Male', 'Male'),
@@ -37,9 +37,9 @@ class AddStudentForm(forms.Form):
     except:
         pass
     session_year_id = forms.ChoiceField(label="Session Year", choices=session_list, widget=forms.Select(attrs={'class':'form-control'}))
-    address = forms.CharField(label = "Address",max_length=500, widget=TextInput(attrs={'class':'form-control'}))
-    state = forms.CharField(label = "State",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    nationality = forms.CharField(label = "Nationality", max_length=50, widget=TextInput(attrs={'class':'form-control'}))
+    address = forms.CharField(label = "Address",max_length=500, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
+    state = forms.CharField(label = "State",max_length=50, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
+    nationality = forms.CharField(label = "Nationality", max_length=50, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
     
 class EditStudentForm(forms.Form):
     first_name = forms.CharField(label = "First Name",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
@@ -73,23 +73,23 @@ class EditStudentForm(forms.Form):
     session_end = forms.DateField(label = "Session Ends", widget=DateInput(attrs={'class':'form-control'}))
 
 class AddStaffForm(forms.Form):
-    first_name = forms.CharField(label = "First Name",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    middle_name = forms.CharField(label = "Middle Name",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    last_name = forms.CharField(label = "Last Name",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    username = forms.CharField(label = "Username",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    email = forms.EmailField(label = "Email",max_length=50, widget=forms.EmailInput(attrs={'class':'form-control'}))
+    first_name = forms.CharField(label = "First Name",max_length=50, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
+    middle_name = forms.CharField(label = "Middle Name",max_length=50, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
+    last_name = forms.CharField(label = "Last Name",max_length=50, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
+    username = forms.CharField(label = "Username",max_length=50, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
+    email = forms.EmailField(label = "Email",max_length=50, widget=forms.EmailInput(attrs={'class':'form-control','autocomplete':'off'}))
     password = forms.CharField(label = "Password",max_length=50, widget=forms.PasswordInput(attrs={'class':'form-control'}))
     date_of_birth = forms.DateField(widget=DateInput(attrs={'class':'form-control'}))
-    phone_number = forms.CharField(label = "Phone Number",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
+    phone_number = forms.CharField(label = "Phone Number",max_length=50, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
     gender_choice = (
         ('Others', 'Others'),
         ('Male', 'Male'),
         ('Female', 'Female'),
     )
     gender = forms.ChoiceField(label = "Gender",choices=gender_choice, widget=forms.Select(attrs={'class':'form-control'}))
-    address = forms.CharField(label = "Address",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    state = forms.CharField(label = "State",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-    nationality = forms.CharField(label = "Nationality", max_length=50, widget=TextInput(attrs={'class':'form-control'}))
+    address = forms.CharField(label = "Address",max_length=50, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
+    state = forms.CharField(label = "State",max_length=50, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
+    nationality = forms.CharField(label = "Nationality", max_length=50, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
     
 class EditStaffForm(forms.Form):
     first_name = forms.CharField(label = "First Name",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
