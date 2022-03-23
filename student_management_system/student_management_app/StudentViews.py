@@ -232,4 +232,13 @@ def checkStudentEmailExist(request):
     else:
         return HttpResponse(False)
 
+@csrf_exempt
+def checkStudentUsernameExist(request):
+    username = request.POST['username']
+    user_obj = CustomUser.objects.filter(username=username).exists()
+    if user_obj:
+        return HttpResponse(True)
+    else:
+        return HttpResponse(False)
+
 
