@@ -23,47 +23,52 @@
     $(document).ready(function () {
         $("#id_email").keyup(function () {
             var email = ($(this).val())
-
-            $.ajax({
-                url: "{% url 'check-staff-email-exist' %}",
-                type: 'POST',
-                data: { email: email }
-            })
-                .done(function (response) {
-                    console.log(response)
-                    if (response == "True") {
-                        $(".email_error").remove();
-                        $("<span class='email_error' style='padding:5px; color:red; font-weight:bold'>Email Not Available</span>").insertAfter('#id_email');
-                    } else {
-                        $(".email_error").remove();
-                        $("<span class='email_error' style='padding:5px; color:green; font-weight:bold'>Email Available</span>").insertAfter('#id_email');
-                    }
+            if (email != "") {
+                $.ajax({
+                    url: "{% url 'check-staff-email-exist' %}",
+                    type: 'POST',
+                    data: { email: email }
                 })
-                .fail(function () {
-                    console.log('Failed')
-                })
+                    .done(function (response) {
+                        console.log(response)
+                        if (response == "True") {
+                            $(".email_error").remove();
+                            $("<span class='email_error' style='padding:5px; color:red; font-weight:bold'>Email Not Available</span>").insertAfter('#id_email');
+                        } else {
+                            $(".email_error").remove();
+                            $("<span class='email_error' style='padding:5px; color:green; font-weight:bold'>Email Available</span>").insertAfter('#id_email');
+                        }
+                    })
+                    .fail(function () {
+                        console.log('Failed')
+                    })
+            } else {
+                $(".email_error").remove();
+            }
         })
         $("#id_username").keyup(function () {
             var username = ($(this).val())
-
-            $.ajax({
-                url: "{% url 'check-staff-username-exist' %}",
-                type: 'POST',
-                data: { username: username }
-            })
-                .done(function (response) {
-                    console.log(response)
-                    if (response == "True") {
-                        $(".username_error").remove();
-                        $("<span class='username_error' style='padding:5px; color:red; font-weight:bold'>Username Not Available</span>").insertAfter('#id_username');
-                    } else {
-                        $(".username_error").remove();
-                        $("<span class='username_error' style='padding:5px; color:green; font-weight:bold'>Username Available</span>").insertAfter('#id_username');
-                    }
+            if (username != "") {
+                $.ajax({
+                    url: "{% url 'check-staff-username-exist' %}",
+                    type: 'POST',
+                    data: { username: username }
                 })
-                .fail(function () {
-                    console.log('Failed')
-                })
+                    .done(function (response) {
+                        if (response == "True") {
+                            $(".username_error").remove();
+                            $("<span class='username_error' style='padding:5px; color:red; font-weight:bold'>Username Not Available</span>").insertAfter('#id_username');
+                        } else {
+                            $(".username_error").remove();
+                            $("<span class='username_error' style='padding:5px; color:green; font-weight:bold'>Username Available</span>").insertAfter('#id_username');
+                        }
+                    })
+                    .fail(function () {
+                        console.log('Failed to check availability')
+                    })
+            } else {
+                $(".username_error").remove();
+            }
         })
     })
 </script>
