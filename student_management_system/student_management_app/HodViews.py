@@ -63,3 +63,9 @@ def editSessionSave(request):
 
     else:
         return HttpResponse('Method not allowed')
+
+def studentFeedbackMessage(request):
+    pass
+
+def staffFeedbackMessage(request):
+    pass

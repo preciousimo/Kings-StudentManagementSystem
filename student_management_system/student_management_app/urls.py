@@ -16,6 +16,8 @@ urlpatterns = [
     path('add-session-save', HodViews.addSessionSave, name="add-session-save"),
     path('edit-session', HodViews.editSession, name="edit-session"),
     path('edit-session-save', HodViews.editSessionSave, name="edit-session-save"),
+    path('student-feedback-message', HodViews.studentFeedbackMessage, name="student-feedback-message"),
+    path('staff-feedback-message', HodViews.staffFeedbackMessage, name="staff-feedback-message"),
     #Student Views
     path('student-home', StudentViews.studentHome, name="student-home"),
     path('add-student/', StudentViews.addStudent, name="add-student"),
