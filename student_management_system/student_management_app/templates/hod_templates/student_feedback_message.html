@@ -34,7 +34,7 @@
                                 <td>{{ feedback.feedback }}</td>
                                 <td>{{ feedback.created_at }}</td>
                                 {% if feedback.feedback_reply == "" %}
-                                <td><button class="btn btn-info" data-toggle="modal"
+                                <td><button class="btn btn-info reply_open_modal" data-toggle="modal"
                                         data-target="#reply_modal">Reply</button></td>
                                 {% else %}
                                 <td>{{ feedback.feedback_reply }}</td>
@@ -48,32 +48,6 @@
         </div>
     </div>
 </section>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-    Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="modal fade" id="reply_modal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -84,7 +58,7 @@
             <div class="modal-body">
                 <p>Reply <span id="reply_name"></span></p>
                 <input type="hidden" id="reply_id" name="reply_id">
-                <textarea class="form-control" id="reply_message" rows="10"></textarea>
+                <textarea class="form-control" id="reply_message" cols="30" rows="10"></textarea><br>
                 <button id="reply_btn" class="btn btn-success btn-block">Send Reply</button>
             </div>
             <div class="modal-footer">
@@ -93,5 +67,16 @@
         </div>
     </div>
 </div>
-
+{% block custom_js %}
+<script>
+    $(document).ready(function () {
+        $(".reply_open_modal").click(function () {
+            var id = $(this).parents("tr").children("td:eq(0)").text();
+            var name = $(this).parents("tr").children("td:eq(2)").text();
+            console.log(id)
+            console.log(name)
+        })
+    })
+</script>
+{% endblock custom_js %}
 {% endblock home_content %}
