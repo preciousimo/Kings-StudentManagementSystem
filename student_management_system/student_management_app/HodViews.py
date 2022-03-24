@@ -3,6 +3,7 @@ from accounts import urls
 from django.http import HttpResponse
 from student_management_app.models import SessionYear, FeedBackStudents, FeedBackStaffs
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
 
 def adminHome(request):
     return render(request, 'hod_templates/home_content.html')
@@ -71,3 +72,14 @@ def studentFeedbackMessage(request):
 def staffFeedbackMessage(request):
     feedbacks = FeedBackStaffs.objects.all()
     return render(request, 'hod_templates/staff_feedback_message.html', {'feedbacks':feedbacks})
+@csrf_exempt
+def studentFeedbackReply(request):
+    feedback_id = request.POST['id']
+    feedback_message = request.POST['message']
+    try:
+        feedback_id = FeedBackStudents.objects.get(id = feedback_id)
+        feedback.feedback_reply = feedback_message
+        feedback.save()
+        return HttpResponse('True')
+    except:
+        return HttpResponse('False')
