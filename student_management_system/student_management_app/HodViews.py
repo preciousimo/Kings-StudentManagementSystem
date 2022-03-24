@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from accounts import urls
 from django.http import HttpResponse
-from student_management_app.models import SessionYear, FeedBackStudents
+from student_management_app.models import SessionYear, FeedBackStudents, FeedBackStaffs
 from django.contrib import messages
 
 def adminHome(request):
@@ -69,4 +69,5 @@ def studentFeedbackMessage(request):
     return render(request, 'hod_templates/student_feedback_message.html', {'feedbacks':feedbacks})
 
 def staffFeedbackMessage(request):
-    return render(request, 'hod_templates/staff_feedback_message.html')
+    feedbacks = FeedBackStaffs.objects.all()
+    return render(request, 'hod_templates/staff_feedback_message.html', {'feedbacks':feedbacks})
