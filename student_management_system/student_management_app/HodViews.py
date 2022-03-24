@@ -65,7 +65,7 @@ def editSessionSave(request):
         return HttpResponse('Method not allowed')
 
 def studentFeedbackMessage(request):
-    pass
+    return render(request, 'hod_templates/student_feedback_message.html')
 
 def staffFeedbackMessage(request):
-    pass
+    return render(request, 'hod_templates/staff_feedback_message.html')
