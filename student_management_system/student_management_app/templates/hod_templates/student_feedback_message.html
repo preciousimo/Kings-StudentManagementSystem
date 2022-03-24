@@ -34,7 +34,8 @@
                                 <td>{{ feedback.feedback }}</td>
                                 <td>{{ feedback.created_at }}</td>
                                 {% if feedback.feedback_reply == "" %}
-                                <td><button type="submit" class="btn btn-success">Reply</button></td>
+                                <td><button type="submit" class="btn btn-success" data-toggle="modal"
+                                        data-target="#reply_modal">Reply</button></td>
                                 {% else %}
                                 <td>{{ feedback.feedback_reply }}</td>
                                 {% endif %}
@@ -51,6 +52,25 @@
         </div>
     </div>
 </section>
+<div class="modal fade" id="reply_modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Reply Feedback</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Reply <span id="reply_name"></span></p>
+                <input type="hidden" id="reply_id" name="reply_id">
+                <textarea class="form-control" id="reply_message" rows="10"></textarea>
+                <button id="reply-btn" class="btn btn-success btn-block">Reply</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 {% endblock home_content %}
