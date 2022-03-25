@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from accounts import urls
 from django.http import HttpResponse
-from student_management_app.models import SessionYear, FeedBackStudents, FeedBackStaffs
+from student_management_app.models import SessionYear, FeedBackStudents, FeedBackStaffs, LeaveReportStudent, LeaveReportStaff
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 
@@ -85,7 +85,8 @@ def studentFeedbackReply(request):
         return HttpResponse('False')
 
 def studentLeaveView(request):
-    return render(request, 'hod_templates/student_leave_view.html')
+    leaves = LeaveReportStudent.objects.all()
+    return render(request, 'hod_templates/student_leave_view.html', {'leaves':leaves})
 
 def staffLeaveView(request):
     return render(request, 'hod_templates/staff_leave_view.html')

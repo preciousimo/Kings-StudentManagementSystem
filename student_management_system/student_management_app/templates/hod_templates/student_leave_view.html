@@ -1,5 +1,5 @@
 {% extends 'hod_templates/base.html' %}
-{% block page_title %}Student Feedback Message{% endblock page_title %}
+{% block page_title %}Student Apply Leave{% endblock page_title %}
 {% block home_content %}
 <section class="content">
     <div class="container-fluid">
@@ -9,7 +9,7 @@
                 <!-- general form elements -->
                 <div class="card card-dark">
                     <div class="card-header">
-                        <h3 class="card-title">Students Feedback</h3>
+                        <h3 class="card-title">Students Leave</h3>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered table-hover">
@@ -18,27 +18,32 @@
                                 <th>ID</th>
                                 <th>Student ID</th>
                                 <th>Student Name</th>
-                                <th>Student Session</th>
-                                <th>Message</th>
-                                <th>Sent On</th>
-                                <th>Reply</th>
+                                <th>Leave Date</th>
+                                <th>Return Date</th>
+                                <th>Leave Message</th>
+                                <th>Applied On</th>
+                                <th>Action</th>
                             </tr>
-                            {% for feedback in feedbacks %}
+                            {% for leave in leaves %}
                             <tr>
-                                <td>{{ feedback.id }}</td>
-                                <td>{{ feedback.student_id.id }}</td>
-                                <td>{{ feedback.student_id.admin.first_name }} {{ feedback.student_id.admin.last_name }}
+                                <td>{{ leave.id }}</td>
+                                <td>{{ leave.student_id.admin.id }}</td>
+                                <td>{{ leave.student_id.admin.first_name }} {{ leave.student_id.admin.last_name }}
                                 </td>
-                                <td>{{ feedback.student_id.session_year_id.session_start_year }} -
-                                    {{ feedback.student_id.session_year_id.session_end_year }}</td>
-                                <td>{{ feedback.feedback }}</td>
-                                <td>{{ feedback.created_at }}</td>
+                                <td>{{ leave.leave_date }}</td>
+                                <td>{{ leave.return_date }}</td>
+                                <td>{{ leave.leave_message }}</td>
+                                <td>{{ leave.created_at }}</td>
                                 <td>
-                                    {% if feedback.feedback_reply == "" %}
-                                    <button class="btn btn-info reply_open_modal" data-toggle="modal"
-                                        data-target="#reply_modal">Reply</button>
+                                    {% if leave.leave_status == 0 %}
+                                    <a class="btn btn-info" href="">Approve</a>
+                                    <a class="btn btn-danger" href="">Disapprove</a>
+                                    {% elif leave.leave_status == 1 %}
+                                    <button class="btn btn-success reply_open_modal" data-toggle="modal"
+                                        data-target="#reply_modal" disabled="disabled">Approved</button>
                                     {% else %}
-                                    {{ feedback.feedback_reply }}
+                                    <button class="btn btn-danger reply_open_modal" data-toggle="modal"
+                                        data-target="#reply_modal" disabled="disabled">Diapproved</button>
                                     {% endif %}
                                 </td>
                             </tr>
