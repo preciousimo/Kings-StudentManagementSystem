@@ -21,6 +21,8 @@ urlpatterns = [
     path('staff-feedback-message', HodViews.staffFeedbackMessage, name="staff-feedback-message"),
     path('student-leave-view', HodViews.studentLeaveView, name="student-leave-view"),
     path('staff-leave-view', HodViews.staffLeaveView, name="staff-leave-view"),
+    path('student-approve-leave/<str:leave_id>', HodViews.studentApproveLeave, name="student-approve-leave"),
+    path('staff-approve-leave/<str:leave_id>', HodViews.staffApproveLeave, name="staff-approve-leave"),
     #Student Views
     path('student-home', StudentViews.studentHome, name="student-home"),
     path('add-student/', StudentViews.addStudent, name="add-student"),
