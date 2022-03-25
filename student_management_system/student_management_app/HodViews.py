@@ -77,7 +77,7 @@ def studentFeedbackReply(request):
     feedback_id = request.POST['id']
     feedback_message = request.POST['message']
     try:
-        feedback_id = FeedBackStudents.objects.get(id = feedback_id)
+        feedback = FeedBackStudents.objects.get(id = feedback_id)
         feedback.feedback_reply = feedback_message
         feedback.save()
         return HttpResponse('True')
