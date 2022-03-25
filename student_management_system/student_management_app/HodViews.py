@@ -89,7 +89,8 @@ def studentLeaveView(request):
     return render(request, 'hod_templates/student_leave_view.html', {'leaves':leaves})
 
 def staffLeaveView(request):
-    return render(request, 'hod_templates/staff_leave_view.html')
+    leaves = LeaveReportStaff.objects.all()
+    return render(request, 'hod_templates/staff_leave_view.html', {'leaves':leaves})
 
 def studentApproveLeave(request, leave_id):
     leave = LeaveReportStudent.objects.get(id=leave_id)
