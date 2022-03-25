@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from accounts import urls
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from student_management_app.models import SessionYear, FeedBackStudents, FeedBackStaffs, LeaveReportStudent, LeaveReportStaff
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
@@ -92,10 +92,16 @@ def staffLeaveView(request):
     return render(request, 'hod_templates/staff_leave_view.html')
 
 def studentApproveLeave(request, leave_id):
-    return HttpResponse("ID :"+leave_id)
+    leave = LeaveReportStudent.objects.get(id=leave_id)
+    leave.leave_status = 1
+    leave.save()
+    return HttpResponseRedirect('/student-leave-view')
 
-def studentDisapproveLeave(request):
-    pass
+def studentDisapproveLeave(request, leave_id):
+    leave = LeaveReportStudent.objects.get(id=leave_id)
+    leave.leave_status = 2
+    leave.save()
+    return HttpResponseRedirect('/student-leave-view')
 
 def staffApproveLeave(request):
     pass
