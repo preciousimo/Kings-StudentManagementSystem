@@ -83,3 +83,9 @@ def studentFeedbackReply(request):
         return HttpResponse('True')
     except:
         return HttpResponse('False')
+
+def studentLeaveView(request):
+    pass
+
+def staffLeaveView(request):
+    pass
