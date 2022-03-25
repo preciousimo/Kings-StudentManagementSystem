@@ -120,6 +120,33 @@
                     </ul>
                 </li>
                 <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon far fa-edit"></i>
+                        <p>
+                            Leave
+                            <i class="fas fa-angle-down right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            {% url 'student-leave-view' as student_leave_view %}
+                            <a href="{% url 'student-leave-view' %}"
+                                class="nav-link {% if request.path == student_leave_view %} active {% endif %}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Student Leave</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            {% url 'staff-leave-view' as staff_leave_view %}
+                            <a href="{% url 'staff-leave-view' %}"
+                                class="nav-link {% if request.path == staff_leave_view %} active {% endif %}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Staff Leave</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
                     <a href="courses" class="nav-link">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
@@ -142,15 +169,6 @@
                         <i class="nav-icon fas fa-bell"></i>
                         <p>
                             Notifications
-                            <i class="fas fa-angle-down right"></i>
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="leave" class="nav-link">
-                        <i class="nav-icon fas fa-edit"></i>
-                        <p>
-                            Leave
                             <i class="fas fa-angle-down right"></i>
                         </p>
                     </a>
