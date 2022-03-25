@@ -85,7 +85,7 @@ def studentFeedbackReply(request):
         return HttpResponse('False')
 
 def studentLeaveView(request):
-    pass
+    return render(request, 'hod_templates/student_leave_view.html')
 
 def staffLeaveView(request):
-    pass
+    return render(request, 'hod_templates/staff_leave_view.html')
