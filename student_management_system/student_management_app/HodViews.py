@@ -90,3 +90,15 @@ def studentLeaveView(request):
 
 def staffLeaveView(request):
     return render(request, 'hod_templates/staff_leave_view.html')
+
+def studentApproveLeave(request, leave_id):
+    return HttpResponse("ID :"+leave_id)
+
+def studentDisapproveLeave(request):
+    pass
+
+def staffApproveLeave(request):
+    pass
+
+def staffDisapproveLeave(request):
+    pass

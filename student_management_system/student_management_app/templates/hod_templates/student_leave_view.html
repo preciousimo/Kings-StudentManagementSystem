@@ -36,8 +36,10 @@
                                 <td>{{ leave.created_at }}</td>
                                 <td>
                                     {% if leave.leave_status == 0 %}
-                                    <a class="btn btn-info" href="">Approve</a>
-                                    <a class="btn btn-danger" href="">Disapprove</a>
+                                    <a class="btn btn-info"
+                                        href="{% url 'student-approve-leave' leave_id=leave.id %}">Approve</a>
+                                    <a class="btn btn-danger"
+                                        href="{% url 'student-disapprove-leave' leave_id=leave.id %}">Disapprove</a>
                                     {% elif leave.leave_status == 1 %}
                                     <button class="btn btn-success reply_open_modal" data-toggle="modal"
                                         data-target="#reply_modal" disabled="disabled">Approved</button>
