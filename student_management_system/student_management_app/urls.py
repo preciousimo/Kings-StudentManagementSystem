@@ -25,6 +25,7 @@ urlpatterns = [
     path('staff-approve-leave/<str:leave_id>', HodViews.staffApproveLeave, name="staff-approve-leave"),
     path('student-disapprove-leave/<str:leave_id>', HodViews.studentDisapproveLeave, name="student-disapprove-leave"),
     path('staff-disapprove-leave/<str:leave_id>', HodViews.staffDisapproveLeave, name="staff-disapprove-leave"),
+    path('get_attendance_dates', HodViews.getAttendanceDates, name="get_attendance_dates"),
     #Student Views
     path('student-home', StudentViews.studentHome, name="student-home"),
     path('add-student/', StudentViews.addStudent, name="add-student"),

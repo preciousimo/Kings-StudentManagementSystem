@@ -115,3 +115,6 @@ def staffDisapproveLeave(request, leave_id):
     leave.leave_status = 2
     leave.save()
     return HttpResponseRedirect('/staff-leave-view')
+
+def getAttendanceDates(request):
+    pass
