@@ -1,1 +1,1 @@
-# Kings-StudentManagementSystem
+# Kings-Student Management System
