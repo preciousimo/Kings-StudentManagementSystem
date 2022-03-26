@@ -104,8 +104,14 @@ def studentDisapproveLeave(request, leave_id):
     leave.save()
     return HttpResponseRedirect('/student-leave-view')
 
-def staffApproveLeave(request):
-    pass
+def staffApproveLeave(request, leave_id):
+    leave = LeaveReportStaff.objects.get(id=leave_id)
+    leave.leave_status = 1
+    leave.save()
+    return HttpResponseRedirect('/staff-leave-view')
 
-def staffDisapproveLeave(request):
-    pass
+def staffDisapproveLeave(request, leave_id):
+    leave = LeaveReportStaff.objects.get(id=leave_id)
+    leave.leave_status = 2
+    leave.save()
+    return HttpResponseRedirect('/staff-leave-view')
