@@ -124,7 +124,7 @@ def adminViewAttendance(request):
         'subjects':subjects,
         'session_year_id':session_year_id
         }
-    return render(request, 'staff_templates/update_attendance_template.html', context)
+    return render(request, 'hod_templates/admin_view_attendance_template.html', context)
 
 
 @csrf_exempt

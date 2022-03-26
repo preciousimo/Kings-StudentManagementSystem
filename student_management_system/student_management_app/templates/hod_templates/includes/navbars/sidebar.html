@@ -147,9 +147,9 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    {% url 'get-attendance-dates' as get_attendance_dates %}
-                    <a href="{% url 'get-attendance-dates' %}"
-                        class="nav-link {% if request.path == get_attendance_dates %} active {% endif %}">
+                    {% url 'admin-view-attendance' as admin_view_attendance %}
+                    <a href="{% url 'admin-view-attendance' %}"
+                        class="nav-link {% if request.path == admin_view_attendance %} active {% endif %}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>View Attendance</p>
                     </a>
