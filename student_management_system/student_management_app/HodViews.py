@@ -118,14 +118,13 @@ def staffDisapproveLeave(request, leave_id):
     return HttpResponseRedirect('/staff-leave-view')
 
 def adminViewAttendance(request):
-    subjects = Subjects.objects.filter(staff_id=request.user.id)
+    subjects = Subjects.objects.all()
     session_year_id = SessionYear.objects.all()
     context = {
         'subjects':subjects,
         'session_year_id':session_year_id
         }
     return render(request, 'hod_templates/admin_view_attendance_template.html', context)
-
 
 @csrf_exempt
 def getAttendanceDates(request):
