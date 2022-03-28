@@ -11,7 +11,10 @@ def adminHome(request):
 
 def editAdminProfile(request):
     user = CustomUser.objects.get(id=request.user.id)
-    return render(request, 'hod_templates/edit_admin_profile_template',{'user':user})
+    return render(request, 'hod_templates/edit_admin_profile_template.html', {'user':user})
+
+def editAdminProfileSave(request):
+    pass
 
 def contactUs(request):
     return render(request, 'hod_templates/contact-us.html')
