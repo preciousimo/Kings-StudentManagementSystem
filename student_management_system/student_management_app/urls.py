@@ -30,6 +30,8 @@ urlpatterns = [
     path('admin-get-attendance-dates', HodViews.adminGetAttendanceDates, name="admin-get-attendance-dates"),
     path('admin-get-student-attendance', HodViews.adminGetStudentAttendance, name="admin-get-student-attendance"),
     #Student Views
+    path('edit-student-profile', HodViews.editStudentProfile, name="edit-student-profile"),
+    path('edit-student-profile-save', HodViews.editStudentProfileSave, name="edit-admin-student-save"),
     path('student-home', StudentViews.studentHome, name="student-home"),
     path('add-student/', StudentViews.addStudent, name="add-student"),
     path('add-student-save/', StudentViews.addStudentSave, name="add-student-save"),
@@ -45,6 +47,8 @@ urlpatterns = [
     path('check-student-email-exist', StudentViews.checkStudentEmailExist, name="check-student-email-exist"),
     path('check-student-username-exist', StudentViews.checkStudentUsernameExist, name="check-student-username-exist"),
     #Staff Views
+    path('edit-staff-profile', HodViews.editStaffProfile, name="edit-staff-profile"),
+    path('edit-staff-profile-save', HodViews.editStaffProfileSave, name="edit-staff-profile-save"),
     path('staff-home/', StaffViews.staffHome, name="staff-home"),
     path('add-staff/', StaffViews.addStaff, name="add-staff"),
     path('add-staff-save/', StaffViews.addStaffSave, name="add-staff-save"),
