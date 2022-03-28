@@ -2,7 +2,7 @@ import json
 from django.shortcuts import render, redirect
 from accounts import urls
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from student_management_app.models import SessionYear, FeedBackStudents, FeedBackStaffs, LeaveReportStudent, LeaveReportStaff, Attendance, Subjects
+from student_management_app.models import SessionYear, FeedBackStudents, FeedBackStaffs, LeaveReportStudent, LeaveReportStaff, Attendance, Subjects, AttendanceReport
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 
@@ -127,7 +127,7 @@ def adminViewAttendance(request):
     return render(request, 'hod_templates/admin_view_attendance_template.html', context)
 
 @csrf_exempt
-def getAttendanceDates(request):
+def adminGetAttendanceDates(request):
     subject = request.POST['subject']
     session_year_id = request.POST['session_year_id']
     subject_obj = Subjects.objects.get(id=subject)
@@ -142,3 +142,15 @@ def getAttendanceDates(request):
 
     return JsonResponse(json.dumps(attendance_obj), safe=False)
 
+@csrf_exempt
+def adminGetStudentAttendance(request):
+    attendance_date = request.POST['attendance_date']
+    attendance = Attendance.objects.get(id=attendance_date)
+
+    attendance_data = AttendanceReport.objects.filter(attendance_id=attendance)
+    list_data = []
+    for student in attendance_data:
+        data_small = {"id":student.student_id.admin.id,"name":student.student_id.admin.first_name+" "+student.student_id.admin.last_name,"status":student.status}
+        list_data.append(data_small)
+
+    return JsonResponse(json.dumps(list_data),content_type="application/json",safe=False)

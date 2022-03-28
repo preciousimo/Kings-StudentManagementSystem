@@ -1,4 +1,5 @@
 {% extends 'hod_templates/base.html' %}
+
 {% block page_title %}Admin View Attendance{% endblock page_title %}
 {% block home_content %}
 <section class="content">
@@ -63,7 +64,7 @@
             var subject = $('#subject').val();
             var session_year = $('#session_year_id').val();
             $.ajax({
-                url: "{% url 'get_attendance_dates' %}",
+                url: "{% url 'admin-get-attendance-dates' %}",
                 type: "POST",
                 data: { subject: subject, session_year_id: session_year },
             })
@@ -101,7 +102,7 @@
             var attendance_date = $('#attendance_date').val()
 
             $.ajax({
-                url: "{% url 'get-student-attendance' %}",
+                url: "{% url 'admin-get-student-attendance' %}",
                 type: "POST",
                 data: { attendance_date: attendance_date },
             })
@@ -126,9 +127,6 @@
                         div_data += "</div></div>";
                     }
                     div_data += "</div></div>";
-                    div_data += "<div class='form-group'>";
-                    div_data += "<button id='save_attendance' class='btn btn-success btn-block' type='button'>Update Attendance Data</button>"
-                    div_data += "</div>";
                     $("#student_data").html(div_data);
                 })
                 .fail(function () {
