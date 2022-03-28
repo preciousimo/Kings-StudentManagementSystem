@@ -18,13 +18,16 @@ def editAdminProfileSave(request):
         
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
+        password = request.POST['password']
         try: 
             custommuser = CustomUser.objects.get(id=request.user.id)
             custommuser.first_name = first_name
             custommuser.last_name = last_name
+            if password != None and password != "":
+                custommuser.set_password = password
             custommuser.save()
 
-            messages.success(request, 'Profile Updated Successfully'.format())
+            messages.success(request, 'Profile Updated Successfully')
             return redirect('edit-admin-profile')
         except:
             messages.error(request, 'Failed to edit profile')
