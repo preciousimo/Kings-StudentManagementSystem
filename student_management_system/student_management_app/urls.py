@@ -9,7 +9,7 @@ urlpatterns = [
 
     #HOD/Admin Views
     path('admin-home', HodViews.adminHome, name="admin-home"),
-    path('profile', HodViews.profile, name="profile"),
+    path('edit-admin-profile', HodViews.editAdminProfile, name="edit-admin-profile"),
     path('contact-us', HodViews.contactUs, name="contact-us"),
     path('contacts', HodViews.contacts, name="contacts"),
     path('add-session', HodViews.addSession, name="add-session"),
