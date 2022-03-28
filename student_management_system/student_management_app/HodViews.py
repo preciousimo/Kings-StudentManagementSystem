@@ -14,7 +14,24 @@ def editAdminProfile(request):
     return render(request, 'hod_templates/edit_admin_profile_template.html', {'user':user})
 
 def editAdminProfileSave(request):
-    pass
+    if request.method == 'POST':
+        
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        try: 
+            custommuser = CustomUser.objects.get(id=request.user.id)
+            custommuser.first_name = first_name
+            custommuser.last_name = last_name
+            custommuser.save()
+
+            messages.success(request, 'Profile Updated Successfully'.format())
+            return redirect('edit-admin-profile')
+        except:
+            messages.error(request, 'Failed to edit profile')
+            return redirect('edit-admin-profile')
+
+    else:
+        return HttpResponse('Method not allowed')
 
 def contactUs(request):
     return render(request, 'hod_templates/contact-us.html')
