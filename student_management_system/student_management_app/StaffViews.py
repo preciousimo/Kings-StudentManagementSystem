@@ -9,7 +9,12 @@ from django.core import serializers
 from django.forms import model_to_dict
 
 def staffHome(request):
-    return render(request, 'staff_templates/home_content.html')
+    subjects = Subjects.objects.filter(staff_id=request.user.id)
+    students_count = Students.objects.filter().count()
+    context = {
+        'students_count':students_count
+    }
+    return render(request, 'staff_templates/home_content.html', context)
 
 def editStaffProfile(request):
     user = CustomUser.objects.get(id=request.user.id)
