@@ -11,7 +11,8 @@ def studentHome(request):
 
 def editStudentProfile(request):
     user = CustomUser.objects.get(id=request.user.id)
-    return render(request, 'hod_templates/edit_admin_profile_template.html', {'user':user})
+    student = Students.objects.get(admin=user)
+    return render(request, 'student_templates/edit_student_profile_template.html', {'user':user,'student':student})
 
 def editStudentProfileSave(request):
     if request.method == 'POST':
@@ -19,6 +20,7 @@ def editStudentProfileSave(request):
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         password = request.POST['password']
+        address = request.POST['address']
         try: 
             custommuser = CustomUser.objects.get(id=request.user.id)
             custommuser.first_name = first_name
@@ -28,14 +30,13 @@ def editStudentProfileSave(request):
             custommuser.save()
 
             messages.success(request, 'Profile Updated Successfully')
-            return redirect('edit-admin-profile')
+            return redirect('edit-student-profile')
         except:
             messages.error(request, 'Failed to edit profile')
-            return redirect('edit-admin-profile')
+            return redirect('edit-student-profile')
 
     else:
         return HttpResponse('Method not allowed')
-
 
 def addStudent(request):
     form = AddStudentForm()

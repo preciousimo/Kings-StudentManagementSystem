@@ -1,0 +1,68 @@
+{% extends 'student_templates/base.html' %}
+{% block page_title %}Edit Student Profile{% endblock page_title %}
+{% block home_content %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-dark">
+                    <div class="card-header">
+                        <h3 class="card-title">Edit Profile</h3>
+                    </div>
+                    <form action="{% url 'edit-staff-profile-save' %}" method="post">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input class="form-control" type="name" name="username" value="{{user.username}}"
+                                    disabled="disabled">
+                            </div>
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input class="form-control" type="email" name="email" value="{{user.email}}"
+                                    disabled="disabled">
+                            </div>
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input class="form-control" type="name" name="first_name" value="{{user.first_name}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input class="form-control" type="name" name="last_name" value="{{user.last_name}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input class="form-control" type="name" name="address" value="{{student.address}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Change Password</label>
+                                <input class="form-control" type="password" name="password">
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-success btn-block">Edit Profile</button>
+                            </div>
+                        </div>
+                    </form>
+                    {% if messages %}
+                    <div class="col-12">
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="btn btn-danger btn-block" style="margin-top:10px">{{message}}</div>
+                        {% endif %}
+                        {% if message.tags == 'info' %}
+                        <div class="btn btn-info btn-block" style="margin-top:10px">{{message}}</div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                        <div class="btn btn-success btn-block" style="margin-top:10px">{{message}}</div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock home_content %}
