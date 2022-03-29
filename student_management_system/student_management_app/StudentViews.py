@@ -7,7 +7,18 @@ import datetime
 from django.views.decorators.csrf import csrf_exempt
 
 def studentHome(request):
-    return render(request, 'student_templates/home_content.html')
+    student_obj = Students.objects.get(admin=request.user.id)
+    total_attendance = AttendanceReport.objects.filter(student_id=student_obj).count()
+    present_attendance = AttendanceReport.objects.filter(student_id=student_obj,status=True).count()
+    absent_attendance = AttendanceReport.objects.filter(student_id=student_obj,status=False).count()
+    subjects = Subjects.objects.all().count()
+    context = {
+        'total_attendance':total_attendance,
+        'present_attendance':present_attendance,
+        'absent_attendance':absent_attendance,
+        'subjects':subjects
+    }
+    return render(request, 'student_templates/home_content.html', context)
 
 def editStudentProfile(request):
     user = CustomUser.objects.get(id=request.user.id)
