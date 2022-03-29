@@ -42,7 +42,6 @@ def editStaffProfileSave(request):
     else:
         return HttpResponse('Method not allowed')
 
-
 def addStaff(request):
     form = AddStaffForm()
     return render(request, 'staff_templates/add_staff_template.html', {'form':form})
