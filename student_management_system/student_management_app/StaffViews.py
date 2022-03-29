@@ -14,7 +14,7 @@ def staffHome(request):
 def editStaffProfile(request):
     user = CustomUser.objects.get(id=request.user.id)
     staff = Staffs.objects.get(admin=user)
-    return render(request, 'hod_templates/edit_admin_profile_template.html', {'user':user, 'staff':staff})
+    return render(request, 'staff_templates/edit_staff_profile_template.html', {'user':user, 'staff':staff})
 
 def editStaffProfileSave(request):
     if request.method == 'POST':
@@ -34,10 +34,10 @@ def editStaffProfileSave(request):
             staff.address = address
             staff.save()
             messages.success(request, 'Profile Updated Successfully')
-            return redirect('edit-admin-profile')
+            return redirect('edit-staff-profile')
         except:
             messages.error(request, 'Failed to edit profile')
-            return redirect('edit-admin-profile')
+            return redirect('edit-staff-profile')
 
     else:
         return HttpResponse('Method not allowed')
