@@ -31,7 +31,7 @@ urlpatterns = [
     path('admin-get-student-attendance', HodViews.adminGetStudentAttendance, name="admin-get-student-attendance"),
     #Student Views
     path('edit-student-profile', StudentViews.editStudentProfile, name="edit-student-profile"),
-    path('edit-student-profile-save', StudentViews.editStudentProfileSave, name="edit-admin-student-save"),
+    path('edit-student-profile-save', StudentViews.editStudentProfileSave, name="edit-student-profile-save"),
     path('student-home', StudentViews.studentHome, name="student-home"),
     path('add-student/', StudentViews.addStudent, name="add-student"),
     path('add-student-save/', StudentViews.addStudentSave, name="add-student-save"),
