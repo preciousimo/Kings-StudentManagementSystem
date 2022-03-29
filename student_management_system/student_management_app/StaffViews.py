@@ -11,6 +11,38 @@ from django.forms import model_to_dict
 def staffHome(request):
     return render(request, 'staff_templates/home_content.html')
 
+def editStaffProfile(request):
+    user = CustomUser.objects.get(id=request.user.id)
+    staff = Staffs.objects.get(admin=user)
+    return render(request, 'hod_templates/edit_admin_profile_template.html', {'user':user, 'staff':staff})
+
+def editStaffProfileSave(request):
+    if request.method == 'POST':
+        
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        address = request.POST['address']
+        password = request.POST['password']
+        try: 
+            custommuser = CustomUser.objects.get(id=request.user.id)
+            custommuser.first_name = first_name
+            custommuser.last_name = last_name
+            if password != None and password != "":
+                custommuser.set_password = password
+            custommuser.save()
+            staff = Staffs.objects.get(admin=custommuser)
+            staff.address = address
+            staff.save()
+            messages.success(request, 'Profile Updated Successfully')
+            return redirect('edit-admin-profile')
+        except:
+            messages.error(request, 'Failed to edit profile')
+            return redirect('edit-admin-profile')
+
+    else:
+        return HttpResponse('Method not allowed')
+
+
 def addStaff(request):
     form = AddStaffForm()
     return render(request, 'staff_templates/add_staff_template.html', {'form':form})

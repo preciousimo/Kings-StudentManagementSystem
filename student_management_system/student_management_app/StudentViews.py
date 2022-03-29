@@ -9,6 +9,34 @@ from django.views.decorators.csrf import csrf_exempt
 def studentHome(request):
     return render(request, 'student_templates/home_content.html')
 
+def editStudentProfile(request):
+    user = CustomUser.objects.get(id=request.user.id)
+    return render(request, 'hod_templates/edit_admin_profile_template.html', {'user':user})
+
+def editStudentProfileSave(request):
+    if request.method == 'POST':
+        
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        password = request.POST['password']
+        try: 
+            custommuser = CustomUser.objects.get(id=request.user.id)
+            custommuser.first_name = first_name
+            custommuser.last_name = last_name
+            if password != None and password != "":
+                custommuser.set_password = password
+            custommuser.save()
+
+            messages.success(request, 'Profile Updated Successfully')
+            return redirect('edit-admin-profile')
+        except:
+            messages.error(request, 'Failed to edit profile')
+            return redirect('edit-admin-profile')
+
+    else:
+        return HttpResponse('Method not allowed')
+
+
 def addStudent(request):
     form = AddStudentForm()
     return render(request, 'student_templates/add_student_template.html', {'form':form})
