@@ -23,6 +23,17 @@ def staffHome(request):
         attendance_count1 = Attendance.objects.filter(subject_id=subject.id).count()
         subject_list.append(subject.subject_name)
         attendance_list.append(attendance_count1)
+    
+    students_attendance = Students.objects.all()
+    student_list = []
+    student_list_attendance_present = []
+    student_list_attendance_absent = []
+    for students in students_attendance:
+        attendance_present_count = AttendanceReport.objects.filter(status=1, student_id=students.id).count()
+        attendance_absent_count = AttendanceReport.objects.filter(status=0, student_id=students.id).count()
+        student_list.append(students.admin.username)
+        student_list_attendance_present.append(attendance_present_count)
+        student_list_attendance_absent.append(attendance_absent_count)
 
     context = {
         'students_count':students_count,
@@ -30,7 +41,10 @@ def staffHome(request):
         'leave_count':leave_count,
         'subjects_count':subjects_count,
         'subject_list':subject_list,
-        'attendance_list':attendance_list
+        'attendance_list':attendance_list,
+        'student_list':student_list,
+        'present_list':student_list_attendance_present,
+        'absent_list':student_list_attendance_absent
     }
     return render(request, 'staff_templates/home_content.html', context)
 
@@ -376,3 +390,4 @@ def checkStaffUsernameExist(request):
         return HttpResponse(True)
     else:
         return HttpResponse(False)
+
