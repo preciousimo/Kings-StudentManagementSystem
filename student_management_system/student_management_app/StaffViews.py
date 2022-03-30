@@ -15,11 +15,22 @@ def staffHome(request):
     staff = Staffs.objects.get(admin=request.user.id)
     leave_count = LeaveReportStaff.objects.filter(staff_id=staff.id, leave_status=1).count()
     subjects_count = subjects.count()
+
+    #Fetch Attendance Data by Subject
+    subject_list = []
+    attendance_list = []
+    for subject in subjects:
+        attendance_count1 = Attendance.objects.filter(subject_id=subject.id).count()
+        subject_list.append(subject.subject_name)
+        attendance_list.append(attendance_count1)
+
     context = {
         'students_count':students_count,
         'attendance_count':attendance_count,
         'leave_count':leave_count,
-        'subjects_count':subjects_count
+        'subjects_count':subjects_count,
+        'subject_list':subject_list,
+        'attendance_list':attendance_list
     }
     return render(request, 'staff_templates/home_content.html', context)
 

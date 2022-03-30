@@ -94,7 +94,7 @@
                 <!-- BAR CHART -->
                 <div class="card card-dark">
                     <div class="card-header">
-                        <h3 class="card-title">Attendance Statistics</h3>
+                        <h3 class="card-title">Subject Attendance</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -136,34 +136,22 @@
             ]
         }
         //Dataset for bar Chart
-        var subjects = "{{ data_name|safe }}"
-        var data1 = "{{ data1 }}"
-        var data2 = "{{ data2 }}"
+        var subject_list = "{{ subject_list|safe }}"
+        var attendance_list = "{{ attendance_list }}"
         var areaChartData = {
-            labels: subjects,
+            labels: subject_list,
             datasets: [
                 {
-                    label: 'Present in Class',
-                    backgroundColor: '#28a745',
+                    label: 'Attendance Subject Chart',
+                    backgroundColor: '#dc3545',
                     borderColor: 'rgba(60,141,188,0.8)',
                     pointRadius: false,
                     pointColor: '#3b8bba',
                     pointStrokeColor: 'rgba(60,141,188,1)',
                     pointHighlightFill: '#fff',
                     pointHighlightStroke: 'rgba(60,141,188,1)',
-                    data: data1
+                    data: attendance_list
                 },
-                {
-                    label: 'Absent in Class',
-                    backgroundColor: '#dc3545',
-                    borderColor: 'rgba(210, 214, 222, 1)',
-                    pointRadius: false,
-                    pointColor: 'rgba(210, 214, 222, 1)',
-                    pointStrokeColor: '#c1c7d1',
-                    pointHighlightFill: '#fff',
-                    pointHighlightStroke: 'rgba(220,220,220,1)',
-                    data: data2
-                }
             ]
         }
 
@@ -190,7 +178,7 @@
         var barChartOptions = {
             responsive: true,
             maintainAspectRatio: false,
-            $yrophoe
+            datasetFill: false
         }
 
         new Chart(barChartCanvas, {
