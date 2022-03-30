@@ -2,12 +2,21 @@ import json
 from django.shortcuts import render, redirect
 from accounts import urls
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from student_management_app.models import SessionYear, FeedBackStudents, FeedBackStaffs, LeaveReportStudent, LeaveReportStaff, Attendance, Subjects, AttendanceReport, CustomUser
+from student_management_app.models import SessionYear, FeedBackStudents, FeedBackStaffs, LeaveReportStudent, LeaveReportStaff, Attendance, Subjects, AttendanceReport, CustomUser, Students, Staffs
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 
 def adminHome(request):
-    return render(request, 'hod_templates/home_content.html')
+    students_count = Students.objects.all().count()
+    staffs_count = Students.objects.all().count()
+    subjects_count = Students.objects.all().count()
+
+    context = {
+        'students_count':students_count,
+        'staffs_count':staffs_count,
+        'subjects_count':subjects_count
+    }
+    return render(request, 'hod_templates/home_content.html', context)
 
 def editAdminProfile(request):
     user = CustomUser.objects.get(id=request.user.id)
