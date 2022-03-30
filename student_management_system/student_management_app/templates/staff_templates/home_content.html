@@ -72,7 +72,7 @@
                 <!-- PIE CHART -->
                 <div class="card card-dark">
                     <div class="card-header">
-                        <h3 class="card-title">Attendance Chart</h3>
+                        <h3 class="card-title">Attendance vs Leave Chart</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -125,14 +125,13 @@
         //Dataset for Pie Chart
         var donutData = {
             labels: [
-                'Total Attendance',
-                'Present',
-                'Absent',
+                'Attendance',
+                'Leave',
             ],
             datasets: [
                 {
-                    data: ['{{ total_attendance }}', '{{ present_attendance }}', '{{ absent_attendance }}'],
-                    backgroundColor: ['#17a2b8', '#28a745', '#dc3545'],
+                    data: ['{{ attendance_count }}', '{{ leave_count }}'],
+                    backgroundColor: ['#28a745', '#ffc107'],
                 }
             ]
         }
@@ -191,7 +190,7 @@
         var barChartOptions = {
             responsive: true,
             maintainAspectRatio: false,
-            datasetFill: false
+            $yrophoe
         }
 
         new Chart(barChartCanvas, {
