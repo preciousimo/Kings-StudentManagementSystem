@@ -113,8 +113,6 @@ def editStaff(request, staff_id):
     form.fields['date_of_birth'].initial = staff.date_of_birth
     form.fields['gender'].initial = staff.gender
     form.fields['phone_number'].initial = staff.phone_number
-    form.fields['profile_picture'].initial = staff.profile_picture
-    form.fields['curriculum_vitae'].initial = staff.curriculum_vitae
     form.fields['address'].initial = staff.address
     form.fields['state'].initial = staff.state
     form.fields['nationality'].initial = staff.nationality
@@ -136,18 +134,6 @@ def editStaffSave(request):
             email = form.cleaned_data['email']
             phone_number = form.cleaned_data['phone_number']
             gender = form.cleaned_data['gender']
-            if request.FILES['profile_picture']:
-                profile_picture = request.FILES.get('profile_picture',False)
-                fs = FileSystemStorage()
-                filename = fs.save(profile_picture.name,profile_picture)
-                profile_picture_url = fs.url(filename)
-            profile_picture = form.cleaned_data['profile_picture']
-            if request.FILES.get('curriculum_vitae', False):
-                curriculum_vitae = request.FILES['curriculum_vitae']
-                fs = FileSystemStorage()
-                filename = fs.save(curriculum_vitae.name,curriculum_vitae)
-                curriculum_vitae_url = fs.url(filename)
-            curriculum_vitae = form.cleaned_data['curriculum_vitae']
             address = form.cleaned_data['address']
             state = form.cleaned_data['state']
             nationality = form.cleaned_data['nationality']
@@ -165,9 +151,6 @@ def editStaffSave(request):
                 staff_model.date_of_birth = date_of_birth
                 staff_model.phone_number = phone_number
                 staff_model.gender = gender
-                if profile_picture_url != None:
-                    staff_model.profile_picture = profile_picture_url
-                staff_model.curriculum_vitae = curriculum_vitae_url
                 staff_model.address = address
                 staff_model.state = state
                 staff_model.nationality = nationality
