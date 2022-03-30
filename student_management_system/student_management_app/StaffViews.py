@@ -11,8 +11,10 @@ from django.forms import model_to_dict
 def staffHome(request):
     subjects = Subjects.objects.filter(staff_id=request.user.id)
     students_count = Students.objects.filter().count()
+    attendance_count = Attendance.objects.filter(subject_id__in=subjects).count()
     context = {
-        'students_count':students_count
+        'students_count':students_count,
+        'attendance_count':attendance_count
     }
     return render(request, 'staff_templates/home_content.html', context)
 
