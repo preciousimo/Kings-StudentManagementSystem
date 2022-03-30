@@ -12,9 +12,12 @@ def staffHome(request):
     subjects = Subjects.objects.filter(staff_id=request.user.id)
     students_count = Students.objects.filter().count()
     attendance_count = Attendance.objects.filter(subject_id__in=subjects).count()
+    staff = Staffs.objects.get(admin=request.user.id)
+    leave_count = LeaveReportStaff.objects.filter(staff_id=staff.id, leave_status=1).count()
     context = {
         'students_count':students_count,
-        'attendance_count':attendance_count
+        'attendance_count':attendance_count,
+        'leave_count':leave_count
     }
     return render(request, 'staff_templates/home_content.html', context)
 
