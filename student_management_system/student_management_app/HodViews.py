@@ -30,6 +30,18 @@ def adminHome(request):
         attendance_present_list_staff.append(attendance)
         attendance_absent_list_staff.append(leaves)
         staff_name_list.append(staff.admin.username)
+    
+    students = Students.objects.all()
+    attendance_present_list_student = []
+    attendance_absent_list_student = []
+    student_name_list = []
+    for student in students:
+        attendance = AttendanceReport.objects.filter(student_id=student.id, status=True).count()
+        absent = AttendanceReport.objects.filter(student_id=student.id, status=False).count()
+        leaves = LeaveReportStudent.objects.filter(student_id=student.id, leave_status=1).count()
+        attendance_present_list_student.append(attendance)
+        attendance_absent_list_student.append(leaves+absent)
+        student_name_list.append(student.admin.username)
 
     
     context = {
@@ -40,7 +52,10 @@ def adminHome(request):
         'student_count_list_in_subject':student_count_list_in_subject,
         'attendance_present_list_staff':attendance_present_list_staff,
         'attendance_absent_list_staff':attendance_absent_list_staff,
-        'staff_name_list':staff_name_list
+        'staff_name_list':staff_name_list,
+        'attendance_present_list_student':attendance_present_list_student,
+        'attendance_absent_list_student':attendance_absent_list_student,
+        'student_name_list':student_name_list
     }
     return render(request, 'hod_templates/home_content.html', context)
 
