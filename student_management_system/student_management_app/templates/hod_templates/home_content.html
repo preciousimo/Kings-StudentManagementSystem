@@ -75,6 +75,50 @@
                     <!-- /.card-body -->
                 </div>
             </div>
+            <div class="col-md-6">
+                <!-- PIE CHART -->
+                <div class="card card-dark">
+                    <div class="card-header">
+                        <h3 class="card-title">Total Student in each Subject</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="pieChart2"
+                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">Staff Leave vs Attendance Chart</h3>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart">
+                            <canvas id="barChart"
+                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
         </div>
     </div><!-- /.container-fluid -->
 </section>
@@ -95,34 +139,27 @@
                 }
             ]
         }
-        //Dataset for bar Chart
-        var subject_list = "{{ subject_list|safe }}"
-        var attendance_list = "{{ attendance_list }}"
-        var areaChartData = {
+        //Dataset for Pie Chart 2
+        var subject_list = "{{subject_list|safe}}"
+        var student_count_list_in_subject = "{{student_count_list_in_subject}}"
+        var donutData2 = {
             labels: subject_list,
             datasets: [
                 {
-                    label: 'Attendance Subject Chart',
-                    backgroundColor: '#dc3545',
-                    borderColor: 'rgba(60,141,188,0.8)',
-                    pointRadius: false,
-                    pointColor: '#3b8bba',
-                    pointStrokeColor: 'rgba(60,141,188,1)',
-                    pointHighlightFill: '#fff',
-                    pointHighlightStroke: 'rgba(60,141,188,1)',
-                    data: attendance_list
-                },
+                    data: student_count_list_in_subject,
+                    backgroundColor: ['#17a2b8', '#dc3545', '#ffff00'],
+                }
             ]
         }
-        //Dataset for bar Chart 2
-        var student_list = "{{ student_list|safe }}"
-        var present_list = "{{ present_list }}"
-        var absent_list = "{{ absent_list }}"
-        var areaChartData2 = {
-            labels: student_list,
+        //Dataset for bar Chart
+        var attendance_present_list_staff = "{{ attendance_present_list_staff }}"
+        var attendance_absent_list_staff = "{{ attendance_absent_list_staff }}"
+        var staff_name_list = "{{ staff_name_list }}"
+        var areaChartData = {
+            labels: staff_name_list,
             datasets: [
                 {
-                    label: 'Present',
+                    label: 'Attendance',
                     backgroundColor: '#28a745',
                     borderColor: 'rgba(60,141,188,0.8)',
                     pointRadius: false,
@@ -130,10 +167,10 @@
                     pointStrokeColor: 'rgba(60,141,188,1)',
                     pointHighlightFill: '#fff',
                     pointHighlightStroke: 'rgba(60,141,188,1)',
-                    data: present_list
+                    data: attendance_present_list_staff
                 },
                 {
-                    label: 'Absent',
+                    label: 'Leaves',
                     backgroundColor: '#dc3545',
                     borderColor: 'rgba(210, 214, 222, 1)',
                     pointRadius: false,
@@ -141,7 +178,7 @@
                     pointStrokeColor: '#c1c7d1',
                     pointHighlightFill: '#fff',
                     pointHighlightStroke: 'rgba(220,220,220,1)',
-                    data: absent_list
+                    data: attendance_absent_list_staff
                 },
             ]
         }
@@ -158,6 +195,20 @@
             type: 'pie',
             data: pieData,
             options: pieOptions
+        })
+        //Pie Chart 2
+        var pieChartCanvas2 = $('#pieChart2').get(0).getContext('2d')
+        var pieData2 = donutData2;
+        var pieOptions2 = {
+            maintainAspectRatio: false,
+            responsive: true,
+        }
+        //Create pie or douhnut chart
+        // You can switch between pie and douhnut using the method below.
+        new Chart(pieChartCanvas2, {
+            type: 'pie',
+            data: pieData2,
+            options: pieOptions2
         })
         //Bar Chart
         var barChartCanvas = $('#barChart').get(0).getContext('2d')

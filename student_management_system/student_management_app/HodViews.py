@@ -9,12 +9,38 @@ from django.views.decorators.csrf import csrf_exempt
 def adminHome(request):
     students_count = Students.objects.all().count()
     staffs_count = Students.objects.all().count()
-    subjects_count = Students.objects.all().count()
+    subjects_count = Subjects.objects.all().count()
 
+    subjects_all = Subjects.objects.all()
+    subject_list = []
+    student_count_list_in_subject = []
+    for subject in subjects_all:
+        student_count = Students.objects.filter(id=subject.id).count()
+        subject_list.append(subject.subject_name)
+        student_count_list_in_subject.append(student_count)
+
+    staffs = Staffs.objects.all()
+    attendance_present_list_staff = []
+    attendance_absent_list_staff = []
+    staff_name_list = []
+    for staff in staffs:
+        subject_ids = Subjects.objects.filter(staff_id=staff.admin.id)
+        attendance = Attendance.objects.filter(subject_id__in=subject_ids).count()
+        leaves = LeaveReportStaff.objects.filter(staff_id=staff.id, leave_status=1).count()
+        attendance_present_list_staff.append(attendance)
+        attendance_absent_list_staff.append(leaves)
+        staff_name_list.append(staff.admin.username)
+
+    
     context = {
         'students_count':students_count,
         'staffs_count':staffs_count,
-        'subjects_count':subjects_count
+        'subjects_count':subjects_count,
+        'subject_list':subject_list,
+        'student_count_list_in_subject':student_count_list_in_subject,
+        'attendance_present_list_staff':attendance_present_list_staff,
+        'attendance_absent_list_staff':attendance_absent_list_staff,
+        'staff_name_list':staff_name_list
     }
     return render(request, 'hod_templates/home_content.html', context)
 
