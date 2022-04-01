@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware'
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -84,14 +85,14 @@ TEMPLATES = [
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'student_management_system',   
-        'USER': 'student_management_system',
-        'PASSWORD': 'student_management_password',
-        'HOST': 'localhost',
-        'PORT': '3306'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'ENGINE': 'django.db.backends.mysql',
+        #'NAME': 'student_management_system',   
+        #'USER': 'student_management_system',
+        #'PASSWORD': 'student_management_password',
+        #'HOST': 'localhost',
+        #'PORT': '3306'
     }
 }
 
@@ -141,7 +142,11 @@ AUTHENTICATION_BACKENDS = ['student_management_app.EmailBackEnd.EmailBackEnd']
 
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = ""
-EMAIL_HOST_PASSWORD = ""
+EMAIL_HOST_USER = "GMAIL_EMAIL"
+EMAIL_HOST_PASSWORD = "GMAIL PASSWORD"
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = "KIS Student Management System <>"
+DEFAULT_FROM_EMAIL = "KIS Student Management System <GMAIL_EMAIL>"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+import dj_database_url
+prod_db=dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
