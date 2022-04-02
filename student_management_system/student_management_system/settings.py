@@ -25,7 +25,7 @@ SECRET_KEY = 'geufe!cc4m-%nrss09kw+hn3w1-fj98e-5via#-d)o&le*cf29'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['kisstudentmanagementsystem.herokuapp.com/']
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
