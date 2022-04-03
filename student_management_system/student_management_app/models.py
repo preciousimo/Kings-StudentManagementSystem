@@ -29,6 +29,7 @@ class Staffs(models.Model):
     nationality = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    fcm_token = models.TextField(default="")
     objects = models.Manager()
 
 class SessionYear(models.Model):
@@ -55,6 +56,7 @@ class Students(models.Model):
     nationality = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    fcm_token = models.TextField(default="")
     objects = models.Manager()
 
 class Subjects(models.Model):

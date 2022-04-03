@@ -46,6 +46,7 @@ urlpatterns = [
     path('student-leave-feedback-save', StudentViews.leaveFeedbackSave, name="student-leave-feedback-save"),
     path('check-student-email-exist', StudentViews.checkStudentEmailExist, name="check-student-email-exist"),
     path('check-student-username-exist', StudentViews.checkStudentUsernameExist, name="check-student-username-exist"),
+    path('student-fcmtoken-save', StudentViews.studentFcmtokenSave, name="student-fcmtoken-save"),
     #Staff Views
     path('edit-staff-profile', StaffViews.editStaffProfile, name="edit-staff-profile"),
     path('edit-staff-profile-save', StaffViews.editStaffProfileSave, name="edit-staff-profile-save"),
@@ -71,5 +72,5 @@ urlpatterns = [
     path('staff-leave-feedback-save', StaffViews.leaveFeedbackSave, name="staff-leave-feedback-save"),
     path('check-staff-email-exist', StaffViews.checkStaffEmailExist, name="check-staff-email-exist"),
     path('check-staff-username-exist', StaffViews.checkStaffUsernameExist, name="check-staff-username-exist"),
-    
+    path('staff-fcmtoken-save/', StaffViews.staffFcmtokenSave, name="staff-fcmtoken-save"),
 ]
