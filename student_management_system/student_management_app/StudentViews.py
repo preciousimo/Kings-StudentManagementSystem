@@ -298,4 +298,13 @@ def checkStudentUsernameExist(request):
     else:
         return HttpResponse(False)
 
-
+@csrf_exempt
+def studentFcmtokenSave(request):
+    token = request.POST['token']
+    try:
+        student = Students.objects.get(admin=request.user.id)
+        student.fcm_token = token
+        student.save()
+        return HttpResponse('True')
+    except:
+        return HttpResponse('False')

@@ -391,3 +391,13 @@ def checkStaffUsernameExist(request):
     else:
         return HttpResponse(False)
 
+@csrf_exempt
+def staffFcmtokenSave(request):
+    token = request.POST['token']
+    try:
+        staff = Staffs.objects.get(admin=request.user.id)
+        staff.fcm_token = token
+        staff.save()
+        return HttpResponse('True')
+    except:
+        return HttpResponse('False')
