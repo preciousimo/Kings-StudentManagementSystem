@@ -401,3 +401,6 @@ def staffFcmtokenSave(request):
         return HttpResponse('True')
     except:
         return HttpResponse('False')
+
+def staffAddResult(request):
+    pass
