@@ -404,7 +404,8 @@ def staffFcmtokenSave(request):
 
 def staffAddResult(request):
     subjects = Subjects.objects.filter(staff_id=request.user.id)
-    return render(request, 'staff_templates/add_result_template.html', {'subjects':subjects})
+    session_years = SessionYear.objects.all()
+    return render(request, 'staff_templates/add_result_template.html', {'subjects':subjects,'session_years':session_years})
 
 def saveStudentResult(request):
     pass

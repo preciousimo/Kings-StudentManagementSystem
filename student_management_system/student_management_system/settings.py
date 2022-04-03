@@ -49,7 +49,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -78,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-#WSGI_APPLICATION = 'student_management_system.wsgi.application'
+WSGI_APPLICATION = 'student_management_system.wsgi.application'
 
 
 # Database
@@ -138,6 +138,7 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'student_management_app.CustomUser'
 AUTHENTICATION_BACKENDS = ['student_management_app.EmailBackEnd.EmailBackEnd']
 
+#Sending reset password locally
 #EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 #EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_mails")
 
@@ -147,7 +148,8 @@ EMAIL_HOST_USER = "GMAIL_EMAIL"
 EMAIL_HOST_PASSWORD = "GMAIL PASSWORD"
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "KIS Student Management System <GMAIL_EMAIL>"
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-import dj_database_url
-prod_db=dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
+
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#import dj_database_url
+#prod_db=dj_database_url.config(conn_max_age=500)
+#DATABASES['default'].update(prod_db)
