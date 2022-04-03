@@ -126,6 +126,17 @@
                         <i class="fas fa-angle-right right"></i>
                     </a>
                 </li>
+                <li class="nav-item">
+                    {% url 'staff-add-result' as staff_add_result %}
+                    <a href="{% url 'staff-add-result' %}"
+                        class="nav-link {% if request.path == staff_add_result %} active {% endif %}">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Add Result
+                        </p>
+                        <i class="fas fa-angle-right right"></i>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
