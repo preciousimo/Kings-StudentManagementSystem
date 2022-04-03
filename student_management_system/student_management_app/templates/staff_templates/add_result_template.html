@@ -81,14 +81,16 @@
                     }
                     div_data += "</select>";
                     div_data += "</div>";
-                    div_data += "<div class='row'>";
+                    div_data += "<div class='form-control'> <div class='row'>";
                     div_data += "<div class='col-lg-6'>";
                     div_data += "<label> Assignment Marks: </label> <input type='text' name='assignment_marks' class='form-control' placeholder='Assignment Marks'>"
                     div_data += "</div>";
                     div_data += "<div class='col-lg-6'>";
                     div_data += "<label> Exam Marks: </label> <input type='text' name='exam_marks' class='form-control' placeholder='Exam Marks'>"
                     div_data += "</div>";
-                    div_data += "</div><div class='form-group'>";
+                    div_data += "</div></div>";
+
+                    div_data += "<div class='form-group'>";
                     div_data += "<button id='save_attendance' class='btn btn-success btn-block' type='button'>Save Result</button>"
                     div_data += "</div>";
                     $("#student_data").html(div_data);
