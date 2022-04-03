@@ -403,5 +403,8 @@ def staffFcmtokenSave(request):
         return HttpResponse('False')
 
 def staffAddResult(request):
-    subjects = Subjects.objects.get(staff_id=request.user.id)
+    subjects = Subjects.objects.filter(staff_id=request.user.id)
     return render(request, 'staff_templates/add_result_template.html', {'subjects':subjects})
+
+def saveStudentResult(request):
+    pass
