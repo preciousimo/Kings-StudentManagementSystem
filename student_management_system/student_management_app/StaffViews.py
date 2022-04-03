@@ -1,9 +1,9 @@
 import json
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from student_management_app.models import CustomUser, Staffs, Subjects, SessionYear, Students, Attendance, AttendanceReport, LeaveReportStaff, FeedBackStaffs
+from student_management_app.models import CustomUser, Staffs, Subjects, SessionYear, Students, Attendance, AttendanceReport, LeaveReportStaff, FeedBackStaffs, StudentResult
 from student_management_app.Forms import AddStaffForm, EditStaffForm
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 from django.forms import model_to_dict
@@ -408,4 +408,22 @@ def staffAddResult(request):
     return render(request, 'staff_templates/add_result_template.html', {'subjects':subjects,'session_years':session_years})
 
 def saveStudentResult(request):
-    pass
+    if request.method == 'POST':
+        student_admin_id = request.POST['student_list']
+        assignment_marks = request.POST['assignment_marks']
+        exam_marks = request.POST['exam_marks']
+        subject_id = request.POST['subject']
+        
+        student_obj = Students.objects.get(admin=student_admin_id)
+        subject_obj = Subjects.objects.get(id=subject_id)
+        try:
+            result = StudentResult(student_id=student_obj, subject_id=subject_obj, subject_exam_marks=exam_marks, subject_assignment_marks=assignment_marks)
+            result.save()
+            messages.success(request, 'Successfully Added Results')
+            return redirect('staff-add-result')
+        except:
+            messages.error(request, 'Failed to Add results')
+            return redirect('staff-add-result')
+
+    else:
+        return HttpResponseRedirect('staff-add-result')
