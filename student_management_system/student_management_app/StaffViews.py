@@ -417,10 +417,19 @@ def saveStudentResult(request):
         student_obj = Students.objects.get(admin=student_admin_id)
         subject_obj = Subjects.objects.get(id=subject_id)
         try:
-            result = StudentResult(student_id=student_obj, subject_id=subject_obj, subject_exam_marks=exam_marks, subject_assignment_marks=assignment_marks)
-            result.save()
-            messages.success(request, 'Successfully Added Results')
-            return redirect('staff-add-result')
+            check_exist = StudentResult.objects.filter(subject_id=subject_obj, student_id=student_obj,).exists()
+            if check_exist:
+                result = StudentResult.objects.get(student_id=student_obj, subject_id=subject_obj)
+                result.subject_assignment_marks = subject_assignment_marks
+                result.subject_exam_marks = subject_exam_marks
+                result.save()
+                messages.success(request, 'Successfully Updated Results')
+                return redirect('staff-add-result')
+            else:
+                result = StudentResult(student_id=student_obj, subject_id=subject_obj, subject_exam_marks=exam_marks, subject_assignment_marks=assignment_marks)
+                result.save()
+                messages.success(request, 'Successfully Added Results')
+                return redirect('staff-add-result')
         except:
             messages.error(request, 'Failed to Add results')
             return redirect('staff-add-result')
