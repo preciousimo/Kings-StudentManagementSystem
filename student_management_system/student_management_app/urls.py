@@ -75,4 +75,5 @@ urlpatterns = [
     path('staff-fcmtoken-save/', StaffViews.staffFcmtokenSave, name="staff-fcmtoken-save"),
     path('staff-add-result/', StaffViews.staffAddResult, name="staff-add-result"),
     path('save-student-result/', StaffViews.saveStudentResult, name="save-student-result"),
+    path('edit-student-result/', EditResultViewClass.as_view(), name="edit-student-result"),
 ]
