@@ -431,7 +431,7 @@ def saveStudentResult(request):
                 messages.success(request, 'Successfully Added Results')
                 return redirect('staff-add-result')
         except:
-            messages.error(request, 'Failed to Add results')
+            messages.error(request, 'Failed to Add Results')
             return redirect('staff-add-result')
 
     else:
