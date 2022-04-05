@@ -13,7 +13,9 @@
                         <div class="card-header">
                             <h3 class="card-title">Student Results</h3>
                         </div>
-                        {{form}}
+                        <div class="card-body">
+                            {{form}}
+                        </div>
                         {% if messages %}
                         <div class="form-group">
                             <div class="col-md-12">
@@ -32,8 +34,8 @@
                         </div>
                         {% endif %}
                         <div class="card-footer">
-                            <button type="button" class="btn btn-dark btn-block" id="fetch_student">Fetch
-                                Students</button>
+                            <button type="button" class="btn btn-success btn-block" id="save_result">Save
+                                Result</button>
                         </div>
                         <div id="student_data" class="card-footer"></div>
                     </div>

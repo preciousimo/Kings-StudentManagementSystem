@@ -134,7 +134,7 @@ class EditStudentResultForm(forms.Form):
     try: 
         sessions = SessionYear.objects.all()
         for session in sessions:
-            session_single = (session.id, session.session_start_year+" - "+session.session_end_year)
+            session_single = (session.id, str(session.session_start_year)+" - "+str(session.session_end_year))
             session_list.append(session_single)
     except:
         session_list = []
