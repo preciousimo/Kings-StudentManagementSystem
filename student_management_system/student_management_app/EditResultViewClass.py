@@ -1,6 +1,7 @@
+'''
 from django.shortcuts import render
 from django.views import View
-from student_management_app.Forms import EditResultForm
+from student_management_app.Forms import EditStudentResultForm
 
 class EditResultViewClass(View):
     def get(self, request, *args, **kwargs):
@@ -10,3 +11,4 @@ class EditResultViewClass(View):
 
     def post(self, request, *args, **kwargs):
         pass
+'''

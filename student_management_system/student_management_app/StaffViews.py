@@ -2,7 +2,7 @@ import json
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from student_management_app.models import CustomUser, Staffs, Subjects, SessionYear, Students, Attendance, AttendanceReport, LeaveReportStaff, FeedBackStaffs, StudentResult
-from student_management_app.Forms import AddStaffForm, EditStaffForm
+from student_management_app.Forms import AddStaffForm, EditStaffForm, EditStudentResultForm
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
@@ -438,10 +438,10 @@ def saveStudentResult(request):
     else:
         return HttpResponseRedirect('staff-add-result')
 
-class EditResultViewClass(View):
+class editStudentResult(View):
     def get(self, request, *args, **kwargs):
         staff_id = request.user.id
-        edit_result_form = EditResultForm(staff_id=staff_id)
+        edit_result_form = EditStudentResultForm(staff_id=staff_id)
         return render(request, 'staff_templates/edit_result_template.html', {'form':edit_result_form})
 
     def post(self, request, *args, **kwargs):

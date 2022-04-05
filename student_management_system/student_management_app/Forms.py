@@ -115,7 +115,7 @@ class EditStaffForm(forms.Form):
     session_start = forms.DateField(label = "Session Start", widget=DateInput(attrs={'class':'form-control'}))
     session_end = forms.DateField(label = "Session End", widget=DateInput(attrs={'class':'form-control'}))
 
-class EditResultForm(forms.Form):
+class EditStudentResultForm(forms.Form):
     def __init__ (self, *args, **kwargs):
         self.staff_id=kwargs.pop('staff_id')
         super().__init__()
@@ -127,18 +127,20 @@ class EditResultForm(forms.Form):
                 subject_list.append(subject_single)
         except:
             subject_list = []
+        
+        self.fields['subject_id'].choices = subject_list
 
+    session_list = []
+    try: 
+        sessions = SessionYear.objects.all()
+        for session in sessions:
+            session_single = (session.id, session.session_start_year+" - "+session.session_end_year)
+            session_list.append(session_single)
+    except:
         session_list = []
-        try: 
-            sessions = SessionYear.objects.all()
-            for session in sessions:
-                session_single = (session.id, session.session_start_year, session.session_end_year)
-                session_list.append(session_single)
-        except:
-            session_list = []
 
-        self.subject_id = forms.ChoiceField(label="Subject", choices=subject_list, widget=forms.Select(attrs={'class:form-control'}))
-        self.session_ids = forms.ChoiceField(label="Session Year", choices=session_list, widget=forms.Select(attrs={'class:form-control'}))
-        self.student_ids = forms.ChoiceField(label="Student",widget=forms.Select(attrs={'class:form-control'}))
-        self.assigment_marks = forms.CharField(label="Assignment Score",widget=forms.TextInput(attrs={'class:form-control'}))
-        self.exam_marks = forms.CharField(label="Exam Score",widget=forms.TextInput(attrs={'class:form-control'}))
+    subject_id = forms.ChoiceField(label="Subject", widget=forms.Select(attrs={'class':'form-control'}))
+    session_ids = forms.ChoiceField(label="Session Year", choices=session_list, widget=forms.Select(attrs={'class':'form-control'}))
+    student_ids = forms.ChoiceField(label="Student", widget=forms.Select(attrs={'class':'form-control'}))
+    assignment_marks = forms.CharField(label = "Assignment Score",widget=forms.TextInput(attrs={'class':'form-control'}))
+    exam_marks = forms.CharField(label = "Exam Score",widget=forms.TextInput(attrs={'class':'form-control'}))
