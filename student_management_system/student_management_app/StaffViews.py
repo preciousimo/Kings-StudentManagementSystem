@@ -7,6 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 from django.forms import model_to_dict
+from django.views import View
 
 def staffHome(request):
     subjects = Subjects.objects.filter(staff_id=request.user.id)
@@ -436,3 +437,12 @@ def saveStudentResult(request):
 
     else:
         return HttpResponseRedirect('staff-add-result')
+
+class EditResultViewClass(View):
+    def get(self, request, *args, **kwargs):
+        staff_id = request.user.id
+        edit_result_form = EditResultForm(staff_id=staff_id)
+        return render(request, 'staff_templates/edit_result_template.html', {'form':edit_result_form})
+
+    def post(self, request, *args, **kwargs):
+        pass

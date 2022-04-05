@@ -137,6 +137,17 @@
                         <i class="fas fa-angle-right right"></i>
                     </a>
                 </li>
+                <li class="nav-item">
+                    {% url 'edit-student-result' as edit_student_result %}
+                    <a href="{% url 'edit-student-result' %}"
+                        class="nav-link {% if request.path == edit_student_result %} active {% endif %}">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Edit Result
+                        </p>
+                        <i class="fas fa-angle-right right"></i>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

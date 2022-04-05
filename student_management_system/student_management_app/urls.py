@@ -1,12 +1,11 @@
 from django.urls import path, include
 from student_management_app import views, HodViews, StudentViews, StaffViews
-
+from . import EditResultViewClass
 
 
 urlpatterns = [
 
     path('accounts/', include('django.contrib.auth.urls')),
-
     #HOD/Admin Views
     path('admin-home', HodViews.adminHome, name="admin-home"),
     path('edit-admin-profile', HodViews.editAdminProfile, name="edit-admin-profile"),
@@ -75,5 +74,5 @@ urlpatterns = [
     path('staff-fcmtoken-save/', StaffViews.staffFcmtokenSave, name="staff-fcmtoken-save"),
     path('staff-add-result/', StaffViews.staffAddResult, name="staff-add-result"),
     path('save-student-result/', StaffViews.saveStudentResult, name="save-student-result"),
-    path('edit-student-result/', EditResultViewClass.as_view(), name="edit-student-result"),
+    path('edit-student-result/', StaffViews.EditResultViewClass.as_view(), name="edit-student-result"),
 ]
