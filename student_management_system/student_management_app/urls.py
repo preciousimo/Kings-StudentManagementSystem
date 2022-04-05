@@ -75,4 +75,5 @@ urlpatterns = [
     path('staff-add-result/', StaffViews.staffAddResult, name="staff-add-result"),
     path('save-student-result/', StaffViews.saveStudentResult, name="save-student-result"),
     path('edit-student-result/', StaffViews.editStudentResult.as_view(), name="edit-student-result"),
+    path('fetch_student_result/', StaffViews.fetch_student_result, name="fetch_student_result"),
 ]

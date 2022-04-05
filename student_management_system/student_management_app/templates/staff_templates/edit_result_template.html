@@ -34,7 +34,7 @@
                         </div>
                         {% endif %}
                         <div class="card-footer">
-                            <button type="button" class="btn btn-success btn-block" id="save_result">Save
+                            <button type="button" class="btn btn-success btn-block" id="fetch_student">Save
                                 Result</button>
                         </div>
                         <div id="student_data" class="card-footer"></div>
@@ -48,9 +48,20 @@
 {% block custom_js %}
 <script>
     $(document).ready(function () {
-        $('#fetch_student').click(function () {
-            var subject = $('#subject').val()
-            var session_year = $('#session_year').val()
+        $('#id_session_ids').change(function () {
+            fetchStudents()
+        });
+        $('#id_subject_id').change(function () {
+            fetchStudents()
+        });
+
+        $('#id_student_ids').change(function () {
+            fetch_student_result()
+        });
+
+        function fetchStudents() {
+            var session_year = $('#id_session_ids').val()
+            var subject = $('#id_subject_id').val()
 
             $.ajax({
                 url: "{% url 'get_students' %}",
@@ -60,30 +71,44 @@
                 .done(function (response) {
                     var json_data = JSON.parse(response);
                     console.log(json_data);
-                    var div_data = "<div class='form-group'><label>Student List</label><select class='student_list form-control' name='student_list'>";
+                    var div_data = "";
                     for (key in json_data) {
                         div_data += "<option value='" + json_data[key]['id'] + "'>ID:" + json_data[key]['id'] + " Name: " + json_data[key]['name'] + " </option>";
                     }
-                    div_data += "</select>";
-                    div_data += "</div>";
-                    div_data += "<div class='row'>";
-                    div_data += "<div class='col-lg-6'>";
-                    div_data += "<label> Assignment Score: </label> <input type='text' name='assignment_marks' class='form-control' placeholder='Enter student score'>"
-                    div_data += "</div>";
-                    div_data += "<div class='col-lg-6'>";
-                    div_data += "<label> Exam Score: </label> <input type='text' name='exam_marks' class='form-control' placeholder='Enter student score'>"
-                    div_data += "</div>";
-                    div_data += "</div>";
-                    div_data += "</br>";
-                    div_data += "<div class='form-group'>";
-                    div_data += "<button id='save_attendance' class='btn btn-success btn-block' type='submit'>Save Result</button>"
-                    div_data += "</div>";
-                    $("#student_data").html(div_data);
+
+                    $("#id_student_ids").html(div_data);
                 })
                 .fail(function () {
                     alert("Error in Fetching Student")
                 })
-        })
+        }
+
+        function fetch_student_result() {
+            var id_student_ids = $('#id_student_ids').val()
+            var subject = $('#id_subject_id').val()
+
+            $.ajax({
+                url: "{% url 'fetch_student_result' %}",
+                type: "POST",
+                data: { subject_id: subject, student_id: id_student_ids },
+            })
+                .done(function (response) {
+                    if (response == "False") {
+                        alert('Result Not Found')
+                    }
+                    else {
+                        var json_data = JSON.parse(response);
+                        $('#id_assignment_marks').val(json_data['assignment_marks'])
+                        $('#id_exam_marks').val(json_data['exam_marks'])
+                    }
+
+
+                })
+                .fail(function () {
+                    alert("Error in Fetching Student")
+                })
+        }
+
     })
 </script>
 {% endblock custom_js %}
