@@ -103,6 +103,17 @@
                         <i class="fas fa-angle-right right"></i>
                     </a>
                 </li>
+                <li class="nav-item">
+                    {% url 'student-view-result' as student_view_result %}
+                    <a href="{% url 'student-view-result' %}"
+                        class="nav-link {% if request.path == student_view_result %} active {% endif %}">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Grade Card
+                        </p>
+                        <i class="fas fa-angle-right right"></i>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
