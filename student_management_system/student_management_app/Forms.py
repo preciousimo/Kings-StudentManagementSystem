@@ -1,6 +1,12 @@
 from django import forms
+from django.forms import ChoiceField
 from django.forms.widgets import TextInput, FileInput
 from student_management_app.models import SessionYear, Subjects
+
+class ChoiceNoValidation(ChoiceField):
+    def validate(self, value):
+        pass
+
 class DateInput(forms.DateInput):
     input_type = "date"
 
@@ -118,7 +124,7 @@ class EditStaffForm(forms.Form):
 class EditStudentResultForm(forms.Form):
     def __init__ (self, *args, **kwargs):
         self.staff_id=kwargs.pop('staff_id')
-        super().__init__()
+        super(EditStudentResultForm, self).__init__(*args, **kwargs)
         subject_list = []
         try: 
             subjects = Subjects.objects.filter(staff_id=self.staff_id)
@@ -141,6 +147,6 @@ class EditStudentResultForm(forms.Form):
 
     subject_id = forms.ChoiceField(label="Subject", widget=forms.Select(attrs={'class':'form-control'}))
     session_ids = forms.ChoiceField(label="Session Year", choices=session_list, widget=forms.Select(attrs={'class':'form-control'}))
-    student_ids = forms.ChoiceField(label="Student", widget=forms.Select(attrs={'class':'form-control'}))
+    student_ids = ChoiceNoValidation(label="Student", widget=forms.Select(attrs={'class':'form-control'}))
     assignment_marks = forms.CharField(label = "Assignment Score",widget=forms.TextInput(attrs={'class':'form-control'}))
     exam_marks = forms.CharField(label = "Exam Score",widget=forms.TextInput(attrs={'class':'form-control'}))

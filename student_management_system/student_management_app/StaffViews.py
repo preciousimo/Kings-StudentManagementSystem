@@ -445,7 +445,23 @@ class editStudentResult(View):
         return render(request, 'staff_templates/edit_result_template.html', {'form':edit_result_form})
 
     def post(self, request, *args, **kwargs):
-        pass
+        form = EditStudentResultForm(request.POST, staff_id=request.user.id)
+        if form.is_valid():
+            student_admin_id = form.cleaned_data['student_ids']
+            assignment_marks = form.cleaned_data['assignment_marks']
+            exam_marks = form.cleaned_data['exam_marks']
+            subject_id = form.cleaned_data['subject_id']
+
+            student_obj = Students.objects.get(admin=student_admin_id)
+            subject_obj = Subjects.objects.get(id=subject_id)
+            result = StudentResult.objects.get(student_id=student_obj, subject_id=subject_obj)
+            result.subject_assignment_marks = assignment_marks
+            result.subject_exam_marks = exam_marks
+            result.save()
+            return redirect('edit-student-result')
+        else:
+            form = EditStudentResultForm(request.POST, staff_id=request.user.id)
+            return render(request, 'staff_templates/edit_result_template.html', {'form':form})
 
 @csrf_exempt
 def fetch_student_result(request):
