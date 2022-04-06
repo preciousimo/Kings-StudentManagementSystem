@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from student_management_app.models import CustomUser, Students, SessionYear, Subjects, Attendance, AttendanceReport, LeaveReportStudent, FeedBackStudents
+from student_management_app.models import CustomUser, Students, SessionYear, Subjects, Attendance, AttendanceReport, LeaveReportStudent, FeedBackStudents, StudentResult
 from student_management_app.Forms import AddStudentForm, EditStudentForm
 from django.http import HttpResponse, HttpResponseRedirect
 import datetime
@@ -310,5 +310,7 @@ def studentFcmtokenSave(request):
         return HttpResponse('False')
 
 def studentViewResult(request):
-    return render(request, 'student_templates/student_view_result_template.html') 
+    student = Students.objects.get(admin=request.user.id)
+    student_result = StudentResult.objects.filter(student_id=student.id)
+    return render(request, 'student_templates/student_view_result_template.html', {'student_result':student_result}) 
     

@@ -21,21 +21,23 @@
                                 <th>Exam Score</th>
                                 <th>Status</th>
                             </tr>
+                            {% for row in student_result %}
                             <tr>
-                                {% for row in student_result %}
+
                                 <td>{{ row.id }}</td>
-                                <td>{{ row.subject_name }}</td>
+                                <td>{{ row.subject_id.subject_name }}</td>
                                 <td>{{ row.subject_assignment_marks }}</td>
                                 <td>{{ row.subject_exam_marks }}</td>
                                 <td>
                                     {% if row.subject_exam_marks >= 40 %}
-                                    <span class="alert alert-success">PASS</span>
+                                    <span class="alert alert-success sm">PASS</span>
                                     {% else %}
                                     <span class="alert alert-danger">FAIL</span>
                                     {% endif %}
                                 </td>
-                                {% endfor %}
+
                             </tr>
+                            {% endfor %}
 
 
                         </table>
