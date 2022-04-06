@@ -310,4 +310,5 @@ def studentFcmtokenSave(request):
         return HttpResponse('False')
 
 def studentViewResult(request):
-    pass
+    return render(request, 'student_templates/student_view_result_template.html') 
+    
