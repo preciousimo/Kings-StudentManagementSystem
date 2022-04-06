@@ -458,8 +458,10 @@ class editStudentResult(View):
             result.subject_assignment_marks = assignment_marks
             result.subject_exam_marks = exam_marks
             result.save()
+            messages.success(request, 'Successfully Updated Result')
             return redirect('edit-student-result')
         else:
+            messages.error(request, 'Failed to Edit Result')
             form = EditStudentResultForm(request.POST, staff_id=request.user.id)
             return render(request, 'staff_templates/edit_result_template.html', {'form':form})
 
