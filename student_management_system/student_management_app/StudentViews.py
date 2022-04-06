@@ -308,3 +308,6 @@ def studentFcmtokenSave(request):
         return HttpResponse('True')
     except:
         return HttpResponse('False')
+
+def studentViewResult(request):
+    pass

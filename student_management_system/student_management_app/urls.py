@@ -46,6 +46,7 @@ urlpatterns = [
     path('check-student-email-exist', StudentViews.checkStudentEmailExist, name="check-student-email-exist"),
     path('check-student-username-exist', StudentViews.checkStudentUsernameExist, name="check-student-username-exist"),
     path('student-fcmtoken-save', StudentViews.studentFcmtokenSave, name="student-fcmtoken-save"),
+    path('student-view-result', StudentViews.studentViewResult, name="student-view-result"),
     #Staff Views
     path('edit-staff-profile', StaffViews.editStaffProfile, name="edit-staff-profile"),
     path('edit-staff-profile-save', StaffViews.editStaffProfileSave, name="edit-staff-profile-save"),
