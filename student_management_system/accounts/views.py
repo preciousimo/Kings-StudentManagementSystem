@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from student_management_app.models import CustomUser
@@ -50,7 +51,10 @@ def loginPage(request):
         cap_secret = "6LePnE8fAAAAABF9gJ6mtafoML8b7EPTx51bvPBm"
         cap_data = {"secret":cap_secret, "response":captcha_token}
         cap_server_response = requests.post(url=cap_url,data=cap_data)
-        print(cap_server_response.text)
+        cap_json = json.loads(cap_server_response.text)
+        if cap_json['success'] == False:
+            messages.error(request, 'Invalid Captcha Try Again')
+            return render(request, 'login.html')
         user = EmailBackEnd.authenticate(request, username=username,password=password)
         if user != None:
             login(request, user)
