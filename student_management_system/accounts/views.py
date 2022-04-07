@@ -42,6 +42,12 @@ def registerPage(request):
     else:
         return render(request, 'register.html')
 
+def checkAdminEmailExist(request):
+    pass
+
+def checkAdminUsernameExist(request):
+    pass
+
 def loginPage(request):
     if request.method == 'POST':
         username = request.POST.get('email')
