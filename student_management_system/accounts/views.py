@@ -8,6 +8,7 @@ from student_management_app.EmailBackEnd import EmailBackEnd
 from django.http import HttpResponse
 from student_management_app.models import CustomUser
 import requests
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
    
 def registerPage(request):
@@ -42,11 +43,23 @@ def registerPage(request):
     else:
         return render(request, 'register.html')
 
+@csrf_exempt
 def checkAdminEmailExist(request):
-    pass
+    email = request.POST['email']
+    user_obj = CustomUser.objects.filter(email=email).exists()
+    if user_obj:
+        return HttpResponse(True)
+    else:
+        return HttpResponse(False)
 
+@csrf_exempt
 def checkAdminUsernameExist(request):
-    pass
+    username = request.POST['username']
+    user_obj = CustomUser.objects.filter(username=username).exists()
+    if user_obj:
+        return HttpResponse(True)
+    else:
+        return HttpResponse(False)
 
 def loginPage(request):
     if request.method == 'POST':
