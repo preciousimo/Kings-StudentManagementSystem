@@ -23,78 +23,8 @@
         <p class="login-box-msg">Create a new acount</p>
         <p class="login-box-msg"><a href="{% url 'login' %}">I already have an account</a></p>
 
-        <form action="{% url 'register' %}" method="post">
-          {% csrf_token %}
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="First name" name="first_name">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-user"></span>
-              </div>
-            </div>
-          </div>
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Last name" name="last_name">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-user"></span>
-              </div>
-            </div>
-          </div>
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Username" name="username" id="id_username">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-user"></span>
-              </div>
-            </div>
-          </div>
-          <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Email" name="email" id="id_email">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-envelope"></span>
-              </div>
-            </div>
-          </div>
-          <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Password" name="password">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
-            </div>
-          </div>
-          <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Retype password" name="password2">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-8">
-              {% if messages %}
-              {% for message in messages %}
-              {% if message.tags == 'success' %}
-              <div class="btn btn-success btn-block">{{message}}</div>
-              {% endif %}
-              {% if message.tags == 'info' %}
-              <div class="btn btn-info btn-block">{{message}}</div>
-              {% endif %}
-              {% if message.tags == 'error' %}
-              <div class="btn btn-danger btn-block">{{message}}</div>
-              {% endif %}
-              {% endfor %}
-              {% endif %}
-            </div>
-            <div class="col-4">
-              <button type="submit" class="btn btn-block btn-success">Register</button>
-            </div>
-            <!-- /.col -->
-          </div>
-        </form>
+        {% url 'register' as action_path %}
+        {% include 'form_template.html' with button="Create Account" %}
 
         <div class="social-auth-links text-center">
           <a href="#" class="btn btn-block btn-primary">
