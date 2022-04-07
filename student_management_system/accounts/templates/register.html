@@ -128,10 +128,10 @@
               console.log(response)
               if (response == "True") {
                 $(".email_error").remove();
-                $("<span class='email_error' style='padding:5px; color:red; font-weight:bold'>Email Not Available</span>").insertAfter('#id_email');
+                $("<span class='email_error' style='padding:5px; color:red; font-weight:bold;font-size:small'>Email Not Available</span>").insertAfter('#id_email');
               } else {
                 $(".email_error").remove();
-                $("<span class='email_error' style='padding:5px; color:green; font-weight:bold'>Email Available</span>").insertAfter('#id_email');
+                $("<span class='email_error' style='padding:5px; color:green; font-weight:bold;font-size:small'>Email Available</span>").insertAfter('#id_email');
               }
             })
             .fail(function () {
