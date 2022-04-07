@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Registration Page</title>
+  <title>KIS | Registration Page</title>
   <link rel="shortcut icon" href="{% static 'favicon/kislogo.ico' %}" type="image/x-icon">
   {% include 'includes/css_links.html' %}
 </head>
@@ -21,6 +21,8 @@
       </div>
       <div class="card-body">
         <p class="login-box-msg">Create a new acount</p>
+        <p class="login-box-msg"><a href="{% url 'login' %}">I already have an account</a></p>
+
         <form action="{% url 'register' %}" method="post">
           {% csrf_token %}
           <div class="input-group mb-3">
@@ -104,8 +106,6 @@
             Sign up using Google+
           </a>
         </div>
-
-        <a href="{% url 'login' %}" class="text-center">I already have an account</a>
       </div>
     </div>
     <br><br>
@@ -114,6 +114,5 @@
 
   {% include 'includes/js_links.html' %}
 </body>
-<br>
 
 </html>
