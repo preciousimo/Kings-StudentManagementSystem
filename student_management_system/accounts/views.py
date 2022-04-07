@@ -9,9 +9,14 @@ from django.http import HttpResponse
 from student_management_app.models import CustomUser
 import requests
 from django.views.decorators.csrf import csrf_exempt
+from accounts.forms import RegisterAdminForm
 # Create your views here.
    
 def registerPage(request):
+    form = RegisterAdminForm()
+    return render(request, 'register.html', {'form':form})
+
+def registerPageSave(request):
     if request.method == 'POST':
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
