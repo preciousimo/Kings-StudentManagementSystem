@@ -42,7 +42,7 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Username" name="username">
+            <input type="text" class="form-control" placeholder="Username" name="username" id="id_username">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-user"></span>
@@ -50,7 +50,7 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Email" name="email">
+            <input type="email" class="form-control" placeholder="Email" name="email" id="id_email">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -113,6 +113,60 @@
 
 
   {% include 'includes/js_links.html' %}
+
+  <script>
+    $(document).ready(function () {
+      $("#id_email").keyup(function () {
+        var email = ($(this).val())
+        if (email != "") {
+          $.ajax({
+            url: "{% url 'check-student-email-exist' %}",
+            type: 'POST',
+            data: { email: email }
+          })
+            .done(function (response) {
+              console.log(response)
+              if (response == "True") {
+                $(".email_error").remove();
+                $("<span class='email_error' style='padding:5px; color:red; font-weight:bold'>Email Not Available</span>").insertAfter('#id_email');
+              } else {
+                $(".email_error").remove();
+                $("<span class='email_error' style='padding:5px; color:green; font-weight:bold'>Email Available</span>").insertAfter('#id_email');
+              }
+            })
+            .fail(function () {
+              console.log('Failed')
+            })
+        } else {
+          $(".email_error").remove();
+        }
+      })
+      $("#id_username").keyup(function () {
+        var username = ($(this).val())
+        if (username != "") {
+          $.ajax({
+            url: "{% url 'check-student-username-exist' %}",
+            type: 'POST',
+            data: { username: username }
+          })
+            .done(function (response) {
+              if (response == "True") {
+                $(".username_error").remove();
+                $("<span class='username_error' style='padding:5px; color:red; font-weight:bold'>Username Not Available</span>").insertAfter('#id_username');
+              } else {
+                $(".username_error").remove();
+                $("<span class='username_error' style='padding:5px; color:green; font-weight:bold'>Username Available</span>").insertAfter('#id_username');
+              }
+            })
+            .fail(function () {
+              console.log('Failed to check availability')
+            })
+        } else {
+          $(".username_error").remove();
+        }
+      })
+    })
+  </script>
 </body>
 
 </html>
