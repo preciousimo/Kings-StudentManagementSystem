@@ -23,7 +23,7 @@
         <p class="login-box-msg">Create a new acount</p>
         <p class="login-box-msg"><a href="{% url 'login' %}">I already have an account</a></p>
 
-        {% url 'register' as action_path %}
+        {% url 'register-page-save' as action_path %}
         {% include 'form_template.html' with button="Create Account" %}
 
         <div class="social-auth-links text-center">

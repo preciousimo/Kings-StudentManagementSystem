@@ -18,35 +18,31 @@ def registerPage(request):
 
 def registerPageSave(request):
     if request.method == 'POST':
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        username = request.POST.get('username')
-        email = request.POST['email']
-        password = request.POST['password']
-        password2 = request.POST['password2']
-        if password == password2:
-            '''
-            if EmailBackEnd.objects.filter(username=username).exists():
-                messages.info(request, '{} already taken'.format(username))
-                return render(request, 'register.html')
-            elif EmailBackEnd.objects.filter(email=email).exists():
-                messages.info(request, '{} already taken'.format(email))
-                return render(request, 'register.html')
+        form = RegisterAdminForm(request.POST)
+        if form.is_valid():
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            password2 = form.cleaned_data['password2']
+            if password == password2:
+                try:
+                    user = CustomUser.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password, user_type=1)
+                    user.save() 
+                    messages.success(request,'{} created successfully'.format(username)) 
+                    return redirect('/login')
+                except:
+                    messages.error(request,'Invalid Credentials') 
+                    return render(request, 'register.html')
             else:
-                '''
-            try:
-                user = CustomUser.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password, user_type=1)
-                user.save() 
-                messages.success(request,'{} created successfully'.format(username)) 
-                return redirect('/login')
-            except:
-                messages.error(request,'Invalid Credentials') 
+                messages.error(request,'Passwords do not match') 
                 return render(request, 'register.html')
         else:
-            messages.error(request,'Passwords do not match') 
-            return render(request, 'register.html')
+            form = RegisterAdminForm(request.POST)
+            return render(request, 'register.html', {'form':form})
     else:
-        return render(request, 'register.html')
+        return HttpResponse('Method not allowed')
 
 @csrf_exempt
 def checkAdminEmailExist(request):
