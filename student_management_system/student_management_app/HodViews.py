@@ -59,6 +59,9 @@ def adminHome(request):
     }
     return render(request, 'hod_templates/home_content.html', context)
 
+def adminProfile(request):
+    pass
+
 def editAdminProfile(request):
     user = CustomUser.objects.get(id=request.user.id)
     return render(request, 'hod_templates/edit_admin_profile_template.html', {'user':user})

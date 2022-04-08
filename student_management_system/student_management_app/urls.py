@@ -8,10 +8,13 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     #HOD/Admin Views
     path('admin-home', HodViews.adminHome, name="admin-home"),
+    path('admin-profile', HodViews.adminProfile, name="admin-profile"),
     path('edit-admin-profile', HodViews.editAdminProfile, name="edit-admin-profile"),
     path('edit-admin-profile-save', HodViews.editAdminProfileSave, name="edit-admin-profile-save"),
     path('contact-us', HodViews.contactUs, name="contact-us"),
     path('contacts', HodViews.contacts, name="contacts"),
+
+
     path('add-session', HodViews.addSession, name="add-session"),
     path('add-session-save', HodViews.addSessionSave, name="add-session-save"),
     path('edit-session', HodViews.editSession, name="edit-session"),
