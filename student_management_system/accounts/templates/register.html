@@ -21,7 +21,9 @@
       </div>
       <div class="card-body">
         <p class="login-box-msg">Create a new acount</p>
-        <p class="login-box-msg"><a href="{% url 'login' %}">I already have an account</a></p>
+        <div class="col-12 text-center">
+          <a href="{% url 'login' %}">I already have an account</a>
+        </div>
 
         {% url 'register-page-save' as action_path %}
         {% include 'form_template.html' with button="Create Account" %}
@@ -58,10 +60,10 @@
               console.log(response)
               if (response == "True") {
                 $(".email_error").remove();
-                $("<span class='email_error' style='padding:5px; color:red; font-weight:bold;font-size:small'>Email Not Available</span>").insertAfter('#id_email');
+                $("<span class='email_error' style='padding:5px; color:red; font-weight:bold'>Email Not Available</span>").insertAfter('#id_email');
               } else {
                 $(".email_error").remove();
-                $("<span class='email_error' style='padding:5px; color:green; font-weight:bold;font-size:small'>Email Available</span>").insertAfter('#id_email');
+                $("<span class='email_error' style='padding:5px; color:green; font-weight:bold'>Email Available</span>").insertAfter('#id_email');
               }
             })
             .fail(function () {
