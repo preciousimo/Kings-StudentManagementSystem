@@ -37,16 +37,6 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item">
-                    {% url 'admin-home' as admin_home %}
-                    <a href="{% url 'admin-home' %}"
-                        class="nav-link {% if request.path == admin_home %} active {% endif %}">
-                        <i class="nav-icon far fa-circle text-dark"></i>
-                        <p>
-                            Admin Dashboard
-                        </p>
-                    </a>
-                </li>
                 <li class="nav-header">Student Dashboard</li>
                 <li class="nav-item">
                     <a href="{% url 'student-home' %}" class="nav-link">
@@ -65,12 +55,40 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-header">School Admin Dashboard</li>
+                <li class="nav-item">
+                    {% url 'admin-home' as admin_home %}
+                    <a href="{% url 'admin-home' %}"
+                        class="nav-link {% if request.path == admin_home %} active {% endif %}"
+                        style="background-color: whitesmoke;">
+                        <i class="nav-icon far fa-circle text-dark"></i>
+                        <p style="color: black;">
+                            Admin Dashboard
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    {% url 'admin-view-attendance' as admin_view_attendance %}
+                    <a href="{% url 'admin-view-attendance' %}"
+                        class="nav-link {% if request.path == admin_view_attendance %} active {% endif %}">
+                        <i class="nav-icon fas fa-check-in"></i>
+                        <p>View Attendance</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    {% url 'manage-subject' as manage_subject %}
+                    <a href="{% url 'manage-subject' %}"
+                        class="nav-link {% if request.path == manage_subject %} active {% endif %}">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>Subjects</p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-envelope"></i>
+                        <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
                             Sessions
-                            <i class="fas fa-angle-down right"></i>
+                            <i class="right fas fa-angle-down"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -78,7 +96,7 @@
                             {% url 'add-session' as add_session %}
                             <a href="{% url 'add-session' %}"
                                 class="nav-link {% if request.path == add_session %} active {% endif %}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="nav-icon far fa-calendar-alt"></i>
                                 <p>Add Session</p>
                             </a>
                         </li>
@@ -86,7 +104,7 @@
                             {% url 'edit-session' as edit_session %}
                             <a href="{% url 'edit-session' %}"
                                 class="nav-link {% if request.path == edit_session %} active {% endif %}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="nav-icon far fa-calendar-alt"></i>
                                 <p>Edit Session</p>
                             </a>
                         </li>
@@ -94,7 +112,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-envelope"></i>
+                        <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Feedbacks
                             <i class="fas fa-angle-down right"></i>
@@ -105,7 +123,7 @@
                             {% url 'student-feedback-message' as student_feedback_message %}
                             <a href="{% url 'student-feedback-message' %}"
                                 class="nav-link {% if request.path == student_feedback_message %} active {% endif %}">
-                                <i class="far fa-circle nav-icon"></i>
+
                                 <p>Student Feedback</p>
                             </a>
                         </li>
@@ -113,7 +131,7 @@
                             {% url 'staff-feedback-message' as staff_feedback_message %}
                             <a href="{% url 'staff-feedback-message' %}"
                                 class="nav-link {% if request.path == staff_feedback_message %} active {% endif %}">
-                                <i class="far fa-circle nav-icon"></i>
+
                                 <p>Staff Feedback</p>
                             </a>
                         </li>
@@ -121,7 +139,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-edit"></i>
+
                         <p>
                             Leave
                             <i class="fas fa-angle-down right"></i>
@@ -132,7 +150,7 @@
                             {% url 'student-leave-view' as student_leave_view %}
                             <a href="{% url 'student-leave-view' %}"
                                 class="nav-link {% if request.path == student_leave_view %} active {% endif %}">
-                                <i class="far fa-circle nav-icon"></i>
+
                                 <p>Student Leave</p>
                             </a>
                         </li>
@@ -140,35 +158,17 @@
                             {% url 'staff-leave-view' as staff_leave_view %}
                             <a href="{% url 'staff-leave-view' %}"
                                 class="nav-link {% if request.path == staff_leave_view %} active {% endif %}">
-                                <i class="far fa-circle nav-icon"></i>
+
                                 <p>Staff Leave</p>
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    {% url 'admin-view-attendance' as admin_view_attendance %}
-                    <a href="{% url 'admin-view-attendance' %}"
-                        class="nav-link {% if request.path == admin_view_attendance %} active {% endif %}">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>View Attendance</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="subjects" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
-                            Subjects
-                            <i class="fas fa-angle-down right"></i>
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="notifications" class="nav-link">
                         <i class="nav-icon fas fa-bell"></i>
                         <p>
                             Notifications
-                            <i class="fas fa-angle-down right"></i>
                         </p>
                     </a>
                 </li>
@@ -177,7 +177,6 @@
                         <i class="nav-icon far fa-image"></i>
                         <p>
                             Gallery
-                            <i class="fas fa-angle-down right"></i>
                         </p>
                     </a>
                 </li>
@@ -192,19 +191,19 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="mailbox/mailbox.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+
                                 <p>Inbox</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="mailbox/compose.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+
                                 <p>Compose</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="mailbox/read-mail.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+
                                 <p>Read</p>
                             </a>
                         </li>
@@ -212,7 +211,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-envelope"></i>
+                        <i class="nav-icon far fa-call"></i>
                         <p>
                             Contacts
                             <i class="fas fa-angle-down right"></i>
@@ -221,19 +220,19 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/contacts" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+
                                 <p>Our Contacts</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="examples/faq.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+
                                 <p>FAQ</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/contact-us" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+
                                 <p>Contact us</p>
                             </a>
                         </li>
