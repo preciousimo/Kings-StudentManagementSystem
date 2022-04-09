@@ -1,142 +1,76 @@
+{% extends 'hod_templates/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% block page_title %}Edit Admin Profile{% endblock page_title %}
+{% block home_content %}
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin | Profile</title>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
 
-  {% include 'hod_templates/includes/links/css_links.html' %}
-</head>
-
-<body class="hold-transition sidebar-mini">
-  <div class="wrapper">
-    <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-      {% include 'hod_templates/includes/navbars/navbar.html' %}
-    </nav>
-    <!-- /.navbar -->
-
-    <!-- Main Sidebar Container -->
-    {% include 'hod_templates/includes/navbars/sidebar.html' %}
-
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1>User Profile</h1>
+        <!-- Profile Image -->
+        <div class="card card-dark card-outline">
+          <div class="card-body box-profile">
+            <div class="text-center">
+              <img class="profile-user-img img-fluid img-circle" src="{% static 'dist/img/user4-128x128.jpg' %}"
+                alt="User profile picture">
             </div>
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">User Profile</li>
-              </ol>
-            </div>
+            {% if user.is_authenticated %}
+            <h3 class="profile-username text-center">{{user.first_name}}</h3>
+            {% else %}
+            <h3 class="profile-username text-center">Admin</h3>
+            {% endif %}
+            <p class="text-muted text-center">School Admin</p>
+
+            <ul class="list-group list-group-unbordered mb-3">
+              <li class="list-group-item">
+                <b>Status</b> <a class="float-right">1,322</a>
+              </li>
+              <li class="list-group-item">
+                <b>Following</b> <a class="float-right">543</a>
+              </li>
+              <li class="list-group-item">
+                <b>Friends</b> <a class="float-right">13,287</a>
+              </li>
+            </ul>
           </div>
-        </div><!-- /.container-fluid -->
-      </section>
-
-      <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-3">
-
-              <!-- Profile Image -->
-              <div class="card card-dark card-outline">
-                <div class="card-body box-profile">
-                  <div class="text-center">
-                    <img class="profile-user-img img-fluid img-circle" src="{% static 'dist/img/user4-128x128.jpg' %}"
-                      alt="User profile picture">
-                  </div>
-                  {% if user.is_authenticated %}
-                  <h3 class="profile-username text-center">{{user.first_name}}</h3>
-                  {% else %}
-                  <h3 class="profile-username text-center">Admin</h3>
-                  {% endif %}
-                  <p class="text-muted text-center">School Admin</p>
-
-                  <ul class="list-group list-group-unbordered mb-3">
-                    <li class="list-group-item">
-                      <b>Status</b> <a class="float-right">1,322</a>
-                    </li>
-                    <li class="list-group-item">
-                      <b>Following</b> <a class="float-right">543</a>
-                    </li>
-                    <li class="list-group-item">
-                      <b>Friends</b> <a class="float-right">13,287</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-            </div>
-            <div class="col-md-9">
-              <div class="card">
-                <div class="card-header p-2">
-                  <h3 style="text-align: center;">Edit User</h3>
-                </div>
-                <div class="card-body">
-                  <div class="tab-content">
-                    <div class="active tab-pane" id="settings">
-                      <form class="form-horizontal">
-                        <div class="form-group row">
-                          <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-                          <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputName" placeholder="Name">
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                          <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputName2" placeholder="Name">
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-                          <div class="col-sm-10">
-                            <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <div class="offset-sm-2 col-sm-10">
-                            <button type="submit" class="btn btn-dark">Make Change</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
         </div>
-      </section>
-      <!-- /.content -->
+
+      </div>
+      <div class="col-md-9">
+        <div class="card card-dark">
+          <div class="card-header">
+            <h3 class="card-title">Edit Admin Profile</h3>
+          </div>
+          <form action="{% url 'edit-admin-profile-save' %}" method="post">
+            {% csrf_token %}
+            <div class="card-body">
+              <div class="form-group">
+                <label>Username</label>
+                <input class="form-control" type="name" name="username" value="{{user.username}}" disabled="disabled">
+              </div>
+              <div class="form-group">
+                <label>Email Address</label>
+                <input class="form-control" type="email" name="email" value="{{user.email}}" disabled="disabled">
+              </div>
+              <div class="form-group">
+                <label>First Name</label>
+                <input class="form-control" type="name" name="first_name" value="{{user.first_name}}">
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input class="form-control" type="name" name="last_name" value="{{user.last_name}}">
+              </div>
+              <div class="card-footer">
+                <button type="submit" class="btn btn-success btn-block">Edit Profile</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
     </div>
-    {% include 'hod_templates/includes/footer.html' %}
 
-    {% include 'hod_templates/includes/links/js_links.html' %}
-</body>
-
-</html>
+  </div>
+</section>
+{% endblock home_content %}
