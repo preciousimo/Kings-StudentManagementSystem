@@ -6,6 +6,8 @@ from . import EditResultViewClass
 urlpatterns = [
 
     path('accounts/', include('django.contrib.auth.urls')),
+    path('page-not-found', views.pageNotFound, name="page-not-found"),
+
     #HOD/Admin Views
     path('admin-home', HodViews.adminHome, name="admin-home"),
     path('admin-profile', HodViews.adminProfile, name="admin-profile"),
