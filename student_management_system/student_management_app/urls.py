@@ -11,6 +11,7 @@ urlpatterns = [
 
     #HOD/Admin Views
     path('admin-home', HodViews.adminHome, name="admin-home"),
+    path('admin-student-home', HodViews.adminStudentHome, name="admin-student-home"),
     path('admin-profile', HodViews.adminProfile, name="admin-profile"),
     path('edit-admin-profile', HodViews.editAdminProfile, name="edit-admin-profile"),
     path('edit-admin-profile-save', HodViews.editAdminProfileSave, name="edit-admin-profile-save"),

@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils.deprecation import MiddlewareMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 class LoginCheckMiddleWare(MiddlewareMixin):
 
@@ -34,7 +34,7 @@ class LoginCheckMiddleWare(MiddlewareMixin):
                 elif modulename == "accounts.views":
                     pass 
                 else:
-                    return HttpResponse('You are not authorised to be here')
+                    return redirect('forbidden-page')
             # Student Page Restriction
             elif user.user_type == "3":
                 if modulename == "student_management_app.StudentViews":
@@ -44,7 +44,7 @@ class LoginCheckMiddleWare(MiddlewareMixin):
                 elif modulename == "accounts.views":
                     pass    
                 else:
-                    return HttpResponse('You are not authorised to be here')
+                    return redirect('forbidden-page')
         else:
             if (request.path == '/login' or modulename == 'django.contrib.auth.urls'):
                 pass
