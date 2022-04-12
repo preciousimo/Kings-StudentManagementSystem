@@ -6,4 +6,4 @@ def pageNotFound(request):
     return render(request, 'error_templates/404/404_template.html')
 
 def forbiddenPage(request):
-    pass
+    return render(request, 'error_templates/403/403_template.html')
