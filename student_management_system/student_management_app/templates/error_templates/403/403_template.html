@@ -7,12 +7,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>404 Error Page</h1>
+        <h1>403 Forbidden Page</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{% url 'admin-home' %}">Home</a></li>
-          <li class="breadcrumb-item active">404 Error Page</li>
+          <li class="breadcrumb-item active">403 Forbidden Page</li>
         </ol>
       </div>
     </div>
@@ -21,34 +21,19 @@
 
 <!-- Main content -->
 <section class="content">
-  <div style="text-align:center">
-    <img src="{% static 'error_templates/error404background.jpeg' %}" alt="error404background">
+  <div class="error-page">
+    <h2 class="headline text-danger">403</h2>
 
-    <img src="{% static 'error_templates/error404text.png' %}" alt="error404text"
-      style="margin-right: 600px;margin-top: -400px;">
-    <img src="{% static 'error_templates/error404.png' %}" alt="error404text"
-      style="margin-right: 120px;margin-top: -400px;">
-  </div>
-</section>
-<!-- Search content -->
-<section class="content">
-  <div class="container-fluid">
-    <h2 class="text-center display-4">Search</h2>
-    <div class="row">
-      <div class="col-md-8 offset-md-2">
-        <form action="simple-results.html">
-          <div class="input-group">
-            <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here">
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-lg btn-default">
-                <i class="fa fa-search"></i>
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
+    <div class="error-content">
+      <h3><i class="fas fa-exclamation-triangle text-danger"></i> Oops! Foridden 403</h3>
+      <p>
+        You do not have permission to access to this page
+        Meanwhile, you may <a href="{% url 'admin-home' %}">return to your dashboard</a>where you have access to those
+        pages.
+      </p>
     </div>
   </div>
-</section>
+  <!-- /.error-page -->
 
+</section>
 {% endblock home_content %}
