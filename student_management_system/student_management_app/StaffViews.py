@@ -200,19 +200,25 @@ def addSubject(request):
 
 def addSubjectSave(request):
     if request.method == 'POST':
-        subject_name = request.POST['subject_name']
-        subject_status = request.POST['subject_status']
-        classs = request.POST['classs']
-        staff_id = request.POST['staff']
-        staff = CustomUser.objects.get(id=staff_id)
-        try:
-            new_subject = Subjects(subject_name=subject_name,subject_status=subject_status,classs=classs,staff_id=staff)
-            new_subject.save()
-            messages.success(request, '{} added successfully'.format(subject_name))
-            return redirect('/add-subject')
-        except:
-            messages.error(request, 'Failed to add new subject')
-            return redirect('/add-subject')
+        form = AddSubjectForm(request.POST)
+        if form.is_valid():
+            subject_name = form.cleaned_data['subject_name']
+            subject_status = form.cleaned_data['subject_status']
+            classs = form.cleaned_data['classs']
+            staff_id = form.cleaned_data['staff_id']
+            try:
+                staffidd = CustomUser.objects.get(id=staff_id)
+                new_subject = Subjects(subject_name=subject_name,subject_status=subject_status,classs=classs,staff_id=staffidd)
+
+                new_subject.save()
+                messages.success(request, '{} added successfully'.format(subject_name))
+                return redirect('/add-subject')
+            except:
+                messages.error(request, 'Failed to add new subject')
+                return redirect('/add-subject')
+        else:
+            form = AddSubjectForm(request.POST)
+            return render(request, 'staff_templates/add-subject-template.html', {'form':form})    
     else:
         return HttpResponse('Method not allowed')
 

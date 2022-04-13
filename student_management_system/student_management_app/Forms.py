@@ -145,9 +145,8 @@ class AddSubjectForm(forms.Form):
     except:
         pass
     classs = forms.ChoiceField(label = "Class", choices=classs_choice, widget=forms.Select(attrs={'class':'form-control'}))  
-    staff_name = forms.ChoiceField(label = "Staff", choices=staff_list, widget=forms.Select(attrs={'class':'form-control'}))  
+    staff_id = forms.ChoiceField(label = "Staff", choices=staff_list, widget=forms.Select(attrs={'class':'form-control'}))  
     
-
 class EditStudentResultForm(forms.Form):
     def __init__ (self, *args, **kwargs):
         self.staff_id=kwargs.pop('staff_id')
