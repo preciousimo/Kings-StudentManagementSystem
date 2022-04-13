@@ -121,6 +121,24 @@ class EditStaffForm(forms.Form):
     session_start = forms.DateField(label = "Session Start", widget=DateInput(attrs={'class':'form-control'}))
     session_end = forms.DateField(label = "Session End", widget=DateInput(attrs={'class':'form-control'}))
 
+class AddSubjectForm(forms.Form):
+    subject_name = forms.CharField(label = "Subject Name",max_length=50, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
+    subject_status_choice = (
+        ('General', 'General'),
+        ('Elective', 'Elective'),
+    )
+    subject_status = forms.ChoiceField(label = "Subject Status",choices=subject_status_choice, widget=forms.Select(attrs={'class':'form-control'}))
+    classs_choice = (
+        ('JSS1', 'JSS 1'),
+        ('JSS2', 'JSS 2'),
+        ('JSS3', 'JSS 3'),
+        ('SSS1', 'SSS 1'),
+        ('SSS2', 'SSS 2'),
+        ('SSS3', 'SSS 3'),  
+    )
+    classs = forms.ChoiceField(label = "Class",choices=classs_choice, widget=forms.Select(attrs={'class':'form-control'}))  
+    staff_name = forms.CharField(label = "Staff",max_length=50, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
+
 class EditStudentResultForm(forms.Form):
     def __init__ (self, *args, **kwargs):
         self.staff_id=kwargs.pop('staff_id')

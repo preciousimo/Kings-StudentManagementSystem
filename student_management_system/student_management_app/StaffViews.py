@@ -2,7 +2,7 @@ import json
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from student_management_app.models import CustomUser, Staffs, Subjects, SessionYear, Students, Attendance, AttendanceReport, LeaveReportStaff, FeedBackStaffs, StudentResult
-from student_management_app.Forms import AddStaffForm, EditStaffForm, EditStudentResultForm
+from student_management_app.Forms import AddStaffForm, EditStaffForm, EditStudentResultForm, AddSubjectForm
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
@@ -195,8 +195,8 @@ def editStaffSave(request):
         return render(request, 'staff_templates/edit_staff_template.html')
 
 def addSubject(request):
-    staffs = CustomUser.objects.filter(user_type=2)
-    return render(request, 'staff_templates/add-subject-template.html', {'staffs':staffs})    
+    form = AddSubjectForm()
+    return render(request, 'staff_templates/add-subject-template.html', {'form':form})    
 
 def addSubjectSave(request):
     if request.method == 'POST':
