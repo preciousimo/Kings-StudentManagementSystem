@@ -59,6 +59,9 @@ def adminHome(request):
     }
     return render(request, 'hod_templates/home_content.html', context)
 
+def adminLockscreen(request):
+    pass
+
 def adminStudentHome(request):
     student_obj = Students.objects.get(id=1)
     total_attendance = AttendanceReport.objects.filter(student_id=student_obj).count()
