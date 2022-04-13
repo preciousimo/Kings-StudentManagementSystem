@@ -130,8 +130,6 @@ def adminStaffHome(request):
     }
     return render(request, 'staff_templates/home_content.html', context)
 
-
-
 def adminProfile(request):
     user = CustomUser.objects.get(id=request.user.id)
     return render(request, 'hod_templates/admin_profile_template.html', {'user':user})
@@ -224,6 +222,7 @@ def studentFeedbackMessage(request):
 def staffFeedbackMessage(request):
     feedbacks = FeedBackStaffs.objects.all()
     return render(request, 'hod_templates/staff_feedback_message.html', {'feedbacks':feedbacks})
+
 @csrf_exempt
 def studentFeedbackReply(request):
     feedback_id = request.POST['id']
