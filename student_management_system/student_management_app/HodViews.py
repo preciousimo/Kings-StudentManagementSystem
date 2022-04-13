@@ -90,7 +90,8 @@ def adminStudentHome(request):
     }
     return render(request, 'student_templates/home_content.html', context)
 
-
+def adminStaffHome(request):
+    pass
 
 def adminProfile(request):
     user = CustomUser.objects.get(id=request.user.id)
