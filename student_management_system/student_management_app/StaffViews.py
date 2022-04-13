@@ -227,7 +227,12 @@ def manageSubject(request):
     return render(request, 'staff_templates/manage_subject_template.html', {'subjects':subjects})
 
 def editSubject(request):
+    subject = Subjects.objects.get(id=1)
     form = EditSubjectForm()
+    form.fields['subject_name'].initial = subject.subject_name
+    form.fields['subject_status'].initial = subject.subject_status
+    form.fields['classs'].initial = subject.classs
+    form.fields['staff_id'].initial = subject.staff_id
     return render(request, 'staff_templates/edit-subject-template.html', {'form':form})    
 
 def takeAttendance(request):
