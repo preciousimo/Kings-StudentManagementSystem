@@ -2,7 +2,7 @@ import json
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from student_management_app.models import CustomUser, Staffs, Subjects, SessionYear, Students, Attendance, AttendanceReport, LeaveReportStaff, FeedBackStaffs, StudentResult
-from student_management_app.Forms import AddStaffForm, EditStaffForm, EditStudentResultForm, AddSubjectForm
+from student_management_app.Forms import AddStaffForm, EditStaffForm, EditStudentResultForm, AddSubjectForm, EditSubjectForm
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
@@ -227,8 +227,8 @@ def manageSubject(request):
     return render(request, 'staff_templates/manage_subject_template.html', {'subjects':subjects})
 
 def editSubject(request):
-    subject = Subjects.objects.all()
-    return render(request, 'staff_templates/edit-subject-template.html', {'subject':subject})
+    form = EditSubjectForm()
+    return render(request, 'staff_templates/edit-subject-template.html', {'form':form})    
 
 def takeAttendance(request):
     subjects = Subjects.objects.filter(staff_id=request.user.id)
