@@ -196,7 +196,7 @@ def editStaffSave(request):
 
 def addSubject(request):
     staffs = CustomUser.objects.filter(user_type=2)
-    return render(request, 'staff_templates/add_subject_template.html', {'staffs':staffs})    
+    return render(request, 'staff_templates/add-subject-template.html', {'staffs':staffs})    
 
 def addSubjectSave(request):
     if request.method == 'POST':
@@ -221,7 +221,8 @@ def manageSubject(request):
     return render(request, 'staff_templates/manage_subject_template.html', {'subjects':subjects})
 
 def editSubject(request):
-    return render(request, 'staff_templates/edit-subject-template.html')
+    subject = Subjects.objects.all()
+    return render(request, 'staff_templates/edit-subject-template.html', {'subject':subject})
 
 def takeAttendance(request):
     subjects = Subjects.objects.filter(staff_id=request.user.id)
