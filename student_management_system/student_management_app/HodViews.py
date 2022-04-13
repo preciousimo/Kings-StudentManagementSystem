@@ -60,7 +60,7 @@ def adminHome(request):
     return render(request, 'hod_templates/home_content.html', context)
 
 def adminStudentHome(request):
-    student_obj = CustomUser.objects.get(user_type=3)
+    student_obj = Students.objects.get(id=1)
     total_attendance = AttendanceReport.objects.filter(student_id=student_obj).count()
     present_attendance = AttendanceReport.objects.filter(student_id=student_obj,status=True).count()
     absent_attendance = AttendanceReport.objects.filter(student_id=student_obj,status=False).count()
