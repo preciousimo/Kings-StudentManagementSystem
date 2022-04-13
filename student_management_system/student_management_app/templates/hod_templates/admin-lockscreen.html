@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin | Lockscreen</title>
+  {% include 'hod_templates/includes/links/css_links.html' %}
 
 </head>
 
@@ -13,7 +14,7 @@
   <!-- Automatic element centering -->
   <div class="lockscreen-wrapper">
     <div class="lockscreen-logo">
-      <a href="{% url 'admin-home' %}"><b>KIS</b>Student Management System</a>
+      <a href="{% url 'admin-home' %}" style="text-decoration: none;"><b>KIS</b> Student Management System</a>
     </div>
     <!-- User name -->
     <div class="lockscreen-name">{{user.username}}</div>
@@ -56,7 +57,7 @@
   </div>
   <!-- /.center -->
 
-
+  {% include 'hod_templates/includes/links/js_links.html' %}
 </body>
 
 </html>
