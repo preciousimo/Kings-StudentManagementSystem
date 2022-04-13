@@ -220,6 +220,9 @@ def manageSubject(request):
     subjects = Subjects.objects.all()
     return render(request, 'staff_templates/manage_subject_template.html', {'subjects':subjects})
 
+def editSubject(request):
+    pass
+
 def takeAttendance(request):
     subjects = Subjects.objects.filter(staff_id=request.user.id)
     session_years = SessionYear.objects.all()

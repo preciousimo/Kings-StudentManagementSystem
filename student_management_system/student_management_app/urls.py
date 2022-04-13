@@ -21,7 +21,6 @@ urlpatterns = [
     path('contact-us', HodViews.contactUs, name="contact-us"),
     path('contacts', HodViews.contacts, name="contacts"),
 
-
     path('add-session', HodViews.addSession, name="add-session"),
     path('add-session-save', HodViews.addSessionSave, name="add-session-save"),
     path('edit-session', HodViews.editSession, name="edit-session"),
@@ -67,6 +66,7 @@ urlpatterns = [
     path('add-subject/', StaffViews.addSubject, name="add-subject"),
     path('add-subject-save/', StaffViews.addSubjectSave, name="add-subject-save"),
     path('manage-subject/', StaffViews.manageSubject, name="manage-subject"),
+    path('edit-subject/<str:student_id>', StaffViews.editSubject, name="edit-subject"),
     path('edit-staff/<str:staff_id>', StaffViews.editStaff, name="edit-staff"),
     path('edit-staff-save/', StaffViews.editStaffSave, name="edit-staff-save"),
     path('take-attendance/', StaffViews.takeAttendance, name="take-attendance"),
