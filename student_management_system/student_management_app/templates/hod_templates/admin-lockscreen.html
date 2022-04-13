@@ -14,21 +14,21 @@
   <!-- Automatic element centering -->
   <div class="lockscreen-wrapper">
     <div class="lockscreen-logo">
-      <a href="{% url 'admin-home' %}" style="text-decoration: none;"><b>KIS</b> Student Management System</a>
+      <a href="{% url 'admin-home' %}" style="text-decoration: none;"><b>KIS</b><br>Student Management System</a>
     </div>
     <!-- User name -->
-    <div class="lockscreen-name">{{user.username}}</div>
-
-    <!-- START LOCK SCREEN ITEM -->
+    <div class="lockscreen-name">Hello, {{user.username}}</div>
+    <div class="help-block text-center">
+      Enter your password to retrieve your session <br><a href="{% url 'login' %}">Or sign in as a different user</a>
+    </div>
+    <br>
     <div class="lockscreen-item">
       <!-- lockscreen image -->
       <div class="lockscreen-image">
         <img src="{% static 'dist/img/user1-128x128.jpg' %}" alt="User Image">
       </div>
-      <!-- /.lockscreen-image -->
-
-      <!-- lockscreen credentials (contains the form) -->
       <form class="lockscreen-credentials" action="{% url 'admin-lockscreen-login' %}" method="post">
+        {% csrf_token %}
         <div class="input-group">
           <input type="password" class="form-control" placeholder="password">
 
@@ -38,20 +38,15 @@
             </button>
           </div>
         </div>
-        <div class="card-footer">
-          <button type="submit" class="btn btn-success btn-block">Sign In</button>
-        </div>
-      </form>
-      <!-- /.lockscreen credentials -->
 
+      </form>
     </div>
-    <!-- /.lockscreen-item -->
-    <div class="help-block text-center">
-      Enter your password to retrieve your session
-    </div>
-    <div class="text-center">
-      <a href="{% url 'login' %}">Or sign in as a different user</a>
-    </div>
+    <form action="{% url 'admin-lockscreen-login' %}" method="post">
+      {% csrf_token %}
+      <div class="input-group-submit">
+        <button type="submit" class="btn btn-success btn-block">Sign In</button>
+      </div>
+    </form>
     <div class="lockscreen-footer text-center">
       Copyright &copy; 2022 <b><a href="{% url 'admin-home' %}" class="text-black">Kings International
           School</a></b><br>
