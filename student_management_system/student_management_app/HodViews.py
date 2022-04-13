@@ -60,7 +60,7 @@ def adminHome(request):
     return render(request, 'hod_templates/home_content.html', context)
 
 def adminLockscreen(request):
-    pass
+    return render(request, 'hod_templates/admin-lockscreen.html')
 
 def adminStudentHome(request):
     student_obj = Students.objects.get(id=1)
