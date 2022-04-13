@@ -1,6 +1,6 @@
 {% extends 'staff_templates/base.html' %}
 {% block page_title %}
-Edit Staff | #ID: {{staff.id}}
+Edit Subject | #ID: {{subject.id}}
 {% endblock page_title %}
 {% block home_content %}
 <section class="content">
@@ -11,10 +11,10 @@ Edit Staff | #ID: {{staff.id}}
                 <!-- general form elements -->
                 <div class="card card-dark">
                     <div class="card-header">
-                        <h3 class="card-title">Edit Staff</h3>
+                        <h3 class="card-title">Edit Subject</h3>
                     </div>
-                    {% url 'edit-staff-save' as action_path %}
-                    {% include 'staff_templates/form_template.html' with button="Edit Staff" %}
+                    {% url 'edit-subject-save' as action_path %}
+                    {% include 'staff_templates/form_template.html' with button="Edit Subject" %}
                 </div>
             </div>
         </div>

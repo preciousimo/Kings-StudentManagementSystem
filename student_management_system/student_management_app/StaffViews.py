@@ -221,7 +221,7 @@ def manageSubject(request):
     return render(request, 'staff_templates/manage_subject_template.html', {'subjects':subjects})
 
 def editSubject(request):
-    pass
+    return render(request, 'staff_templates/edit-subject-template.html')
 
 def takeAttendance(request):
     subjects = Subjects.objects.filter(staff_id=request.user.id)

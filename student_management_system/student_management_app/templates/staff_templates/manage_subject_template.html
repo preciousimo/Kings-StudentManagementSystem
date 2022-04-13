@@ -42,8 +42,7 @@
                                     <td>{{subject.subject_status}}</td>
                                     <td>{{subject.classs}}</td>
                                     <td>{{subject.staff_id}}</td>
-                                    <td><a class="btn btn-success"
-                                            href="{% url 'edit-subject/{{ subject.id }}' %}">Edit</a></td>
+                                    <td><a class="btn btn-success" href="{% url 'edit-subject' %}">Edit</a></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
