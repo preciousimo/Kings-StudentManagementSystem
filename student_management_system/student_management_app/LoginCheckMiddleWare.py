@@ -34,7 +34,7 @@ class LoginCheckMiddleWare(MiddlewareMixin):
                 elif modulename == "accounts.views":
                     pass 
                 else:
-                    return redirect('forbidden-page')
+                    return render(request, 'error_templates/403/403_template.html')
             # Student Page Restriction
             elif user.user_type == "3":
                 if modulename == "student_management_app.StudentViews":
@@ -44,7 +44,7 @@ class LoginCheckMiddleWare(MiddlewareMixin):
                 elif modulename == "accounts.views":
                     pass    
                 else:
-                    return redirect('forbidden-page')
+                    return render(request, 'error_templates/403/403_template.html')
         else:
             if (request.path == '/login' or modulename == 'django.contrib.auth.urls'):
                 pass
