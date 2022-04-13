@@ -30,8 +30,7 @@
       <form class="lockscreen-credentials" action="{% url 'admin-lockscreen-login' %}" method="post">
         {% csrf_token %}
         <div class="input-group">
-          <input type="password" class="form-control" placeholder="password">
-
+          <input type="password" class="form-control" placeholder="Enter password" name="password">
           <div class="input-group-append">
             <button type="button" class="btn">
               <i class="fas fa-arrow-right text-muted"></i>

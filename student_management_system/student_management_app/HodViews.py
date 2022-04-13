@@ -1,10 +1,12 @@
 import json
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate
 from accounts import urls
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from student_management_app.models import SessionYear, FeedBackStudents, FeedBackStaffs, LeaveReportStudent, LeaveReportStaff, Attendance, Subjects, AttendanceReport, CustomUser, Students, Staffs
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+from student_management_app.EmailBackEnd import EmailBackEnd
 
 def adminHome(request):
     students_count = Students.objects.all().count()
@@ -63,7 +65,17 @@ def adminLockscreen(request):
     return render(request, 'hod_templates/admin-lockscreen.html')
 
 def adminLockscreenLogin(request):
-    pass
+    if request.method == 'POST':
+        password = request.POST.get('password')
+        user = EmailBackEnd.authenticate(request, password=password)
+        if user != None:
+            login(request, user)
+            return redirect('/admin-home')
+        else:
+            messages.error(request, 'Invalid Credentials')
+            return render(request, 'hod_templates/admin-lockscreen.html')  
+    else:
+        return HttpResponse('Method not allowed')
 
 def adminStudentHome(request):
     student_obj = Students.objects.get(id=1)
