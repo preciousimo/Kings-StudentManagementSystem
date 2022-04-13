@@ -21,6 +21,11 @@
                 <i class="fas fa-expand-arrows-alt"></i>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin-lockscreen' %}" role="button">
+                <i class="fas fa-lock"></i>
+            </a>
+        </li>
         {% if user.is_authenticated %}
         <li class="nav-item d-none d-sm-inline-block">
             <a href="/logout" class="btn btn-danger btn-block">Logout</a>
