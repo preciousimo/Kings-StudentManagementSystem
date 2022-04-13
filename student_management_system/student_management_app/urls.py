@@ -9,6 +9,7 @@ urlpatterns = [
     path('page-not-found', views.pageNotFound, name="page-not-found"),
     path('forbidden-page', views.forbiddenPage, name="forbidden-page"),
     path('admin-lockscreen', HodViews.adminLockscreen, name="admin-lockscreen"),
+    path('admin-lockscreen-login', HodViews.adminLockscreenLogin, name="admin-lockscreen-login"),
 
     #HOD/Admin Views
     path('admin-home', HodViews.adminHome, name="admin-home"),
