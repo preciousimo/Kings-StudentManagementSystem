@@ -209,27 +209,34 @@ def addSessionSave(request):
 def editSession(request):
     session = SessionYear.objects.all()
     for ses in session:
-        previous_session_start_year = str(ses.session_start_year)
+        previous_term_start_year = str(ses.term_start_year)
+        previous_term_end_year = str(ses.term_end_year)
+        previous_session_start_year = str(ses.session_start_year)        
         previous_session_end_year = str(ses.session_end_year)
 
     context = {
+        'previous_term_start_year':previous_term_start_year,
+        'previous_term_end_year':previous_term_end_year,
         'previous_session_start_year':previous_session_start_year,
-        'previous_session_end_year':previous_session_end_year
+        'previous_session_end_year':previous_session_end_year,
+        
     }
     return render(request, 'hod_templates/edit-session-template.html', context)
 
 def editSessionSave(request):
     if request.method == 'POST':         
+        term_start_year = request.POST['term_start_year']
+        term_end_year = request.POST['term_end_year']
         session_start_year = request.POST['session_start_year']
         session_end_year = request.POST['session_end_year']
 
         try:
-            new_session = SessionYear(session_start_year=session_start_year, session_end_year=session_end_year)
+            new_session = SessionYear(term_start_year=term_start_year, term_end_year=term_end_year, session_start_year=session_start_year, session_end_year=session_end_year)
             new_session.save()
-            return messages.success(request, 'Session Edited Successful')
+            messages.success(request, 'Session Edited Successful')
             return redirect('edit-session')
         except:
-            return messages.error(request, 'Failed to Edit Session')
+            messages.error(request, 'Failed to Edit Session')
             return redirect('edit-session')
 
     else:
