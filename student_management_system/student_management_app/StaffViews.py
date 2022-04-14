@@ -255,10 +255,10 @@ def editSubjectSave(request):
                 new_staff.staff_id = staff_id
                 new_staff.save()
                 
-                messages.success(request, '{} edited successfully'.format(subject_name))
+                messages.success(request, '{} Updated Successfully'.format(subject_name))
                 return redirect('manage-subject')
             except:
-                messages.error(request, 'Failed to edit subject')
+                messages.error(request, 'Failed to Edit {}'.format(subject_name))
                 return redirect('manage-subject')
         else:
             form = EditSubjectForm(request.POST)
