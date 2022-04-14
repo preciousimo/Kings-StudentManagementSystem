@@ -196,7 +196,7 @@ def addSessionSave(request):
             session = SessionYear(session_start_year=session_start_year,session_end_year=session_end_year)
             session.save()
             messages.success(request, 'Session Created Successfully')
-            return redirect('admin-home')
+            return redirect('add-session')
         except:
             messages.error(request, 'Failed to add Session')
             return redirect('add-session')
@@ -217,24 +217,17 @@ def editSession(request):
     return render(request, 'hod_templates/edit-session-template.html', context)
 
 def editSessionSave(request):
-    if request.method == 'POST':
-        form = EditSessionForm(request.POST)
-        if form.is_valid():
-            term_start = form.cleaned_data['term_start']
-            session_start = form.cleaned_data['session_start']
-            term_end = form.cleaned_data['term_end']
-            session_end = form.cleaned_data['session_end']
+    if request.method == 'POST':         
+        session_start_year = request.POST['session_start_year']
+        session_end_year = request.POST['session_end_year']
 
-            try:
-                new_session = Session.objects.create(session_start=session_start, session_end=session_end)
-                new_session.save()
-                return messages.success(request, 'Session Edited Successful')
-                return redirect('admin-home')
-            except:
-                return messages.error(request, 'Failed to Edit Session')
-                return redirect('edit-session')
-        else:
-            messages.error(request, 'Form is not valid')
+        try:
+            new_session = SessionYear(session_start_year=session_start_year, session_end_year=session_end_year)
+            new_session.save()
+            return messages.success(request, 'Session Edited Successful')
+            return redirect('edit-session')
+        except:
+            return messages.error(request, 'Failed to Edit Session')
             return redirect('edit-session')
 
     else:
