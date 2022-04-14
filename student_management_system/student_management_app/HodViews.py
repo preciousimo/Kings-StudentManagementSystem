@@ -190,10 +190,12 @@ def addSession(request):
 
 def addSessionSave(request):
     if request.method == 'POST':    
+        term_start_year = request.POST['term_start_year']
         session_start_year = request.POST['session_start_year']
+        term_end_year = request.POST['term_end_year']
         session_end_year = request.POST['session_end_year']
         try:
-            session = SessionYear(session_start_year=session_start_year,session_end_year=session_end_year)
+            session = SessionYear(term_start_year=term_start_year, session_start_year=session_start_year, term_end_year=term_end_year, session_end_year=session_end_year)
             session.save()
             messages.success(request, 'Session Created Successfully')
             return redirect('add-session')
