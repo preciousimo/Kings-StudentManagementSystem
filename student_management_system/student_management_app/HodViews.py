@@ -189,8 +189,7 @@ def addSession(request):
     return render(request, 'hod_templates/add_session_template.html')
 
 def addSessionSave(request):
-    if request.method == 'POST':
-        
+    if request.method == 'POST':    
         session_start_year = request.POST['session_start_year']
         session_end_year = request.POST['session_end_year']
         try:
@@ -206,8 +205,16 @@ def addSessionSave(request):
         return HttpResponse('Method not allowed')
 
 def editSession(request):
-    form = EditSessionForm()
-    return render(request, 'hod_templates/edit_session_template.html', {'form':form})
+    session = SessionYear.objects.all()
+    for ses in session:
+        previous_session_start_year = str(ses.session_start_year)
+        previous_session_end_year = str(ses.session_end_year)
+
+    context = {
+        'previous_session_start_year':previous_session_start_year,
+        'previous_session_end_year':previous_session_end_year
+    }
+    return render(request, 'hod_templates/edit-session-template.html', context)
 
 def editSessionSave(request):
     if request.method == 'POST':
@@ -221,10 +228,10 @@ def editSessionSave(request):
             try:
                 new_session = Session.objects.create(session_start=session_start, session_end=session_end)
                 new_session.save()
-                return messages.success(request, 'Session edited successful')
+                return messages.success(request, 'Session Edited Successful')
                 return redirect('admin-home')
             except:
-                return messages.error(request, 'Failed to edit session')
+                return messages.error(request, 'Failed to Edit Session')
                 return redirect('edit-session')
         else:
             messages.error(request, 'Form is not valid')
