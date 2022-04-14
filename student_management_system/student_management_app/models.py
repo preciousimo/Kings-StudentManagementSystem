@@ -34,7 +34,9 @@ class Staffs(models.Model):
 
 class SessionYear(models.Model):
     id = models.AutoField(primary_key=True)
+    term_start_year = models.DateField()
     session_start_year = models.DateField()
+    term_end_year = models.DateField()
     session_end_year = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
