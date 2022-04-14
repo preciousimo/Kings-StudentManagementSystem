@@ -224,16 +224,47 @@ def addSubjectSave(request):
 
 def manageSubject(request):
     subjects = Subjects.objects.all()
-    return render(request, 'staff_templates/manage_subject_template.html', {'subjects':subjects})
+    return render(request, 'staff_templates/manage-subject-template.html', {'subjects':subjects})
 
-def editSubject(request):
-    subject = Subjects.objects.get(id=1)
+def editSubject(request, subject_id):
+    subject = Subjects.objects.get(id=subject_id)
     form = EditSubjectForm()
     form.fields['subject_name'].initial = subject.subject_name
     form.fields['subject_status'].initial = subject.subject_status
     form.fields['classs'].initial = subject.classs
     form.fields['staff_id'].initial = subject.staff_id
-    return render(request, 'staff_templates/edit-subject-template.html', {'form':form})    
+    return render(request, 'staff_templates/edit-subject-template.html', {'form':form, 'subject':subject})    
+
+def editSubjectSave(request):
+    if request.method == 'POST':
+        form = EditSubjectForm(request.POST)
+        if form.is_valid():
+            subject_id = request.POST['subject_id']
+            subject_name = form.cleaned_data['subject_name']
+            subject_status = form.cleaned_data['subject_status']
+            classs = form.cleaned_data['classs']
+            staff_id = form.cleaned_data['staff_id']
+            try:
+                new_subject = Subjects.objects.get(id=subject_id)
+                new_subject.subject_name = subject_name
+                new_subject.subject_status = subject_status
+                new_subject.classs = classs
+                new_subject.save()
+
+                new_staff = CustomUser.objects.filter(user_type=2)
+                new_staff.staff_id = staff_id
+                new_staff.save()
+                
+                messages.success(request, '{} edited successfully'.format(subject_name))
+                return redirect('manage-subject')
+            except:
+                messages.error(request, 'Failed to edit subject')
+                return redirect('manage-subject')
+        else:
+            form = EditSubjectForm(request.POST)
+            return render(request, 'staff_templates/manage-subject-template.html', {'form':form})    
+    else:
+        return HttpResponse('Method not allowed')
 
 def takeAttendance(request):
     subjects = Subjects.objects.filter(staff_id=request.user.id)

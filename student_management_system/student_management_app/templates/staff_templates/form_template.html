@@ -6,6 +6,7 @@
             {{ field.errors }}
             {{ field.label_tag }}
             {{ field }}
+            <input type="hidden" class="form-control" name="subject_id" value="{{subject.id}}" hidden>
         </div>
         {% endfor %}
     </div>
