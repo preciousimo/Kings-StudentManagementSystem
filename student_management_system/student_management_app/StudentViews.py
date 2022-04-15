@@ -60,7 +60,7 @@ def editStudentProfileSave(request):
             messages.success(request, 'Profile Updated Successfully')
             return redirect('edit-student-profile')
         except:
-            messages.error(request, 'Failed to edit profile')
+            messages.error(request, 'Failed to Edit Profile')
             return redirect('edit-student-profile')
 
     else:
@@ -103,10 +103,10 @@ def addStudentSave(request):
                 new_student.students.nationality = nationality
                 new_student.save()
                 
-                messages.success(request, '{} created successfully'.format(username))
+                messages.success(request, '{} Created Successfully'.format(username))
                 return redirect('add-student')
             except:
-                messages.error(request, 'Failed to create new student')
+                messages.error(request, 'Failed to Create new Student')
                 return redirect('add-student')
         else:
             form = AddStudentForm(request.POST)
@@ -116,7 +116,7 @@ def addStudentSave(request):
 
 def manageStudent(request):
     students = Students.objects.all()
-    return render(request, 'student_templates/manage_student_template.html', {'students':students})
+    return render(request, 'student_templates/manage-student-template.html', {'students':students})
 
 def editStudent(request, student_id):
     request.session['student_id'] = student_id
@@ -174,10 +174,10 @@ def editStudentSave(request):
                 student_model.classs = classs
                 student_model.save()
                 del request.session['student_id']
-                messages.success(request, '{} updated successfully'.format(username))
+                messages.success(request, '{} Updated Successfully'.format(username))
                 return redirect('manage-student')
             except:
-                messages.error(request, 'Failed to edit {}'.format(username))
+                messages.error(request, 'Failed to Edit {}'.format(username))
                 return redirect('manage-student')
         else:
             form = EditStudentForm(request.POST)
@@ -235,10 +235,10 @@ def applyLeaveSave(request):
         try: 
             leave_report = LeaveReportStudent(leave_date=leave_date, leave_message=leave_message, return_date=return_date, student_id=student_obj, leave_status=0)
             leave_report.save()
-            messages.success(request, 'Application Submitted successfully')
+            messages.success(request, 'Application Submitted Successfully')
             return redirect('student-apply-leave')
         except:
-            messages.error(request, 'Failed to apply for leave')
+            messages.error(request, 'Failed to Apply for Leave')
             return redirect('student-apply-leave')
 
     else:
@@ -259,10 +259,10 @@ def leaveFeedbackSave(request):
         try: 
             feedback_report = FeedBackStudents(feedback=feedback_message, feedback_reply="", student_id=student_obj)
             feedback_report.save()
-            messages.success(request, 'Feedback Submitted successfully')
+            messages.success(request, 'Feedback Submitted Successfully')
             return redirect('student-leave-feedback')
         except:
-            messages.error(request, 'Failed to submit Feedback')
+            messages.error(request, 'Failed to Submit Feedback')
             return redirect('student-leave-feedback')
 
     else:
