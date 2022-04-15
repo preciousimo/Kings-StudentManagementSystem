@@ -40,7 +40,7 @@ def studentHome(request):
 def editStudentProfile(request):
     user = CustomUser.objects.get(id=request.user.id)
     student = Students.objects.get(admin=user)
-    return render(request, 'student_templates/edit_student_profile_template.html', {'user':user,'student':student})
+    return render(request, 'student_templates/edit-student-profile-template.html', {'user':user,'student':student})
 
 def editStudentProfileSave(request):
     if request.method == 'POST':
@@ -68,7 +68,7 @@ def editStudentProfileSave(request):
 
 def addStudent(request):
     form = AddStudentForm()
-    return render(request, 'student_templates/add_student_template.html', {'form':form})
+    return render(request, 'student_templates/add-student-template.html', {'form':form})
 
 def addStudentSave(request):
     if request.method == 'POST':
@@ -134,11 +134,7 @@ def editStudent(request, student_id):
     form.fields['state'].initial = student.state
     form.fields['classs'].initial = student.classs
     form.fields['nationality'].initial = student.nationality
-    form.fields['term_start'].initial = student.term_start
-    form.fields['session_start'].initial = student.session_start
-    form.fields['term_end'].initial = student.term_end
-    form.fields['session_end'].initial = student.session_end
-    return render(request, 'student_templates/edit_student_template.html', {'student':student,'id':student_id,'form':form})
+    return render(request, 'student_templates/edit-student-template.html', {'student':student,'id':student_id,'form':form})
 
 def editStudentSave(request):
     if request.method == 'POST':
@@ -159,10 +155,6 @@ def editStudentSave(request):
             state = form.cleaned_data['state']
             nationality = form.cleaned_data['nationality']
             classs = form.cleaned_data['classs']
-            term_start = form.cleaned_data['term_start']
-            session_start = form.cleaned_data['session_start']
-            term_end = form.cleaned_data['term_end']
-            session_end = form.cleaned_data['session_end']
             try:
                 user = CustomUser.objects.get(id=student_id)
                 user.first_name = first_name
@@ -180,10 +172,6 @@ def editStudentSave(request):
                 student_model.state = state
                 student_model.nationality = nationality
                 student_model.classs = classs
-                student_model.term_start = term_start
-                student_model.session_start = session_start
-                student_model.term_end = term_end
-                student_model.session_end = session_end
                 student_model.save()
                 del request.session['student_id']
                 messages.success(request, '{} updated successfully'.format(username))
@@ -206,7 +194,7 @@ def studentViewAttendance(request):
         'subjects':subjects,
     }
 
-    return render(request, 'student_templates/student_view_attendance.html', context)
+    return render(request, 'student_templates/student-view-attendance.html', context)
 
 def studentViewAttendanceSave(request):
     subject_id = request.POST['subject']
@@ -229,13 +217,13 @@ def studentViewAttendanceSave(request):
         'end_date':end_date
     }
 
-    return render(request, 'student_templates/student_attendance_data.html', context)
+    return render(request, 'student_templates/student-attendance-data.html', context)
 
 def applyLeave(request):
     student_obj = Students.objects.get(admin=request.user.id)
     leave_data = LeaveReportStudent.objects.filter(student_id=student_obj)
 
-    return render(request, 'student_templates/apply_leave_template.html', {'leave_data':leave_data})
+    return render(request, 'student_templates/apply-leave-template.html', {'leave_data':leave_data})
 
 def applyLeaveSave(request):
     if request.method == 'POST':
@@ -260,7 +248,7 @@ def leaveFeedback(request):
     student_obj = Students.objects.get(admin=request.user.id)
     feedback_data = FeedBackStudents.objects.filter(student_id=student_obj)
     
-    return render(request, 'student_templates/leave_feedback_template.html', {'feedback_data':feedback_data}) 
+    return render(request, 'student_templates/leave-feedback-template.html', {'feedback_data':feedback_data}) 
 
 def leaveFeedbackSave(request):
     if request.method == 'POST':
@@ -312,5 +300,5 @@ def studentFcmtokenSave(request):
 def studentViewResult(request):
     student = Students.objects.get(admin=request.user.id)
     student_result = StudentResult.objects.filter(student_id=student.id)
-    return render(request, 'student_templates/student_view_result_template.html', {'student_result':student_result}) 
+    return render(request, 'student_templates/student-view-result-template.html', {'student_result':student_result}) 
     
