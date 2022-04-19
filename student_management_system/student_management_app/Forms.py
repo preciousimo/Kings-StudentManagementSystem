@@ -107,15 +107,9 @@ class EditStaffForm(forms.Form):
         ('Female', 'Female'),
     )
     gender = forms.ChoiceField(label = "Gender",choices=gender_choice, widget=forms.Select(attrs={'class':'form-control'}))
-    profile_picture = forms.FileField(label = "Profile Picture",max_length=50, widget=FileInput(attrs={'class':'form-control'}))
-    curriculum_vitae = forms.FileField(label = "Curriculum Vitae",max_length=50, widget=FileInput(attrs={'class':'form-control'}))
     address = forms.CharField(label = "Address",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     state = forms.CharField(label = "State",max_length=50, widget=TextInput(attrs={'class':'form-control'}))
     nationality = forms.CharField(label = "Nationality", max_length=50, widget=TextInput(attrs={'class':'form-control'}))
-
-
-    session_start = forms.DateField(label = "Session Start", widget=DateInput(attrs={'class':'form-control'}))
-    session_end = forms.DateField(label = "Session End", widget=DateInput(attrs={'class':'form-control'}))
 
 class AddSubjectForm(forms.Form):
     subject_name = forms.CharField(label = "Subject Name",max_length=50, widget=TextInput(attrs={'class':'form-control','autocomplete':'off'}))
