@@ -52,7 +52,7 @@ def staffHome(request):
 def editStaffProfile(request):
     user = CustomUser.objects.get(id=request.user.id)
     staff = Staffs.objects.get(admin=user)
-    return render(request, 'staff_templates/edit_staff_profile_template.html', {'user':user, 'staff':staff})
+    return render(request, 'staff_templates/edit-staff-profile-template.html', {'user':user, 'staff':staff})
 
 def editStaffProfileSave(request):
     if request.method == 'POST':
@@ -82,7 +82,7 @@ def editStaffProfileSave(request):
 
 def addStaff(request):
     form = AddStaffForm()
-    return render(request, 'staff_templates/add_staff_template.html', {'form':form})
+    return render(request, 'staff_templates/add-staff-template.html', {'form':form})
 
 def addStaffSave(request):
     if request.method == 'POST':
@@ -125,7 +125,7 @@ def addStaffSave(request):
 
 def manageStaff(request):
     staffs = Staffs.objects.all()
-    return render(request, 'staff_templates/manage_staff_template.html', {'staffs':staffs})
+    return render(request, 'staff_templates/manage-staff-template.html', {'staffs':staffs})
 
 def editStaff(request, staff_id):
     request.session['staff_id'] = staff_id
@@ -143,7 +143,7 @@ def editStaff(request, staff_id):
     form.fields['state'].initial = staff.state
     form.fields['nationality'].initial = staff.nationality
     
-    return render(request, 'staff_templates/edit_staff_template.html', {'staff':staff, 'id':staff_id, 'form':form})
+    return render(request, 'staff_templates/edit-staff-template.html', {'staff':staff, 'id':staff_id, 'form':form})
 
 def editStaffSave(request):
     if request.method == 'POST':
@@ -273,7 +273,7 @@ def takeAttendance(request):
         'subjects':subjects,
         'session_years':session_years
         }
-    return render(request, 'staff_templates/take_attendance_template.html', context)
+    return render(request, 'staff_templates/take-attendance-template.html', context)
 
 @csrf_exempt
 def get_students(request):
@@ -322,7 +322,7 @@ def update_attendance(request):
         'subjects':subjects,
         'session_year_id':session_year_id
         }
-    return render(request, 'staff_templates/update_attendance_template.html', context)
+    return render(request, 'staff_templates/update-attendance-template.html', context)
 
 @csrf_exempt
 def get_attendance_dates(request):
@@ -375,7 +375,7 @@ def applyLeave(request):
     staff_obj = Staffs.objects.get(admin=request.user.id)
     leave_data = LeaveReportStaff.objects.filter(staff_id=staff_obj)
 
-    return render(request, 'staff_templates/apply_leave_template.html', {'leave_data':leave_data})
+    return render(request, 'staff_templates/apply-leave-template.html', {'leave_data':leave_data})
 
 def applyLeaveSave(request):
     if request.method == 'POST':
@@ -400,7 +400,7 @@ def leaveFeedback(request):
     staff_obj = Staffs.objects.get(admin=request.user.id)
     feedback_data = FeedBackStaffs.objects.filter(staff_id=staff_obj)
     
-    return render(request, 'staff_templates/leave_feedback_template.html', {'feedback_data':feedback_data}) 
+    return render(request, 'staff_templates/leave-feedback-template.html', {'feedback_data':feedback_data}) 
 
 def leaveFeedbackSave(request):
     if request.method == 'POST':
@@ -449,10 +449,10 @@ def staffFcmtokenSave(request):
     except:
         return HttpResponse('False')
 
-def staffAddResult(request):
+def staffAddResult(request):                                           
     subjects = Subjects.objects.filter(staff_id=request.user.id)
     session_years = SessionYear.objects.all()
-    return render(request, 'staff_templates/add_result_template.html', {'subjects':subjects,'session_years':session_years})
+    return render(request, 'staff_templates/add-result-template.html', {'subjects':subjects,'session_years':session_years})
 
 def saveStudentResult(request):
     if request.method == 'POST':
@@ -488,7 +488,7 @@ class editStudentResult(View):
     def get(self, request, *args, **kwargs):
         staff_id = request.user.id
         edit_result_form = EditStudentResultForm(staff_id=staff_id)
-        return render(request, 'staff_templates/edit_result_template.html', {'form':edit_result_form})
+        return render(request, 'staff_templates/edit-result-template.html', {'form':edit_result_form})
 
     def post(self, request, *args, **kwargs):
         form = EditStudentResultForm(request.POST, staff_id=request.user.id)
