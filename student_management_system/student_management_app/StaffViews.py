@@ -112,10 +112,10 @@ def addStaffSave(request):
                 new_staff.staffs.nationality = nationality
                 new_staff.save()
                 
-                messages.success(request, '{} created successfully'.format(username))
+                messages.success(request, '{} Created Successfully'.format(username))
                 return redirect('add-staff')
             except:
-                messages.error(request, 'Failed to create new staff')
+                messages.error(request, 'Failed to Create new Staff')
                 return redirect('add-staff')
         else:
             form = AddStaffForm(request.POST)
@@ -149,8 +149,9 @@ def editStaffSave(request):
     if request.method == 'POST':
         staff_id = request.session.get('staff_id')
         if staff_id == None:
+            messages.info(request, 'Invalid Staff ID')
             return redirect('manage-student')
-        form = EditStaffForm(request.POST, request.FILES)
+        form = EditStaffForm(request.POST)
         if form.is_valid():
             first_name = form.cleaned_data['first_name']
             middle_name = form.cleaned_data['middle_name']
@@ -181,16 +182,16 @@ def editStaffSave(request):
                 staff_model.state = state
                 staff_model.nationality = nationality
                 staff_model.save()
-                del request.session['student_id']
-                messages.success(request, '{} updated successfully'.format(username))
+                del request.session['staff_id']
+                messages.success(request, '{} Updated Successfully'.format(username))
                 return redirect('manage-staff')
             except:
-                messages.error(request, 'Failed to edit {}'.format(username))
+                messages.error(request, 'Failed to Edit {}'.format(username))
                 return redirect('manage-staff')
         else:
             form = EditStaffForm(request.POST)
+            messages.info('Failed to Edit Staff')
             return redirect('manage-staff')
-            messages.info('Failed to edit Staff')
     else:
         return render(request, 'staff_templates/edit_staff_template.html')
 
