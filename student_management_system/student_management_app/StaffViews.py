@@ -245,22 +245,23 @@ def editSubjectSave(request):
             subject_status = form.cleaned_data['subject_status']
             classs = form.cleaned_data['classs']
             staff_id = form.cleaned_data['staff_id']
+
             try:
                 new_subject = Subjects.objects.get(id=subject_id)
                 new_subject.subject_name = subject_name
                 new_subject.subject_status = subject_status
                 new_subject.classs = classs
+                new_staff = CustomUser.objects.get(id=staff_id)
+                new_subject.staff_id = new_staff
+                new_staff.save()
                 new_subject.save()
 
-                new_staff = CustomUser.objects.filter(user_type=2)
-                new_staff.staff_id = staff_id
-                new_staff.save()
-                
+
                 messages.success(request, '{} Updated Successfully'.format(subject_name))
                 return redirect('manage-subject')
             except:
                 messages.error(request, 'Failed to Edit {}'.format(subject_name))
-                return redirect('manage-subject')
+                return redirect('manage-subject')    
         else:
             form = EditSubjectForm(request.POST)
             return render(request, 'staff_templates/manage-subject-template.html', {'form':form})    

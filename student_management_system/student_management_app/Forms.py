@@ -152,6 +152,7 @@ class EditSubjectForm(forms.Form):
         ('SSS2', 'SSS 2'),
         ('SSS3', 'SSS 3'),  
     )
+    classs = forms.ChoiceField(label = "Class", choices=classs_choice, widget=forms.Select(attrs={'class':'form-control'}))  
     staff_list = []
     staffs = CustomUser.objects.filter(user_type=2)
     try:
@@ -160,10 +161,8 @@ class EditSubjectForm(forms.Form):
             staff_list.append(staff_name)    
     except:
         pass
-    classs = forms.ChoiceField(label = "Class", choices=classs_choice, widget=forms.Select(attrs={'class':'form-control'}))  
     staff_id = forms.ChoiceField(label = "Staff", choices=staff_list, widget=forms.Select(attrs={'class':'form-control'}))  
     
-
 class EditStudentResultForm(forms.Form):
     def __init__ (self, *args, **kwargs):
         self.staff_id=kwargs.pop('staff_id')
